@@ -1,0 +1,23 @@
+{
+  "name": "lsp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.14.0",
+    "sass-loader": "^9.0.2"
+  },
+  "devDependencies": {
+    "nuxt-purgecss": "^1.0.0",
+    "nuxt-webfontloader": "^1.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "tailwindcss": "^1.5.2"
+  }
+}
