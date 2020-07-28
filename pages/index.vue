@@ -1,20 +1,33 @@
 <template>
   <div class="bg-gray-100">
     <!-- section:main -->
-    <!-- <img src="@/assets/images/main-background.svg" class="absolute z-0"> -->
     <section class="main relative">
       <div class="flex flex-col flex-grow h-full">
         <nav class="navbar">
           <div class="container md:mx-auto">
             <ul class="flex flex-row flex-grow md:justify-between justify-center py-4">
               <li>
-                <nuxt-link to="/" tag="a" class="font-bold text-gray-800">LSP SMKN 1 MOJOKERTO</nuxt-link>
+                <nuxt-link to="/" tag="a" class="font-bold text-gray-800">
+                  LSP SMKN 1 MOJOKERTO
+                </nuxt-link>
               </li>
               <li class="hidden md:block">
                 <ul class="menu-right font-semibold text-gray-700 flex flex-row flex-grow space-x-8">
-                  <li><nuxt-link to="/about" tag="a">Dokumentasi</nuxt-link></li>
-                  <li><nuxt-link to="/about" tag="a">Tentang</nuxt-link></li>
-                  <li><nuxt-link to="/contact" tag="a">Kontak</nuxt-link></li>
+                  <li>
+                    <nuxt-link to="/dokumentasi" tag="a">
+                      Dokumentasi
+                    </nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="/about" tag="a">
+                      Tentang
+                    </nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="/contact" tag="a">
+                      Kontak
+                    </nuxt-link>
+                  </li>
                   <li>
                     <nuxt-link to="/login" tag="a" class="bg-gray-300 text-gray-700 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-gray-400 hover:text-gray-800 mr-2">
                       Daftar
@@ -55,12 +68,20 @@
 
     <!-- section:service -->
     <section class="bg-gray-200">
-      <h2 class="text-center font-bold text-4xl">
-        Layanan
-      </h2>
+      <h1>Test</h1>
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 * {

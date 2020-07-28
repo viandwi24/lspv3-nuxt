@@ -7,11 +7,11 @@ module.exports = {
       fontFamily: {
         mono: [
           'PT Mono',
-          ...defaultTheme.fontFamily.mono,
+          ...defaultTheme.fontFamily.mono
         ]
-      },
-    },
+      }
+    }
   },
   variants: {},
-  plugins: [],
+  plugins: []
 }

@@ -1,5 +1,5 @@
-const path = require('path')
 
+import path from 'path'
 export default {
   /*
   ** Nuxt rendering mode
@@ -30,8 +30,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/scss/vendor.scss', 
-    '@/assets/scss/app.scss', 
+    '@/assets/scss/vendor.scss',
+    '@/assets/scss/app.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -48,14 +48,23 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module',
     'nuxt-purgecss'
   ],
   /*
   ** Nuxt.js modules
   */
-  modules: [,
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
     'nuxt-webfontloader'
   ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {},
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
@@ -73,6 +82,13 @@ export default {
     }
   },
   /**
+   ** Env
+   */
+  env: {
+    API_BASE_URL: 'http://localhost:8000',
+    API_PREFIX: 'v1'
+  },
+  /**
    ** PurgeCSS configuration
    */
   purgeCSS: {
@@ -84,7 +100,8 @@ export default {
    */
   webfontloader: {
     google: {
-      families: ['Lato:400,700'] //Loads Lato font with weights 400 and 700
+      // Loads Lato font with weights 400 and 700
+      families: ['Lato:400,700']
     }
-  },
+  }
 }
