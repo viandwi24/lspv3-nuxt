@@ -12,6 +12,10 @@ export default {
   */
   target: 'server',
   /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: 'blue' },
+  /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
@@ -38,12 +42,15 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/component',
+    '@/plugins/icon',
+    '@/plugins/axios'
   ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
   */
-  components: true,
+  components: false,
   /*
   ** Nuxt.js dev-modules
   */
@@ -61,11 +68,6 @@ export default {
     'nuxt-webfontloader'
   ],
   /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {},
-  /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
@@ -82,12 +84,17 @@ export default {
     }
   },
   /**
-   ** Env
+   ** Enviroment Variable
    */
   env: {
     API_BASE_URL: 'http://localhost:8000',
     API_PREFIX: 'v1'
   },
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {},
   /**
    ** PurgeCSS configuration
    */
