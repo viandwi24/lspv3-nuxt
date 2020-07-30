@@ -14,13 +14,16 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: 'blue' },
+  loading: {
+    color: 'blue',
+    height: '5px'
+  },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.APP_NAME || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -65,7 +68,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    'nuxt-lazy-load'
   ],
   /*
   ** Build configuration

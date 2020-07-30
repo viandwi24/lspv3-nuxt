@@ -18,6 +18,7 @@
     "@nuxtjs/axios": "^5.12.0",
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.0",
+    "nuxt-lazy-load": "^1.2.4",
     "nuxt-purgecss": "^1.0.0",
     "nuxt-webfontloader": "^1.1.0",
     "postcss-import": "^12.0.1",

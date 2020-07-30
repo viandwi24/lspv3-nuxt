@@ -51,7 +51,7 @@
               <p class="mt-4 mb-8 text-gray-600">
                 {{ app.name.toUpperCase() }} {{ app.institute.toUpperCase() }} adalah lembaga pelaksanaan kegiatan sertifikasi profesi yang memperoleh lisensi dari Badan Nasional Sertifikasi Profesi (BNSP).
               </p>
-              <nuxt-link to="/login" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
+              <nuxt-link to="/auth/login" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
                 <icon icon="sign-in-alt" />
                 Masuk
               </nuxt-link>
@@ -61,7 +61,7 @@
               </nuxt-link>
             </div>
             <div class="md:w-1/2 self-center">
-              <img src="@/assets/images/busy-marketing.svg" alt="D-IT Illustration">
+              <img v-lazy-load src="@/assets/images/busy-marketing.svg" alt="D-IT Illustration">
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
             Customer Support
           </div>
           <div class="text-center mb-4">
-            <img class="inline-block" src="@/assets/images/landingpage/contact.svg" alt="Icon" width="120">
+            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/contact.svg" alt="Icon" width="120">
           </div>
           <p>
             Kami berusaha melayani dengan sebaik - baiknya.
@@ -93,7 +93,7 @@
             Fast
           </div>
           <div class="text-center mb-4">
-            <img class="inline-block" src="@/assets/images/landingpage/clock.svg" alt="Icon" width="120">
+            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/clock.svg" alt="Icon" width="120">
           </div>
           <p>
             Kami melakukannya dengan cepat dan tepat waktu.
@@ -104,7 +104,7 @@
             Accuracy Assessment
           </div>
           <div class="text-center mb-4">
-            <img class="inline-block" src="@/assets/images/landingpage/exam.svg" alt="Icon" width="120">
+            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/exam.svg" alt="Icon" width="120">
           </div>
           <p>
             Ketepatan dan kejujuran kami dalam melakukan asesmen.
@@ -118,7 +118,7 @@
       <div class="container mx-auto pt-20">
         <div class="flex flex-wrap">
           <div class="w-full md:w-6/12 self-center">
-            <img src="@/assets/images/landingpage/remote-team.svg" alt="Illustration">
+            <img v-lazy-load src="@/assets/images/landingpage/remote-team.svg" alt="Illustration">
           </div>
           <div class="w-full md:w-6/12 self-center text-center md:text-left bg-gray-100 py-4 px-6 rounded shadow-xl">
             <h2 class="font-semibold text-4xl mb-8 text-gray-800">
@@ -169,7 +169,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-red-500 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/laravel.svg" alt="Laravel Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/laravel.svg" alt="Laravel Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Laravel merupakan framework php dengan performa tinggi terbukti,
@@ -181,7 +181,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-green-500 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/vue.svg" alt="Vue Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/vue.svg" alt="Vue Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Kami menggunakan Vue sebagai javascript progresif
@@ -195,7 +195,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-blue-500 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/postgre.svg" alt="Postgres Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/postgre.svg" alt="Postgres Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Secara default kami sudah menetapkan postgre sebagai layanan
@@ -209,7 +209,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-green-600 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/nodejs.svg" alt="Nodejs Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/nodejs.svg" alt="Nodejs Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Nodejs kami gunakan untuk membantu melakukan utilitas antarmuka,
@@ -222,7 +222,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-blue-600 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block my-5" src="@/assets/images/tech/wkhtmltopdf.png" alt="WKhtmlTOpdf Logo" width="146">
+                <img v-lazy-load class="inline-block my-5" src="@/assets/images/tech/wkhtmltopdf.png" alt="WKhtmlTOpdf Logo" width="146">
               </div>
               <p class="text-gray-200">
                 WKhtmlTOpdf membantu dalam pembuatan dan pencetakan dokumen
@@ -235,7 +235,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-gray-800 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/git.svg" alt="Git Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/git.svg" alt="Git Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Kode Sumber disimpan dalam git server, yang memudahkan dalam
@@ -248,7 +248,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-red-500 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/redis.svg" alt="Redis Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/redis.svg" alt="Redis Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Kami menggunakan Redis juga sebagai Cache Driver, membantu
@@ -261,7 +261,7 @@
           <div class="w-full md:w-1/4 px-2 py-2">
             <div class=" bg-blue-400 text-center rounded-lg shadow-xl hover:shadow-2xl transition duration-200 hover:bg-indigo-400 cursor-default ease-in p-4">
               <div class="mb-2">
-                <img class="inline-block" src="@/assets/images/tech/docker.svg" alt="Docker Logo" width="64">
+                <img v-lazy-load class="inline-block" src="@/assets/images/tech/docker.svg" alt="Docker Logo" width="64">
               </div>
               <p class="text-gray-200">
                 Aplikasi dibungkus dalam sistem berbasis container, kami menggunakan
@@ -316,6 +316,9 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState(['app'])
+  },
+  head: {
+    title: 'Home'
   }
 }
 </script>

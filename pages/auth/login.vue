@@ -36,9 +36,9 @@
           <div class="my-8">
             <div class="mt-4 flex justify-between">
               <div>
-                <nuxt-link to="/auth/login" tag="a" class="bg-blue-500 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-200 ease-in hover:bg-blue-700 hover:text-gray-300">
+                <a href="#" class="bg-blue-500 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-200 ease-in hover:bg-blue-700 hover:text-gray-300" @click.prevent="login">
                   Masuk
-                </nuxt-link>
+                </a>
                 <nuxt-link to="/auth/register" tag="a" class="bg-gray-300 text-gray-700 rounded px-4 py-2 font-semibold transition-all duration-200 ease-in hover:bg-gray-400 hover:text-gray-800 ml-2">
                   Daftar
                 </nuxt-link>
@@ -57,6 +57,14 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState(['app'])
+  },
+  methods: {
+    login () {
+      this.$store.commit('SET_LOADING', true)
+    }
+  },
+  head: {
+    title: 'Login'
   }
 }
 </script>
