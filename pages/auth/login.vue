@@ -25,12 +25,12 @@
         <form action="#" autocomplete="off" novalidate="">
           <div class="mb-4 shadow-md">
             <div class="relative form-group">
-              <input name="email" type="email" placeholder="example@email.com" class="border-b-0">
-              <label class="css-by8fd3 e48vd4k2">Email</label>
+              <input v-model="auth.email" name="email" type="email" placeholder="example@email.com" class="border-b-0">
+              <label>Email</label>
             </div>
             <div class="relative form-group">
-              <input name="password" type="password" placeholder="password" class="css-jonc7y e48vd4k0">
-              <label class="css-by8fd3 e48vd4k2">Password</label>
+              <input v-model="auth.password" name="password" type="password" placeholder="password" class="css-jonc7y e48vd4k0">
+              <label>Password</label>
             </div>
           </div>
           <div class="my-8">
@@ -55,12 +55,32 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  data () {
+    return {
+      auth: {
+        email: '',
+        password: ''
+      }
+    }
+  },
   computed: {
     ...mapState(['app'])
   },
   methods: {
-    login () {
+    async login () {
+      const data = this.auth
       this.$store.commit('SET_LOADING', true)
+      await this.sleep(2000)
+      this.$store.dispatch('user/login', data).then((res) => {
+        console.log(res)
+      }).catch((err) => {
+        console.log(err.response)
+      }).finally(() => {
+        this.$store.commit('SET_LOADING', false)
+      })
+    },
+    sleep (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
     }
   },
   head: {

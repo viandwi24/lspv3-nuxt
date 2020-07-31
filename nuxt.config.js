@@ -68,6 +68,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     'nuxt-webfontloader',
     'nuxt-lazy-load'
   ],
@@ -113,6 +114,37 @@ export default {
     google: {
       // Loads Lato font with weights 400 and 700
       families: ['Lato:400,700']
+    }
+  },
+  /**
+   ** Authentication
+   */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'credentials.token'
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          },
+          user: {
+            url: '/auth/user',
+            method: 'get',
+            propertyName: 'data'
+          }
+        }
+      }
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/auth/login',
+      callback: false,
+      home: false
     }
   }
 }
