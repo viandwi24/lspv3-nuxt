@@ -319,7 +319,8 @@ export default {
   },
   head: {
     title: 'Home'
-  }
+  },
+  transition: 'default'
 }
 </script>
 

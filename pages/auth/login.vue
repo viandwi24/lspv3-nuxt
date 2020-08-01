@@ -69,6 +69,7 @@ export default {
   methods: {
     async login () {
       const data = this.auth
+      // this.$toast.show('Logging in...')
       this.$store.commit('SET_LOADING', true)
       await this.sleep(2000)
       this.$store.dispatch('user/login', data).then((res) => {
@@ -85,7 +86,8 @@ export default {
   },
   head: {
     title: 'Login'
-  }
+  },
+  transition: 'default'
 }
 </script>
 

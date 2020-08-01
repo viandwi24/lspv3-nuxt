@@ -14,10 +14,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: {
-    color: 'blue',
-    height: '5px'
-  },
+  loading: false,
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
@@ -47,6 +44,7 @@ export default {
   plugins: [
     '@/plugins/component',
     '@/plugins/icon',
+    '@/plugins/toast',
     '@/plugins/axios'
   ],
   /*
@@ -69,6 +67,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/toast',
     'nuxt-webfontloader',
     'nuxt-lazy-load'
   ],
@@ -115,6 +114,12 @@ export default {
       // Loads Lato font with weights 400 and 700
       families: ['Lato:400,700']
     }
+  },
+  /**
+   ** Authentication
+   */
+  toast: {
+    position: 'top-center'
   },
   /**
    ** Authentication
