@@ -71,6 +71,9 @@ export default {
     'nuxt-webfontloader',
     'nuxt-lazy-load'
   ],
+  router: {
+    middleware: ['default']
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

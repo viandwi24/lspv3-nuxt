@@ -82,6 +82,7 @@ export default {
       this.$store.commit('SET_LOADING', true)
       await this.sleep(2000)
       this.$store.dispatch('user/login', data).then((res) => {
+        this.$toast.clear()
         this.$toast.success('Login Succes. Navigating to dashboard...', { duration: 5000 })
         this.$router.push('/')
       }).catch((err) => {

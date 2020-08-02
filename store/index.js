@@ -14,6 +14,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit, state }, context) {
+    // set app info from server
     const app = await context.app.$axios.$get('/')
     commit('SET_APP', app)
   }

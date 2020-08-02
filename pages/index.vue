@@ -327,9 +327,6 @@ export default {
     ...mapState(['app'])
   },
   mounted () {
-    console.log(
-      this.$getDashboardRoute()
-    )
   },
   head: {
     title: 'Home'
