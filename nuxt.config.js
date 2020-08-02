@@ -44,8 +44,8 @@ export default {
   plugins: [
     '@/plugins/component',
     '@/plugins/icon',
-    '@/plugins/toast',
-    '@/plugins/axios'
+    '@/plugins/axios',
+    '@/plugins/helper'
   ],
   /*
   ** Auto import components
@@ -116,10 +116,19 @@ export default {
     }
   },
   /**
-   ** Authentication
+   ** Toast
    */
   toast: {
-    position: 'top-center'
+    position: 'bottom-right',
+    register: [
+      {
+        name: 'unknown_error',
+        message: 'Error on process request, try again later. (unknown error)',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
   },
   /**
    ** Authentication

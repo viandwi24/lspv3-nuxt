@@ -14,26 +14,31 @@
               <li class="hidden md:block">
                 <ul class="menu-right font-semibold text-gray-700 flex flex-row flex-grow space-x-8">
                   <li>
-                    <nuxt-link to="/dokumentasi" tag="a">
+                    <nuxt-link to="/dokumentasi" tag="a" class="link">
                       Dokumentasi
                     </nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link to="/about" tag="a">
+                    <nuxt-link to="/about" tag="a" class="link">
                       Tentang
                     </nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link to="/contact" tag="a">
+                    <nuxt-link to="/contact" tag="a" class="link">
                       Kontak
                     </nuxt-link>
                   </li>
-                  <li>
+                  <li v-if="!this.$auth.loggedIn">
                     <nuxt-link to="/auth/register" tag="a" class="bg-gray-300 text-gray-700 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-gray-400 hover:text-gray-800 mr-2">
                       Daftar
                     </nuxt-link>
                     <nuxt-link to="/auth/login" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
                       Masuk
+                    </nuxt-link>
+                  </li>
+                  <li v-else>
+                    <nuxt-link to="/dashboard" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
+                      Dashboard
                     </nuxt-link>
                   </li>
                 </ul>
@@ -51,9 +56,13 @@
               <p class="mt-4 mb-8 text-gray-600">
                 {{ app.name.toUpperCase() }} {{ app.institute.toUpperCase() }} adalah lembaga pelaksanaan kegiatan sertifikasi profesi yang memperoleh lisensi dari Badan Nasional Sertifikasi Profesi (BNSP).
               </p>
-              <nuxt-link to="/auth/login" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
+              <nuxt-link v-if="!this.$auth.loggedIn" to="/auth/login" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
                 <icon icon="sign-in-alt" />
                 Masuk
+              </nuxt-link>
+              <nuxt-link v-else to="/dashboard" tag="a" class="bg-blue-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-blue-600 hover:text-gray-300">
+                <icon icon="home" />
+                Dashboard
               </nuxt-link>
               <nuxt-link to="/login" tag="a" class="bg-orange-400 text-gray-100 rounded px-4 py-2 font-semibold transition-all duration-100 ease-in hover:bg-orange-600 hover:text-gray-300 ml-2">
                 <icon icon="info-circle" />
@@ -317,6 +326,11 @@ export default {
   computed: {
     ...mapState(['app'])
   },
+  mounted () {
+    console.log(
+      this.$getDashboardRoute()
+    )
+  },
   head: {
     title: 'Home'
   },
@@ -335,6 +349,15 @@ section.main {
   nav.navbar {
     @apply bg-white;
     @apply shadow-md;
+  }
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+nav.navbar a.link {
+  @apply border-b-2 border-gray-100 transition-all duration-200 ease-in-out;
+  &:hover {
+    @apply border-blue-500;
   }
 }
 </style>

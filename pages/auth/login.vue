@@ -25,11 +25,11 @@
         <form action="#" autocomplete="off" novalidate="">
           <div class="mb-4 shadow-md">
             <div class="relative form-group">
-              <input v-model="auth.email" name="email" type="email" placeholder="example@email.com" class="border-b-0">
+              <input v-model="auth.email" name="email" type="email" placeholder="example@email.com" :class="{'has-error': error.email === true}">
               <label>Email</label>
             </div>
             <div class="relative form-group">
-              <input v-model="auth.password" name="password" type="password" placeholder="password" class="css-jonc7y e48vd4k0">
+              <input v-model="auth.password" name="password" type="password" placeholder="password" :class="{'has-error': error.password === true}">
               <label>Password</label>
             </div>
           </div>
@@ -58,8 +58,12 @@ export default {
   data () {
     return {
       auth: {
-        email: '',
-        password: ''
+        email: 'viandwicyber@gmail.com',
+        password: 'password'
+      },
+      error: {
+        email: false,
+        password: false
       }
     }
   },
@@ -69,16 +73,29 @@ export default {
   methods: {
     async login () {
       const data = this.auth
-      // this.$toast.show('Logging in...')
+      this.error = {
+        email: false,
+        password: false
+      }
+      this.$toast.clear()
+      this.$toast.show('Logging in...', { duration: 5000 })
       this.$store.commit('SET_LOADING', true)
       await this.sleep(2000)
       this.$store.dispatch('user/login', data).then((res) => {
-        console.log(res)
+        this.$toast.success('Login Succes. Navigating to dashboard...', { duration: 5000 })
+        this.$router.push('/')
       }).catch((err) => {
-        console.log(err.response)
+        this.errorLogin(err.response)
       }).finally(() => {
         this.$store.commit('SET_LOADING', false)
       })
+    },
+    errorLogin (res) {
+      if (res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
+        Object.entries(res.data.errors).forEach(([input, errors]) => {
+          this.error[input] = true
+        })
+      }
     },
     sleep (ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
@@ -87,6 +104,7 @@ export default {
   head: {
     title: 'Login'
   },
+  middleware: 'guest',
   transition: 'default'
 }
 </script>
@@ -120,10 +138,16 @@ form {
       outline: none;
 
       &:active, &:focus {
-        border-left: 4px solid rgb(40, 128, 206);
-        padding: 22px .8rem 5px;
+        border-left: 6px solid rgb(40, 128, 206);
+        padding: 22px .7rem 5px;
       }
     }
+
+    input.has-error {
+      border-left: 6px solid rgb(206, 40, 62);
+      padding: 22px .75rem 5px;
+    }
+
     label {
       position: absolute;
       top: 5px;
