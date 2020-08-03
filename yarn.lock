@@ -864,6 +864,14 @@
     postcss "7.0.32"
     purgecss "^2.3.0"
 
+"@innologica/vue-dropdown-menu@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@innologica/vue-dropdown-menu/-/vue-dropdown-menu-0.1.3.tgz#f2b3741296ed6c1dca4a1d04f824d08b1ce3ae14"
+  integrity sha512-kWeu/M+2E+b1z0qRovlP7T3Zctapcg7UBfZ4kC+BepgjvlSprNREKC7JN9bAWObPWB5WO8mHk3FRFCl/YBGIyQ==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.3.tgz#3a582bdb53804c6ba6d146579c46e52130cf4a3b"
@@ -9472,7 +9480,7 @@ vue-toasted@^1.1.28:
   resolved "https://registry.yarnpkg.com/vue-toasted/-/vue-toasted-1.1.28.tgz#dbabb83acc89f7a9e8765815e491d79f0dc65c26"
   integrity sha512-UUzr5LX51UbbiROSGZ49GOgSzFxaMHK6L00JV8fir/CYNJCpIIvNZ5YmS4Qc8Y2+Z/4VVYRpeQL2UO0G800Raw==
 
-vue@^2.6.11:
+vue@^2.6.10, vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==

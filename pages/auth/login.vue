@@ -92,10 +92,15 @@ export default {
       })
     },
     errorLogin (res) {
-      if (res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
+      if (res.status && res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
         Object.entries(res.data.errors).forEach(([input, errors]) => {
           this.error[input] = true
         })
+      } else if (res.data && res.data.error_code === 'auth.login.attempt') {
+        this.error = {
+          email: true,
+          password: true
+        }
       }
     },
     sleep (ms) {
@@ -125,17 +130,18 @@ img {
 
 form {
   .form-group {
+    border-radius: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(239, 238, 237);
+    border-image: initial;
+
     input {
       height: 49px;
       width: 100%;
       font-size: 14px;
       color: rgb(40, 128, 206);
       padding: 22px 1rem 5px;
-      border-radius: 0px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(239, 238, 237);
-      border-image: initial;
       outline: none;
 
       &:active, &:focus {

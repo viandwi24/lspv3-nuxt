@@ -6,7 +6,14 @@ import {
   faInfoCircle,
   faArrowLeft,
   faCircleNotch,
-  faHome
+  faHome,
+  faSignOutAlt,
+  faUserAlt,
+  faListAlt,
+  faCogs,
+  faSearch,
+  faBars,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -20,6 +27,13 @@ library.add(
   faInfoCircle,
   faArrowLeft,
   faCircleNotch,
-  faHome
+  faHome,
+  faSignOutAlt,
+  faUserAlt,
+  faListAlt,
+  faCogs,
+  faSearch,
+  faBars,
+  faTimes
 )
 Vue.component('icon', FontAwesomeIcon)

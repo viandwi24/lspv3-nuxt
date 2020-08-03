@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>
+    <h1 class="text-4xl">
       Hello World!
     </h1>
   </div>
@@ -8,6 +8,13 @@
 
 <script>
 export default {
-  middleware: 'auth'
+  data () {
+    return {
+      show: false
+    }
+  },
+  layout: 'dashboard',
+  middleware: ['auth', 'is_asesi'],
+  transition: 'default'
 }
 </script>
