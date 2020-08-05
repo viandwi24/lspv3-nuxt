@@ -46,13 +46,14 @@
             </ul>
           </div>
         </nav>
-        <div class="container md:mx-auto md:flex-1 mb-8 md:mb-0">
+        <div class="container md:mx-auto md:flex-1 mb-8 md:mb-0 mt-4 md:mt-0">
           <div class="flex flex-col-reverse md:flex-row flex-grow h-full text-center md:text-left">
             <div class="md:w-1/2 self-center md:pb-12">
               <h1 class="text-2xl md:text-4xl font-bold text-gray-700">
                 {{ app.name.toUpperCase() }}<br>
                 {{ app.institute.toUpperCase() }}
               </h1>
+              <hr class="tw-hr lg hidden md:block">
               <p class="mt-4 mb-8 text-gray-600">
                 {{ app.name.toUpperCase() }} {{ app.institute.toUpperCase() }} adalah lembaga pelaksanaan kegiatan sertifikasi profesi yang memperoleh lisensi dari Badan Nasional Sertifikasi Profesi (BNSP).
               </p>
@@ -122,6 +123,27 @@
       </div>
     </section>
 
+    <!-- section:docs -->
+    <section class="bg-blue-500">
+      <div class="container mx-auto pt-12 md:px-24 px-4">
+        <div class="flex md:flex-row flex-col">
+          <div class="w-full md:w-1/2 p-4">
+            <div class="bg-gray-200 p-4 rounded-md shadow-md">
+              <img src="@/assets/images/slides/1.jpeg" alt="Documentations">
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 pl-4 self-center">
+            <h1 class="text-4xl font-semibold text-gray-200">
+              Ensure Your Competency
+            </h1>
+            <p class="text-gray-200">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- section:company -->
     <section class="bg-blue-500">
       <div class="container mx-auto pt-20">
@@ -129,7 +151,7 @@
           <div class="w-full md:w-6/12 self-center">
             <img v-lazy-load src="@/assets/images/landingpage/remote-team.svg" alt="Illustration">
           </div>
-          <div class="w-full md:w-6/12 self-center text-center md:text-left bg-gray-100 py-4 px-6 rounded shadow-xl">
+          <div class="w-full md:w-6/12 self-center text-center md:text-left bg-gray-100 py-4 px-6 rounded shadow-xl mx-2 md:mx-0">
             <h2 class="font-semibold text-4xl mb-8 text-gray-800">
               Tentang Kami
             </h2>

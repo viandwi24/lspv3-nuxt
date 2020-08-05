@@ -1,20 +1,14 @@
 <template>
-  <div>
-    <h1 class="text-4xl">
-      Hello World!
-    </h1>
-  </div>
+  <div />
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      show: false
+  created () {
+    if (this.$auth.loggedIn) {
+      const role = this.$auth.user.role
+      this.$router.push({ name: (`${role}`).toLowerCase() })
     }
-  },
-  layout: 'dashboard',
-  middleware: ['auth', 'is_asesi'],
-  transition: 'default'
+  }
 }
 </script>

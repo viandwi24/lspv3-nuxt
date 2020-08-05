@@ -8,12 +8,41 @@ export const state = () => ({
       {
         type: 'item',
         text: 'Dashboard',
-        route: 'dashboard'
+        route: 'admin'
+      },
+      {
+        type: 'item',
+        text: 'Kategori',
+        route: 'admin-kategori'
+      },
+      {
+        type: 'item',
+        text: 'Tuk',
+        route: 'admin-tuk'
+      },
+      {
+        type: 'item',
+        text: 'Jadwal',
+        route: 'admin-jadwal'
       },
       {
         type: 'item',
         text: 'Skema',
-        route: 'asesmen'
+        route: 'admin-skema'
+      },
+      {
+        type: 'item-header',
+        text: 'User'
+      },
+      {
+        type: 'item',
+        text: 'Asesi',
+        route: 'admin-user-asesi'
+      },
+      {
+        type: 'item',
+        text: 'Asesor',
+        route: 'admin-user-asesor'
       }
     ],
     asesi: [
@@ -24,12 +53,22 @@ export const state = () => ({
       {
         type: 'item',
         text: 'Dashboard',
-        route: 'dashboard'
+        route: 'asesi'
       },
       {
         type: 'item',
         text: 'Asesmen Saya',
-        route: 'asesmen'
+        route: 'asesi-asesmen'
+      },
+      {
+        type: 'item',
+        text: 'Berkas',
+        route: 'asesi-berkas'
+      },
+      {
+        type: 'item',
+        text: 'Pengaturan',
+        route: 'asesi-pengaturan'
       }
     ],
     asesor: [
