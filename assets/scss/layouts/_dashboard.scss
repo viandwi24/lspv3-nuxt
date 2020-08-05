@@ -1,12 +1,17 @@
 $sidebarWidth: 275px;
 $gapSidebarNavbar: 61px;
+$gapFooterBottom: 35px;
+$gutterTopBottom: 1rem;
+
 .content.container {
-  padding-top: calc(1rem + #{$gapSidebarNavbar});
+  padding-top: calc(#{$gutterTopBottom} + #{$gapSidebarNavbar});
+  padding-bottom: calc(#{$gutterTopBottom} + #{$gapFooterBottom});
 }
 .sidebar {
   width: 100%;
   max-width: $sidebarWidth;
   padding-top: $gapSidebarNavbar;
+  transition: all .2s;
   .sidebar-container {
     min-height: calc(100vh - #{$gapSidebarNavbar});
     max-height: calc(100vh - #{$gapSidebarNavbar});
@@ -17,11 +22,14 @@ $gapSidebarNavbar: 61px;
       background-color: rgba(66, 153, 225, .08);
       padding-left: 2.2rem;
       @apply font-semibold text-blue-600 my-1 py-2 border-t-2 border-b-2 border-blue-200;
-      border-left: 4px solid theme('colors.blue-500');
+      border-left: 4px solid theme('colors.blue.500');
     }
   }
 }
 @media (max-width: 640px) {
+  .sidebar {
+    max-width: 100vw;
+  }
   .sidebar {
     display: none;
   }

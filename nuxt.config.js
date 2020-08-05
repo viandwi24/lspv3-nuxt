@@ -159,9 +159,9 @@ export default {
     },
     redirect: {
       login: '/auth/login',
-      logout: '/auth/login',
+      logout: '/auth/logout',
       callback: false,
-      home: false
+      home: '/dashboard'
     }
   }
 }
