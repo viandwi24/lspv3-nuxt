@@ -1,0 +1,17 @@
+.tw-table {
+  background: theme('colors.gray.900') !important;
+  color: theme('colors.gray.100') !important;
+  tr {
+    border-color: theme('colors.gray.400');
+    &:hover {
+      background: theme('colors.gray.200');
+    }
+  }
+  th {
+    background: #fff;
+  }
+  th, td:before {
+    color: theme('colors.gray.100');
+    @apply font-semibold;
+  }
+}

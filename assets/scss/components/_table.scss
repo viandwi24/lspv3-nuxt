@@ -1,0 +1,85 @@
+$breakpoint-alpha: 480px;
+
+.tw-table {
+  margin: 1em 0;
+  min-width: 300px;
+  width: 100%;
+
+  tr {
+    border: 1px solid #ddd;
+  }
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+
+    &:first-child {
+      padding-top: .5em;
+    }
+    &:last-child {
+      padding-bottom: .5em;
+    }
+
+    &:before {
+      content: attr(data-th)": ";
+      font-weight: bold;
+
+      width: 6.5em;
+      display: inline-block;
+
+      @media (min-width: $breakpoint-alpha) {
+        display: none;
+      }
+    }
+  }
+
+  th, td {
+    text-align: left;
+
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+  }
+}
+
+.tw-table {
+  background: theme('colors.gray.100');
+  color: theme('colors.gray.900');
+  border-radius: .1em;
+  overflow: hidden;
+  @apply shadow-xl;
+  tr {
+    border-color: theme('colors.gray.400');
+
+    &:hover {
+      background: theme('colors.gray.200');
+    }
+  }
+  th {
+    background: #fff;
+    @apply shadow-md;
+  }
+  th, td {
+    margin: .5em 1em;
+    @media (min-width: $breakpoint-alpha) {
+      padding: 1em !important;
+    }
+  }
+  th, td:before {
+    color: theme('colors.gray.900');
+    @apply font-semibold;
+  }
+}

@@ -1,6 +1,7 @@
 export const state = () => ({
   app: {},
-  loading: false
+  loading: false,
+  theme: 'light'
 })
 
 export const mutations = {
@@ -9,6 +10,10 @@ export const mutations = {
   },
   SET_LOADING (state, isLoading) {
     state.loading = isLoading
+  },
+  SET_THEME (state, name) {
+    state.theme = name
+    localStorage.setItem('theme', name)
   }
 }
 

@@ -1,0 +1,20 @@
+.content.container {
+  @apply mx-auto px-10 pt-4;
+  padding-top: calc(#{$gutterTopBottom} + #{$gapSidebarNavbar});
+  padding-bottom: calc(#{$gutterTopBottom} + #{$gapFooterBottom});
+}
+
+@media (max-width: 640px) {
+  .content.container {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+@media (min-width: 640px) {
+  .content.container {
+    margin-left: $sidebarWidth;
+    width: 100%;
+    max-width: 100%;
+  }
+}
