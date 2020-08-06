@@ -1,28 +1,25 @@
 // component
 @import "./dark/table";
 
-// transition
-div.footer, .content.container {
-  * {
-    transition: color .5s;
-  }
-}
+// variable
+$backgroundPrimary: theme('colors.gray.800');
+$colorPrimary: theme('colors.gray.100');
 
 // navbar
 nav.navbar {
-  background: theme('colors.gray.800') !important;
-  color: theme('colors.gray.100') !important;
+  background: $backgroundPrimary !important;
+  color: $colorPrimary !important;
   input {
-    background: theme('colors.gray.800') !important;
+    background: $backgroundPrimary !important;
   }
 }
 
 // sidebar
 div.sidebar {
-  background: theme('colors.gray.800') !important;
-  color: theme('colors.gray.100') !important;
+  background: $backgroundPrimary !important;
+  color: $colorPrimary !important;
   li.item {
-    color: theme('colors.gray.100') !important;
+    color: $colorPrimary !important;
   }
   li.item.active {
     @apply border-t-2 border-b-2 border-blue-500;
@@ -31,17 +28,22 @@ div.sidebar {
 
 // footer
 div.footer, div.footer span {
-  background: theme('colors.gray.800') !important;
-  color: theme('colors.gray.100') !important;
+  background: $backgroundPrimary !important;
+  color: $colorPrimary !important;
 }
 
 // dashboard layout
 .dashboard-layout {
-  background: theme('colors.gray.800') !important;
+  background: $backgroundPrimary !important;
 }
 
 // content
-.content.container * {
-  background: theme('colors.gray.800') !important;
-  color: theme('colors.gray.100') !important;
+.content.container {
+  background: $backgroundPrimary !important;
+  color: $colorPrimary !important;
+
+  h1, h2, p, span, div {
+    background: $backgroundPrimary;
+    color: $colorPrimary;
+  }
 }

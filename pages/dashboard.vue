@@ -9,6 +9,8 @@ export default {
       const role = this.$auth.user.role
       this.$router.push({ name: (`${role}`).toLowerCase() })
     }
-  }
+  },
+  middleware: 'auth',
+  transition: 'default'
 }
 </script>
