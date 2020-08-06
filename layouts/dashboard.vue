@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard-root" class="dashboard-root">
+  <div class="dashboard">
     <div class="dashboard-layout bg-gray-200 min-h-screen">
       <overlay-loading v-if="loading" />
       <!-- navbar -->
@@ -141,9 +141,9 @@ export default {
     ...mapGetters(['GET_APP']),
     changeTheme (theme) {
       if (theme === 'dark') {
-        document.getElementById('dashboard-root').classList.add('dark-theme')
+        document.body.classList.add('dark-theme')
       } else {
-        document.getElementById('dashboard-root').classList.remove('dark-theme')
+        document.body.classList.remove('dark-theme')
       }
     },
     windRezise (e) {
@@ -185,8 +185,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-/deep/ {
-  @import "@/assets/scss/layouts/_dashboard.scss";
-}
+<style lang="scss">
+@import "@/assets/scss/layouts/_dashboard.scss";
 </style>

@@ -1,51 +1,47 @@
-@import "./dark/toggle";
+// component
+@import "./dark/table";
 
-.dashboard-root.dark-theme {
-  // component
-  @import "./dark/table";
-
-  // transition
-  div.footer, .content.container {
-    * {
-      transition: color .5s;
-    }
+// transition
+div.footer, .content.container {
+  * {
+    transition: color .5s;
   }
+}
 
-  // navbar
-  nav.navbar {
+// navbar
+nav.navbar {
+  background: theme('colors.gray.800') !important;
+  color: theme('colors.gray.100') !important;
+  input {
     background: theme('colors.gray.800') !important;
-    color: theme('colors.gray.100') !important;
-    input {
-      background: theme('colors.gray.800') !important;
-    }
   }
+}
 
-  // sidebar
-  div.sidebar {
-    background: theme('colors.gray.800') !important;
-    color: theme('colors.gray.100') !important;
-    li.item {
-      color: theme('colors.gray.100') !important;
-    }
-    li.item.active {
-      @apply border-t-2 border-b-2 border-blue-500;
-    }
-  }
-
-  // footer
-  div.footer, div.footer span {
-    background: theme('colors.gray.800') !important;
+// sidebar
+div.sidebar {
+  background: theme('colors.gray.800') !important;
+  color: theme('colors.gray.100') !important;
+  li.item {
     color: theme('colors.gray.100') !important;
   }
-
-  // dashboard layout
-  .dashboard-layout {
-    background: theme('colors.gray.800') !important;
+  li.item.active {
+    @apply border-t-2 border-b-2 border-blue-500;
   }
+}
 
-  // content
-  .content.container * {
-    background: theme('colors.gray.800') !important;
-    color: theme('colors.gray.100') !important;
-  }
+// footer
+div.footer, div.footer span {
+  background: theme('colors.gray.800') !important;
+  color: theme('colors.gray.100') !important;
+}
+
+// dashboard layout
+.dashboard-layout {
+  background: theme('colors.gray.800') !important;
+}
+
+// content
+.content.container * {
+  background: theme('colors.gray.800') !important;
+  color: theme('colors.gray.100') !important;
 }

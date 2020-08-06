@@ -6,10 +6,17 @@ $gutterTopBottom: 1rem;
 
 
 // light theme
-@import "./dashboard/navbar";
-@import "./dashboard/content";
-@import "./dashboard/sidebar";
-@import "./dashboard/footer";
+.dashboard {
+  @import "./dashboard/navbar";
+  @import "./dashboard/content";
+  @import "./dashboard/sidebar";
+  @import "./dashboard/footer";
+}
 
 // dark theme
-@import "./dashboard/dark";
+body.dark-theme .dashboard {
+  @import "./dashboard/dark";
+}
+
+// all
+@import "./dashboard/dark/toggle"
