@@ -1,18 +1,23 @@
 import Vue from 'vue'
 import OverlayLoading from '@/components/OverlayLoading'
-// import Dropdown from '@/components/Menu/Dropdown'
 import DropdownMenu from '@innologica/vue-dropdown-menu'
 import TwButton from '@/components/Button/Button'
-// import VueCarousel from 'vue-carousel'
 
-// Vue.use(VueCarousel)
-
+// register variable
 const components = {
   OverlayLoading,
   DropdownMenu,
   TwButton
 }
+const plugins = {
+}
 
+// vue register global component
 Object.entries(components).forEach(([name, component]) => {
   Vue.component(name, component)
+})
+
+// vue register plugin
+Object.entries(plugins).forEach((plugin) => {
+  Vue.use(plugin)
 })

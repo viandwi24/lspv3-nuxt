@@ -42,6 +42,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '@/plugins/good-table', ssr: false },
     '@/plugins/component',
     '@/plugins/icon',
     '@/plugins/axios',

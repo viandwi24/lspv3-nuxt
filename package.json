@@ -30,6 +30,7 @@
     "sass-loader": "^9.0.2",
     "tailwindcss": "^1.6.0",
     "vue-carousel": "^0.18.0",
+    "vue-good-table": "^2.20.0",
     "vue-toast-notification": "^0.4.1"
   },
   "devDependencies": {
