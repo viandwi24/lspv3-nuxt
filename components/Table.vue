@@ -21,6 +21,9 @@
     <div slot="selected-row-actions">
       <slot name="selected-row-actions" />
     </div>
+    <div slot="table-row" slot-scope="props">
+      <slot name="table-row" :column="props.column" :formattedRow="props.formattedRow" :index="props.index" :row="props.row" />
+    </div>
   </vue-good-table>
 </template>
 
