@@ -2,6 +2,10 @@
   @apply mx-auto px-10 pt-4;
   padding-top: calc(#{$gutterTopBottom} + #{$gapSidebarNavbar});
   padding-bottom: calc(#{$gutterTopBottom} + #{$gapFooterBottom});
+
+  .content-header {
+    @apply mb-4;
+  }
 }
 
 @media (max-width: 640px) {

@@ -1,17 +1,173 @@
-.tw-table {
-  background: theme('colors.gray.800') !important;
-  color: theme('colors.gray.100') !important;
-  tr {
-    border-color: theme('colors.gray.400');
-    &:hover {
-      background: theme('colors.gray.700') !important;
+// .tw-table {
+//   background: theme('colors.gray.800') !important;
+//   color: theme('colors.gray.100') !important;
+//   tr {
+//     border-color: theme('colors.gray.400');
+//     &:hover {
+//       background: theme('colors.gray.700') !important;
+//     }
+//   }
+//   th {
+//     background: theme('colors.gray.900');
+//   }
+//   th, td:before {
+//     color: theme('colors.gray.100');
+//     @apply font-semibold;
+//   }
+// }
+
+@import "@/node_modules/vue-good-table/src/styles/style.scss";
+
+// variable
+$thead-bg-color-1: #2C394F;
+$thead-bg-color-2: #2C394F;
+$chevron-color: lighten($thead-bg-color-1, 10%);
+
+$text-color: #C7CED8;
+$secondary-text-color: #8290A7 ;
+$border-color: #435169;
+$input-border-color: $border-color;
+
+$table-bg: #324057;
+$highlight-color: #445168;
+
+
+
+// suggested by wifey
+.vgt-table{
+  border: 1px solid $border-color;
+  background-color: $table-bg;
+
+  & tr.clickable {
+    &:hover{
+      background-color: $highlight-color;
     }
   }
-  th {
-    background: theme('colors.gray.900');
+
+  // td
+  & td {
+    color: $text-color !important;
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+    border-bottom:  1px solid $border-color;
   }
-  th, td:before {
-    color: theme('colors.gray.100');
-    @apply font-semibold;
+
+  //th
+  & th.line-numbers, & th.vgt-checkbox-col {
+    color: $text-color;
+    border-right: 1px solid $border-color;
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+  }
+  thead th{
+    color: $text-color;
+    border-bottom:  1px solid $border-color;
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+    &.sortable {
+      // color: lighten($text-color, 15%);
+      &:before{
+        border-top-color: $chevron-color;
+      }
+      &:after{
+        border-bottom-color: $chevron-color;
+      }
+      &.sorting-asc{
+        color: white;
+        &:after{
+          border-bottom-color: $link-color;
+        }
+      }
+      &.sorting-desc {
+        color: white;
+        &:before{
+          border-top-color: $link-color;
+        }
+      }
+    }
+  }
+  
+  //bordered
+  &.bordered td, &.bordered th {
+      border: 1px solid $border-color;
+  }
+
+  //input
+  .vgt-input, .vgt-select{
+    color: $text-color;
+    background-color: darken($thead-bg-color-2, 5%);
+    border: 1px solid $input-border-color;
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $text-color;
+      opacity: 0.3; /* Firefox */
+    }
+  }
+
+  .v-select {
+    background-color: darken($thead-bg-color-2, 5%);
+    input {
+      color: $text-color;
+    }
+    .vs__open-indicator {
+      fill: $text-color
+    }
+  }
+}
+
+.vgt-wrap{
+  .vgt-wrap__footer{
+    color: $text-color;
+    border: 1px solid $border-color;
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+    .footer__row-count{
+      &__label{
+        color: $secondary-text-color;
+      }
+      &__select{
+        color:  $text-color;
+        &:focus{
+          border-color: $link-color;
+        }
+      }
+    }
+    .footer__navigation{
+      &__page-btn{
+        color: $text-color;
+        &.disabled,
+        &.disabled:hover {
+          .chevron.left:after{
+            border-right-color: $text-color;
+          }
+          .chevron.right:after{
+            border-left-color: $text-color;
+          }
+        }
+      }
+      &__info, &__page-info{
+        color: $secondary-text-color;
+      }
+    }
+  }
+
+  // control bar
+  .vgt-global-search{
+    border:  1px solid $border-color;
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+  }
+  .vgt-global-search__input{
+    .input__icon{
+      .magnifying-glass{
+        border: 2px solid darken($border-color, 2%);
+        &:before{
+          background: darken($border-color, 2%);
+        }
+      }
+    }
+    .vgt-input, .vgt-select{
+      color: $text-color;
+      background-color: darken($thead-bg-color-2, 5%);
+      border: 1px solid $input-border-color;
+      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $text-color !important;
+        opacity: 0.3; /* Firefox */
+      }
+    }
   }
 }

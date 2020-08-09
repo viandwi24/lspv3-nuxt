@@ -42,8 +42,10 @@ div.footer, div.footer span {
   background: $backgroundPrimary !important;
   color: $colorPrimary !important;
 
-  h1, h2, p, span, div {
-    background: $backgroundPrimary;
-    color: $colorPrimary;
+  &:not(.vgt-table):not(.vgt-table *) {
+    h1, h2, p, div {
+      background: $backgroundPrimary;
+      color: $colorPrimary;
+    }
   }
 }
