@@ -1,8 +1,6 @@
-// component
-@import "./dark/table";
-
 // variable
 $backgroundPrimary: theme('colors.gray.800');
+$backgroundSecondary: #2C394F;
 $colorPrimary: theme('colors.gray.100');
 
 // navbar
@@ -39,13 +37,13 @@ div.footer, div.footer span {
 
 // content
 .content.container {
-  background: $backgroundPrimary !important;
-  color: $colorPrimary !important;
+  color: $colorPrimary;
 
-  &:not(.vgt-table):not(.vgt-table *) {
-    h1, h2, p, div {
-      background: $backgroundPrimary;
-      color: $colorPrimary;
-    }
+  div[role=alert] {
+    color: $colorPrimary;
+    background: $backgroundSecondary;
   }
 }
+
+// component
+@import "./dark/table";

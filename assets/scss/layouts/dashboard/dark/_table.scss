@@ -1,21 +1,23 @@
-// .tw-table {
-//   background: theme('colors.gray.800') !important;
-//   color: theme('colors.gray.100') !important;
-//   tr {
-//     border-color: theme('colors.gray.400');
-//     &:hover {
-//       background: theme('colors.gray.700') !important;
-//     }
-//   }
-//   th {
-//     background: theme('colors.gray.900');
-//   }
-//   th, td:before {
-//     color: theme('colors.gray.100');
-//     @apply font-semibold;
-//   }
-// }
+.tw-table {
+  background: theme('colors.gray.800') !important;
+  color: theme('colors.gray.100') !important;
+  tr {
+    border-color: theme('colors.gray.400');
+    &:hover {
+      background: theme('colors.gray.700') !important;
+    }
+  }
+  th {
+    background: theme('colors.gray.900');
+  }
+  th, td:before {
+    color: theme('colors.gray.100');
+    @apply font-semibold;
+  }
+}
 
+
+// vue good table
 @import "@/node_modules/vue-good-table/src/styles/style.scss";
 
 // variable
@@ -47,8 +49,11 @@ $highlight-color: #445168;
   // td
   & td {
     color: $text-color !important;
-    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+    background: $table-bg;
     border-bottom:  1px solid $border-color;
+    & {
+      background: $table-bg;
+    }
   }
 
   //th
