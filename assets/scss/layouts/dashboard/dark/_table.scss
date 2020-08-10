@@ -152,6 +152,10 @@ $highlight-color: #445168;
   }
 
   // control bar
+  .vgt-selection-info-row {
+    background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
+    border:  1px solid #C7CED8;
+  }
   .vgt-global-search{
     border:  1px solid $border-color;
     background: linear-gradient($thead-bg-color-1, $thead-bg-color-2);
