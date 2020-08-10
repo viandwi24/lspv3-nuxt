@@ -46,6 +46,7 @@ export default {
     '@/plugins/component',
     '@/plugins/icon',
     '@/plugins/axios',
+    '@/plugins/composition-api',
     '@/plugins/helper'
   ],
   /*

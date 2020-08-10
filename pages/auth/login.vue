@@ -53,58 +53,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
+import { computed, reactive } from '@vue/composition-api'
 export default {
-  data () {
+  setup (props, { root }) {
+    const { auth, error, app, login, errorLogin, sleep } = useOurLogin(root)
     return {
-      auth: {
-        email: 'viandwicyber@gmail.com',
-        password: 'password'
-      },
-      error: {
-        email: false,
-        password: false
-      }
-    }
-  },
-  computed: {
-    ...mapState(['app'])
-  },
-  methods: {
-    async login () {
-      const data = this.auth
-      this.error = {
-        email: false,
-        password: false
-      }
-      this.$toast.clear()
-      this.$toast.show('Logging in...', { duration: 5000 })
-      this.$store.commit('SET_LOADING', true)
-      await this.sleep(2000)
-      this.$store.dispatch('user/login', data).then((res) => {
-        this.$toast.clear()
-        this.$toast.success('Login Succes. Navigating to dashboard...', { duration: 5000 })
-        this.$router.push('/')
-      }).catch((err) => {
-        this.errorLogin(err.response)
-      }).finally(() => {
-        this.$store.commit('SET_LOADING', false)
-      })
-    },
-    errorLogin (res) {
-      if (res.status && res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
-        Object.entries(res.data.errors).forEach(([input, errors]) => {
-          this.error[input] = true
-        })
-      } else if (res.data && res.data.error_code === 'auth.login.attempt') {
-        this.error = {
-          email: true,
-          password: true
-        }
-      }
-    },
-    sleep (ms) {
-      return new Promise(resolve => setTimeout(resolve, ms))
+      auth,
+      error,
+      app,
+      login,
+      errorLogin,
+      sleep
     }
   },
   head: {
@@ -112,6 +72,54 @@ export default {
   },
   middleware: 'guest',
   transition: 'default'
+}
+
+function useOurLogin ($this) {
+  const auth = reactive({ email: 'viandwicyber@gmail.com', password: 'password' })
+  let error = reactive({ email: false, password: false })
+  const app = computed(() => $this.$store.state.app)
+
+  const login = async () => {
+    const data = auth
+    error = { email: false, password: false }
+    $this.$toast.clear()
+    $this.$toast.show('Logging in...', { duration: 5000 })
+    $this.$store.commit('SET_LOADING', true)
+    await sleep(2000)
+    $this.$store.dispatch('user/login', data).then((res) => {
+      $this.$toast.clear()
+      $this.$toast.success('Login Succes. Navigating to dashboard...', { duration: 5000 })
+      $this.$router.push('/')
+    }).catch((err) => {
+      errorLogin(err.response)
+    }).finally(() => {
+      $this.$store.commit('SET_LOADING', false)
+    })
+  }
+  const errorLogin = (res) => {
+    if (res.status && res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
+      Object.entries(res.data.errors).forEach(([input, errors]) => {
+        error[input] = true
+      })
+    } else if (res.data && res.data.error_code === 'auth.login.attempt') {
+      error = {
+        email: true,
+        password: true
+      }
+    }
+  }
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  return {
+    auth,
+    error,
+    app,
+    login,
+    errorLogin,
+    sleep
+  }
 }
 </script>
 

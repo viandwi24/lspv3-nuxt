@@ -22,82 +22,30 @@
       </tw-table>
     </div>
 
-    <tw-modal name="modal" title="Example Modal">
+    <tw-modal name="modal" :title="(modalOptions.mode == 'create') ? 'Tambah' : 'Edit'">
       <form>
-        <tw-input title="Name" :value.sync="modalOptions.input.name" />
-        <span class="text-red-500">
-          {{ modalOptions.input.name }}
-        </span>
-        <tw-input title="Tes" />
+        <tw-input title="Nama" :value.sync="modalOptions.input.name" />
+        <tw-input title="Deskripsi" :value.sync="modalOptions.input.description" />
       </form>
+      <div slot="footer" slot-scope="props">
+        <tw-button text="Simpan" type="primary" icon="save" />
+        <tw-button text="Batal" type="danger" @click.native="props.modal.hide()" />
+      </div>
     </tw-modal>
   </div>
 </template>
 
 <script>
+import { reactive } from '@vue/composition-api'
 export default {
-  data () {
+  setup () {
+    const { tableOptions } = useOurTable()
+    const { modalOptions, openModal } = useOurModal()
+
     return {
-      tableOptions: {
-        url: '/admin/categories',
-        perPage: 5,
-        sort: [
-          { field: 'id', type: 'asc' }
-        ],
-        columns: [
-          {
-            label: 'ID',
-            field: 'id',
-            searchable: true,
-            sortable: true
-          },
-          {
-            label: 'Name',
-            field: 'name',
-            searchable: true,
-            sortable: true
-          },
-          {
-            label: 'Description',
-            field: 'description',
-            searchable: true,
-            sortable: true
-          },
-          {
-            label: 'Actions',
-            field: 'action',
-            searchable: false,
-            sortable: false
-          }
-        ],
-        rows: [
-          { id: 10, name: 'Example 1', description: 'Description 1' },
-          { id: 20, name: 'Example 2', description: 'Description 2' }
-        ],
-        selectOptions: { enabled: true },
-        lineNumbers: true,
-        searchOptions: { enabled: true },
-        paginationOptions: {}
-      },
-      modalOptions: {
-        mode: 'create',
-        input: {
-          name: '',
-          tes: ''
-        }
-      }
-    }
-  },
-  mounted () {
-    // this.$modal.show('my-first-modal')
-  },
-  methods: {
-    tes (data) {
-      console.log(data)
-    },
-    openModal (mode = 'create', data = {}) {
-      this.modalOptions.mode = mode
-      this.$modal.show('modal')
+      tableOptions,
+      modalOptions,
+      openModal
     }
   },
   layout: 'dashboard',
@@ -105,6 +53,85 @@ export default {
   transition: 'default',
   head: {
     title: 'Dashboard - Admin - Kategori'
+  }
+}
+
+function useOurModal () {
+  const modalOptions = reactive({
+    mode: 'create',
+    input: {
+      name: '',
+      description: ''
+    }
+  })
+
+  function openModal (mode = 'create', data = {}) {
+    // handle mode
+    this.modalOptions.mode = mode
+    if (mode === 'edit') {
+      this.modalOptions.input = {
+        name: data.row.name,
+        description: data.row.description
+      }
+    } else if (mode === 'create') {
+      this.modalOptions.input = { name: '', description: '' }
+    }
+
+    // show modal
+    this.$modal.show('modal')
+  }
+
+  return {
+    modalOptions,
+    openModal
+  }
+}
+
+function useOurTable () {
+  const tableOptions = reactive({
+    url: '/admin/categories',
+    perPage: 5,
+    sort: [
+      { field: 'id', type: 'asc' }
+    ],
+    columns: [
+      {
+        label: 'ID',
+        field: 'id',
+        searchable: true,
+        sortable: true
+      },
+      {
+        label: 'Nama',
+        field: 'name',
+        searchable: true,
+        sortable: true
+      },
+      {
+        label: 'Deskripsi',
+        field: 'description',
+        searchable: true,
+        sortable: true
+      },
+      {
+        label: 'Actions',
+        field: 'action',
+        searchable: false,
+        sortable: false
+      }
+    ],
+    rows: [
+      { id: 10, name: 'Example 1', description: 'Description 1' },
+      { id: 20, name: 'Example 2', description: 'Description 2' }
+    ],
+    selectOptions: { enabled: true, selectOnCheckboxOnly: true },
+    lineNumbers: true,
+    searchOptions: { enabled: true },
+    paginationOptions: {}
+  })
+
+  return {
+    tableOptions
   }
 }
 </script>
