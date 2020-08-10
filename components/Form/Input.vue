@@ -32,11 +32,14 @@ export default {
     inputClass: {
       type: String,
       default: ''
+    },
+    value: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      value: '',
       options: {
         id: '',
         placeholder: ''

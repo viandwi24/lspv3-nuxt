@@ -27,6 +27,26 @@
     <div slot="table-row" slot-scope="props">
       <slot name="table-row" :column="props.column" :formattedRow="props.formattedRow" :index="props.index" :row="props.row" />
     </div>
+    <div v-if="mode === 'remote'" slot="table-actions-bottom">
+      <div class="flex flex-grow justify-between px-4 py-1 text-xs">
+        <div>
+          <span class="text-gray-800">Total Record : </span>
+          <span class="text-gray-700">{{ totalRecords }}</span>
+        </div>
+        <div>
+          <span class="text-gray-800">Rows in this page : </span>
+          <span class="text-gray-700">{{ rows.length }}</span>
+        </div>
+        <div>
+          <span class="text-gray-800">Data Show : </span>
+          <span class="text-gray-700">{{ dataShow }}</span>
+        </div>
+        <div>
+          <span class="text-gray-800">Total Page : </span>
+          <span class="text-gray-700">{{ totalPages }}</span>
+        </div>
+      </div>
+    </div>
   </vue-good-table>
 </template>
 
@@ -46,6 +66,7 @@ export default {
       selectedRows: [],
       isLoading: false,
       totalRecords: 0,
+      totalPages: 0,
       columns: [],
       rows: [],
       url: '',
@@ -57,10 +78,17 @@ export default {
       },
 
       lineNumbers: true,
-      selectOptions: { enabled: true },
+      selectOptions: { enabled: true, selectOnCheckboxOnly: true },
       searchOptions: { enabled: true, trigger: 'enter' },
       sortOptions: { enabled: true, initialSortBy: [] },
       paginationOptions: { enabled: true, perPageDropdown: [5, 10, 20, 50, 100] }
+    }
+  },
+  computed: {
+    dataShow () {
+      const start = ((this.params.page - 1) * this.params.perPage) + 1
+      const end = (this.params.page * this.rows.length)
+      return start + ' - ' + end
     }
   },
   created () {
@@ -86,6 +114,9 @@ export default {
     this.load()
   },
   methods: {
+    tes (data) {
+      console.log(data)
+    },
     ifExist (data) {
       return (typeof data !== 'undefined')
     },
@@ -132,6 +163,7 @@ export default {
         console.log(res.data)
         this.totalRecords = res.data.totalRecords
         this.rows = res.data.data
+        this.totalPages = res.data.meta.totalPage
         if (res.data.meta.page > res.data.meta.totalPage) {
           this.updateParams({ page: res.data.meta.totalPage })
           this.load()

@@ -1,5 +1,5 @@
 <template>
-  <modal :name="name" :adaptive="true" :scrollable="true" :height="500">
+  <modal :name="name" :adaptive="true" :scrollable="true" :max-height="500">
     <!-- <slot /> -->
     <div class="flex flex-col flex-grow py-4 px-5 min-h-full max-h-full">
       <div class="flex justify-between items-center pb-3">
@@ -16,7 +16,7 @@
         <slot />
       </div>
       <div class="flex justify-end pt-2">
-        <slot name="footer" />
+        <slot name="footer" :modal="{ name, title, hide: () => $modal.hide(name) }" />
       </div>
     </div>
   </modal>

@@ -1,13 +1,13 @@
 <template>
   <a v-if="linkType == 'href'" :href="href" class="" :class="`${classInit} ${classType} ${classSize}`">
-    <span v-if="typeof text !== 'undefined'">
-      <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
+    <span v-if="typeof text !== 'undefined'" class="button-content">
+      <icon v-if="typeof icon !== 'undefined'" class="button-icon" :icon="icon" />
       {{ text }}
     </span>
     <slot v-else />
   </a>
   <nuxt-link v-else :to="{ name: route }" tag="a" class="" :class="`${classInit} ${classType} ${classSize}`">
-    <span v-if="typeof text !== 'undefined'">
+    <span v-if="typeof text !== 'undefined'" class="button-content">
       <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
       {{ text }}
     </span>
@@ -32,7 +32,7 @@ export default {
     },
     classInit: {
       type: String,
-      default: 'cursor-pointer text-gray-100 mx-1 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300 inline-block'
+      default: 'button cursor-pointer text-gray-100 mx-1 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300 inline-block'
     },
     route: {
       type: String,
