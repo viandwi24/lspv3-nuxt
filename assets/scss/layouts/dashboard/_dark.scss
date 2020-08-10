@@ -37,7 +37,9 @@ div.footer, div.footer span {
 
 // content
 .content.container {
-  color: $colorPrimary;
+  &, * {
+    color: $colorPrimary;
+  }
 
   div[role=alert] {
     color: $colorPrimary;

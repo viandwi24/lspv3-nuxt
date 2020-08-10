@@ -18,6 +18,9 @@
     @on-per-page-change="onPerPageChange"
     @on-selected-rows-change="onSelectedRowsChange"
   >
+    <div slot="table-actions">
+      <slot name="table-actions" />
+    </div>
     <div slot="selected-row-actions">
       <slot name="selected-row-actions" />
     </div>
@@ -129,12 +132,19 @@ export default {
         console.log(res.data)
         this.totalRecords = res.data.totalRecords
         this.rows = res.data.data
+        if (res.data.meta.page > res.data.meta.totalPage) {
+          this.updateParams({ page: res.data.meta.totalPage })
+          this.load()
+        }
       }).catch((err) => {
         const res = err.response
         this.$toast.error(res.statusText, { duration: 5000 })
       }).finally(() => {
         this.isLoading = false
       })
+    },
+    sleep (ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
     }
   }
 }

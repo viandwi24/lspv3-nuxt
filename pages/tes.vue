@@ -77,7 +77,8 @@ export default {
     },
     onSortChange (params) {
       this.updateParams({
-        sort: params[0]
+        sort: params[0],
+        page: 1
       })
       this.load()
     },

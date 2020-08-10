@@ -1,10 +1,16 @@
 <template>
   <a v-if="linkType == 'href'" :href="href" class="" :class="`${classInit} ${classType} ${classSize}`">
-    <span v-if="text != ''">{{ text }}</span>
+    <span v-if="typeof text !== 'undefined'">
+      <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
+      {{ text }}
+    </span>
     <slot v-else />
   </a>
   <nuxt-link v-else :to="{ name: route }" tag="a" class="" :class="`${classInit} ${classType} ${classSize}`">
-    <span v-if="text != ''">{{ text }}</span>
+    <span v-if="typeof text !== 'undefined'">
+      <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
+      {{ text }}
+    </span>
     <slot v-else />
   </nuxt-link>
 </template>
@@ -14,7 +20,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: ''
+      default: undefined
     },
     type: {
       type: String,
@@ -26,13 +32,17 @@ export default {
     },
     classInit: {
       type: String,
-      default: 'cursor-pointer text-gray-100 mx-1 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300'
+      default: 'cursor-pointer text-gray-100 mx-1 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300 inline-block'
     },
     route: {
       type: String,
       default: undefined
     },
     href: {
+      type: String,
+      default: undefined
+    },
+    icon: {
       type: String,
       default: undefined
     }
@@ -70,7 +80,7 @@ export default {
           newClass = 'text-lg px-4 py-2'
           break
         case 'sm':
-          newClass = 'text-sm px-4 py-2'
+          newClass = 'text-sm px-3 py-1'
           break
         case 'xs':
           newClass = 'text-xs px-3 py-1'
