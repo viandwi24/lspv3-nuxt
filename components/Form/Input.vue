@@ -5,7 +5,7 @@
     </label>
     <input
       :id="options.id"
-      v-model="value"
+      v-model="valueModel"
       class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
       :class="inputClass"
       :type="type"
@@ -40,6 +40,7 @@ export default {
   },
   data () {
     return {
+      valueModel: '',
       options: {
         id: '',
         placeholder: ''
@@ -47,7 +48,7 @@ export default {
     }
   },
   watch: {
-    value (val) {
+    valueModel (val) {
       this.$emit('update:value', val)
     }
   },
@@ -56,6 +57,7 @@ export default {
     this.options.placeholder = (typeof this.placeholder !== 'undefined')
       ? this.placeholder
       : `${this.title} ...`
+    this.valueModel = this.value
   }
 }
 </script>
