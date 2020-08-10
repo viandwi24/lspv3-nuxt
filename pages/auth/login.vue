@@ -97,7 +97,7 @@ function useOurLogin ($this) {
     })
   }
   const errorLogin = (res) => {
-    if (res.status && res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
+    if (res.status && res.status === 422 && res.data && res.data.error_code === 'validation.fails' && res.data.errors) {
       Object.entries(res.data.errors).forEach(([input, errors]) => {
         error[input] = true
       })

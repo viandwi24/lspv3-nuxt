@@ -23,7 +23,7 @@ export default function ({ $axios, redirect, app }) {
     } else {
       // alert
       app.context.$toast.clear()
-      if (res.status && res.status === 422 && res.data && res.data.error_code === 'auth.login.validation' && res.data.errors) {
+      if (res.status && res.status === 422 && res.data && res.data.error_code === 'validation.fails' && res.data.errors) {
         Object.entries(res.data.errors).forEach(([input, errors]) => {
           // this.error[input] = true
           app.context.$toast.error(errors[0], { duration: 5000 })
