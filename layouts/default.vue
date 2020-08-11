@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h1 class="z-50 fixed top-0 left-0">
+      aweawe
+    </h1>
     <overlay-loading v-if="loading" />
     <Nuxt />
   </div>

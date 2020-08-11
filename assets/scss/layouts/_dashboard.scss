@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 // variable
 $sidebarWidth: 275px;
 $gapSidebarNavbar: 61px;
@@ -34,4 +35,5 @@ body.dark-theme {
 }
 
 // all
-@import "./dashboard/dark/toggle"
+@import "./dashboard/dark/toggle";
+/* purgecss end ignore */

@@ -15,8 +15,8 @@
         </div>
         <div slot="table-row" slot-scope="props">
           <div v-if="props.column.field == 'action'">
-            <tw-button text="" type="warning" size="xs" icon="edit" @click.native="openModal('edit', props)" />
-            <tw-button text="" type="danger" size="xs" icon="trash-alt" @click.native="deleteModal(props)" />
+            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" @click.native="openModal('edit', props)" />
+            <tw-button class-btn="mx-0" type="danger" size="xs" icon="trash-alt" @click.native="deleteModal(props)" />
           </div>
           <span v-else>
             {{ props.formattedRow[props.column.field] }}

@@ -1,12 +1,12 @@
 <template>
-  <a v-if="linkType == 'href'" :href="href" class="" :class="`${classInit} ${classType} ${classSize}`">
+  <a v-if="linkType == 'href'" :href="href" class="" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
     <span v-if="typeof text !== 'undefined'" class="button-content">
       <icon v-if="typeof icon !== 'undefined'" class="button-icon" :icon="icon" />
       {{ text }}
     </span>
     <slot v-else />
   </a>
-  <nuxt-link v-else :to="{ name: route }" tag="a" class="" :class="`${classInit} ${classType} ${classSize}`">
+  <nuxt-link v-else :to="{ name: route }" tag="a" class="" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
     <span v-if="typeof text !== 'undefined'" class="button-content">
       <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
       {{ text }}
@@ -32,7 +32,11 @@ export default {
     },
     classInit: {
       type: String,
-      default: 'button cursor-pointer text-gray-100 mx-1 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300 inline-block'
+      default: 'button cursor-pointer text-gray-100 rounded font-semibold transition-all duration-100 ease-in hover:text-gray-300 inline-block'
+    },
+    classBtn: {
+      type: String,
+      default: 'mx-1'
     },
     route: {
       type: String,
@@ -96,7 +100,7 @@ export default {
         : 'href'
     }
   },
-  mounted () {
+  created () {
   }
 }
 </script>

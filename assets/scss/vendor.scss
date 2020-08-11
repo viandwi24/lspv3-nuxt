@@ -1,7 +1,10 @@
+/* purgecss start ignore */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 @import 'vue-js-modal/dist/styles.css';
 @import 'overlayscrollbars/css/OverlayScrollbars.css';
 @import 'vue-good-table/dist/vue-good-table.css';
+
+/* purgecss end ignore */
+@import "tailwindcss/utilities";

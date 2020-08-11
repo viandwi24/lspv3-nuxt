@@ -47,7 +47,7 @@
       <div class="sm:flex flex-row flex-grow">
         <!-- sidebar -->
         <div ref="sidebar" class="sidebar fixed bg-gray-100 min-h-screen max-h-screen border-r-2 border-gray-300 text-sm z-20">
-          <overlay-scrollbars :options="{ autoUpdate: null, autoUpdateInterval: 33, nativeScrollbarsOverlaid : { showNativeScrollbars: false }, scrollbars: { autoHide: 'scroll' } }" class="sidebar-container flex flex-col flex-grow overflow-y-auto">
+          <overlay-scrollbars :options="{ autoUpdate: null, autoUpdateInterval: 33, nativeScrollbarsOverlaid : { showNativeScrollbars: false }, scrollbars: { autoHide: 'scroll' } }" class="sidebar-container flex flex-col flex-grow">
             <!-- sidebar:profile -->
             <div class="text-center mt-4">
               <div class="rounded-full bg-gray-400 inline-block p-2">
@@ -118,6 +118,7 @@ export default {
       ]
     }
   },
+  layout: 'default',
   middleware: ['auth'],
   setup (props, { root, refs }) {
     const { themeState, changeTheme } = useOurTheme(root)
