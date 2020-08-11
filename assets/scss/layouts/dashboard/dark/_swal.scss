@@ -1,0 +1,7 @@
+.swal2-popup.swal2-modal {
+  background: $backgroundSecondary;
+
+  .swal2-title, .swal2-content *, .swal2-footer * {
+    color: $colorPrimary;    
+  }
+}

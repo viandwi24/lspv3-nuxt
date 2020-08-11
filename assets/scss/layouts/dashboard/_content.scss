@@ -1,5 +1,7 @@
 .content.container {
-  @apply mx-auto px-10 pt-4;
+  @apply mx-auto;
+  @apply px-10;
+  @apply pt-4;
   padding-top: calc(#{$gutterTopBottom} + #{$gapSidebarNavbar});
   padding-bottom: calc(#{$gutterTopBottom} + #{$gapFooterBottom});
 
@@ -13,6 +15,7 @@
     margin-left: 0;
     width: 100%;
     max-width: 100%;
+    @apply px-4;
   }
 }
 @media (min-width: 640px) {

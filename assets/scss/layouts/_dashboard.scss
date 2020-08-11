@@ -14,8 +14,23 @@ $gutterTopBottom: 1rem;
 }
 
 // dark theme
-body.dark-theme .dashboard {
-  @import "./dashboard/dark";
+body.dark-theme {
+  // variable
+  $backgroundPrimary: theme('colors.gray.800');
+  $backgroundSecondary: #2C394F;
+  $backgroundTertiary: theme('colors.gray.700');
+  $colorPrimary: theme('colors.gray.100');
+
+  // component
+  @import "./dashboard/dark/swal";
+  .dashboard {
+    @import "./dashboard/dark";
+  }
+
+  // 
+  .overlay-loading {
+    background: $backgroundTertiary;
+  }
 }
 
 // all
