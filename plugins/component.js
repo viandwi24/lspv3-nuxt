@@ -8,10 +8,6 @@ import TwTable from '@/components/Table'
 import TwModal from '@/components/Modal'
 import TwInput from '@/components/Form/Input'
 
-//  css
-import 'vue-js-modal/dist/styles.css'
-import 'overlayscrollbars/css/OverlayScrollbars.css'
-
 // register variable
 const components = {
   OverlayLoading,

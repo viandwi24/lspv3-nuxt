@@ -1,6 +1,10 @@
 
 import path from 'path'
 export default {
+  server: {
+    port: (process.env.NODE_ENV === 'production') ? 80 : 3000,
+    host: '0.0.0.0'
+  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
