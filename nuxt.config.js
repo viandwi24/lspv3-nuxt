@@ -42,6 +42,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/config',
     { src: '@/plugins/good-table', ssr: false },
     '@/plugins/component',
     '@/plugins/icon',
@@ -71,7 +72,16 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/toast',
     'nuxt-webfontloader',
-    'nuxt-lazy-load'
+    'nuxt-lazy-load',
+    [
+      'vue-sweetalert2/nuxt',
+      {
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iya',
+        cancelButtonText: 'Batal'
+      }
+    ]
   ],
   router: {
     middleware: ['default']

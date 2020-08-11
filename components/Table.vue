@@ -19,7 +19,10 @@
     @on-selected-rows-change="onSelectedRowsChange"
   >
     <div slot="table-actions">
-      <slot name="table-actions" />
+      <div class="flex justify-between">
+        <slot name="table-actions" />
+        <tw-button type="primary" size="sm" icon="sync-alt" @click.native="load" />
+      </div>
     </div>
     <div slot="selected-row-actions">
       <slot name="selected-row-actions" />
@@ -86,6 +89,9 @@ export default {
   },
   computed: {
     dataShow () {
+      // alert(this.rows.length)
+      // alert(this.params.page)
+      if (this.rows.length === 0 && this.params.page === 1) { return 0 }
       const start = ((this.params.page - 1) * this.params.perPage) + 1
       const end = (this.params.page * this.rows.length)
       return start + ' - ' + end
@@ -160,7 +166,7 @@ export default {
         columns: this.columns
       }
       this.$axios.get(this.url, { params }).then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.totalRecords = res.data.totalRecords
         this.rows = res.data.data
         this.totalPages = res.data.meta.totalPage

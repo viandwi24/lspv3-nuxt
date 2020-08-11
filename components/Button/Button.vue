@@ -20,7 +20,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: undefined
+      default: ''
     },
     type: {
       type: String,

@@ -39,14 +39,11 @@
 </template>
 
 <script>
-import { reactive } from '@vue/composition-api'
+import { reactive, onMounted } from '@vue/composition-api'
 export default {
   setup (props, { root, refs }) {
-    const input = reactive({
-
-    })
     const { tableOptions } = useOurTable()
-    const { create, update, destroy } = useOurCrudCategory(root, input)
+    const { create, update, destroy } = useOurCrudCategory(root)
     const {
       modalOptions,
       openModal,
@@ -54,6 +51,14 @@ export default {
       deleteModal,
       bulkDeleteModal
     } = useOurModal(root, refs, { create, update, destroy })
+
+    onMounted(() => {
+      // root.$overlayLoading.show()
+      // console.log()
+      // console.log(
+      //   root.$setting.all()
+      // )
+    })
 
     return {
       tableOptions,
@@ -130,7 +135,22 @@ function useOurModal ($root, $refs, crud) {
   }
 
   const deleteModal = (data) => {
-    deleteData([data.row.id])
+    confirmDelete(
+      `Kamu akan menghapus kategori "${data.row.name}"`
+    ).then((result) => {
+      if (result.value) {
+        deleteData([data.row.id])
+      }
+    })
+  }
+
+  const confirmDelete = (text) => {
+    return $root.$swal({
+      title: 'Apakah kamu yakin?',
+      text,
+      icon: 'warning',
+      showCancelButton: true
+    })
   }
 
   const bulkDeleteModal = (data) => {
@@ -139,35 +159,60 @@ function useOurModal ($root, $refs, crud) {
     for (const i in selected) {
       ids.push(selected[i].id)
     }
-    deleteData(ids)
+    confirmDelete(
+      `Kamu akan menghapus kategori dengan id "${(ids)}"`
+    ).then((result) => {
+      if (result.value) {
+        deleteData(ids)
+      }
+    })
   }
 
-  const deleteData = (data) => {
-    $root.$store.commit('SET_LOADING', true)
+  const deleteData = async (data) => {
+    $root.$overlayLoading.show()
+    await $root.$sleep(500)
     crud.destroy(data).then((res) => {
-      closeModalRefreshTable()
-    }).finally(() => $root.$store.commit('SET_LOADING', false))
+      $root.$swal(
+        'Terhapus!',
+        'Item yang terpilih berhasil dihapus.',
+        'success'
+      ).then(() => {
+        closeModalRefreshTable()
+      })
+    }).finally(() => $root.$overlayLoading.hide())
   }
 
-  const saveModal = (data) => {
+  const saveModal = async (data) => {
     const mode = modalOptions.mode
     const input = modalOptions.input
 
     // create
+    $root.$overlayLoading.show()
+    await $root.$sleep(500)
     if (mode === 'create') {
-      $root.$store.commit('SET_LOADING', true)
       crud.create(input).then((res) => {
         if (res.status === 201) {
-          closeModalRefreshTable()
+          $root.$swal(
+            'Ditambahkan!',
+            'Item yang dibuat berhasil ditambahkan.',
+            'success'
+          ).then(() => {
+            closeModalRefreshTable()
+          })
         }
-      }).finally(() => $root.$store.commit('SET_LOADING', false))
+      }).finally(() => $root.$overlayLoading.hide())
 
     // update
     } else if (mode === 'edit') {
-      $root.$store.commit('SET_LOADING', true)
       crud.update(input).then((res) => {
-        closeModalRefreshTable()
-      }).finally(() => $root.$store.commit('SET_LOADING', false))
+        $root.$swal(
+          'Diperbarui!',
+          'Item yang diedit berhasil diperbarui.',
+          'success'
+        ).then(() => {
+          closeModalRefreshTable()
+        })
+      }).finally(() => $root.$overlayLoading.hide())
     }
   }
 

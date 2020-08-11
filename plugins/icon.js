@@ -17,7 +17,9 @@ import {
   faTrashAlt,
   faEdit,
   faPlus,
-  faSave
+  faSave,
+  faSyncAlt,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -42,6 +44,8 @@ library.add(
   faTrashAlt,
   faEdit,
   faPlus,
-  faSave
+  faSave,
+  faSyncAlt,
+  faChevronRight
 )
 Vue.component('icon', FontAwesomeIcon)
