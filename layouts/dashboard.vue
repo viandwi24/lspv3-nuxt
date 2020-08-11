@@ -118,7 +118,6 @@ export default {
       ]
     }
   },
-  layout: 'default',
   middleware: ['auth'],
   setup (props, { root, refs }) {
     const { themeState, changeTheme } = useOurTheme(root)
