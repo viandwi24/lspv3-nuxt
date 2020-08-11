@@ -1,7 +1,7 @@
 <template>
-  <modal :name="name" :adaptive="true" :scrollable="true" :max-height="500">
+  <modal :name="name" :adaptive="true" :scrollable="true" height="auto" :max-height="500">
     <!-- <slot /> -->
-    <div class="flex flex-col flex-grow py-4 px-5 min-h-full max-h-full">
+    <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full">
       <div class="flex justify-between items-center pb-3">
         <p class="text-2xl font-bold">
           {{ title }}
@@ -12,7 +12,7 @@
           </svg>
         </div>
       </div>
-      <div class="flex-1 overflow-x-auto px-1">
+      <div class="flex-1 px-1 overflow-x-auto">
         <slot />
       </div>
       <div class="flex justify-end pt-2">
