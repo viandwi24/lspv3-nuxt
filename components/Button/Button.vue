@@ -1,15 +1,15 @@
 <template>
-  <a v-if="linkType == 'href'" :href="href" class="" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
+  <a v-if="linkType == 'href'" :href="href" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
     <span v-if="typeof text !== 'undefined'" class="button-content">
-      <icon v-if="typeof icon !== 'undefined'" class="button-icon" :icon="icon" />
-      {{ text }}
+      <icon v-if="typeof icon !== 'undefined'" :icon="icon" :class="`button-icon ${classIcon}`" />
+      <span class="button-text" :class="classText">{{ text }}</span>
     </span>
     <slot v-else />
   </a>
-  <nuxt-link v-else :to="{ name: route }" tag="a" class="" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
+  <nuxt-link v-else :to="{ name: route }" tag="a" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
     <span v-if="typeof text !== 'undefined'" class="button-content">
-      <icon v-if="typeof icon !== 'undefined'" :icon="icon" />
-      {{ text }}
+      <icon v-if="typeof icon !== 'undefined'" :icon="icon" :class="`button-icon ${classIcon}`" />
+      <span class="button-text" :class="classText">{{ text }}</span>
     </span>
     <slot v-else />
   </nuxt-link>
@@ -37,6 +37,14 @@ export default {
     classBtn: {
       type: String,
       default: 'mx-1'
+    },
+    classText: {
+      type: String,
+      default: ''
+    },
+    classIcon: {
+      type: String,
+      default: ''
     },
     route: {
       type: String,

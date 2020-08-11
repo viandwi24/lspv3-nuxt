@@ -8,7 +8,14 @@
     <div class="shadow-xl">
       <tw-table ref="table" :options="tableOptions">
         <div slot="table-actions">
-          <tw-button text="Tambah" type="success" size="sm" icon="plus" @click.native="openModal('create')" />
+          <tw-button
+            text="Tambah"
+            class-text="hidden sm:inline"
+            type="success"
+            size="sm"
+            icon="plus"
+            @click.native="openModal('create')"
+          />
         </div>
         <div slot="selected-row-actions">
           <tw-button text="Hapus Item" type="danger" size="xs" icon="trash-alt" @click.native="bulkDeleteModal" />
@@ -41,8 +48,11 @@
 
 <script>
 import { reactive } from '@vue/composition-api'
+import { useOurTableActionModal } from '@/api/modal.js'
+import { useOurCrudPlace } from '@/api/admin/place.js'
 export default {
   setup (props, { root, refs }) {
+    const input = ['id', 'name', 'address', 'phone']
     const { tableOptions } = useOurTable()
     const { create, update, destroy } = useOurCrudPlace(root)
     const {
@@ -51,7 +61,7 @@ export default {
       saveModal,
       deleteModal,
       bulkDeleteModal
-    } = useOurModal(root, refs, { create, update, destroy })
+    } = useOurTableActionModal(root, refs, 'tuk', { create, update, destroy }, input)
 
     return {
       tableOptions,
@@ -67,175 +77,6 @@ export default {
   transition: 'default',
   head: {
     title: 'Dashboard - Admin - Tuk'
-  }
-}
-
-function useOurCrudPlace ($root) {
-  const url = 'admin/places'
-
-  const create = (data) => {
-    return new Promise((resolve, reject) => {
-      try {
-        const response = $root.$axios.post(`${url}`, data)
-        resolve(response)
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
-  const update = (data) => {
-    const { id } = data
-    return new Promise((resolve, reject) => {
-      try {
-        const response = $root.$axios.put(`${url}/${id}`, data)
-        resolve(response)
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
-  const destroy = (data) => {
-    const id = data.join(',')
-    return new Promise((resolve, reject) => {
-      try {
-        const response = $root.$axios.delete(`${url}/${id}`)
-        resolve(response)
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
-  return {
-    create,
-    update,
-    destroy
-  }
-}
-
-function useOurModal ($root, $refs, crud) {
-  const modalOptions = reactive({
-    mode: 'create',
-    input: {
-      name: '',
-      address: '',
-      phone: ''
-    }
-  })
-
-  const closeModalRefreshTable = () => {
-    $refs.table.load()
-    $root.$modal.hide('modal')
-  }
-
-  const deleteModal = (data) => {
-    confirmDelete(
-      `Kamu akan menghapus tuk "${data.row.name}"`
-    ).then((result) => {
-      if (result.value) {
-        deleteData([data.row.id])
-      }
-    })
-  }
-
-  const confirmDelete = (text) => {
-    return $root.$swal({
-      title: 'Apakah kamu yakin?',
-      text,
-      icon: 'warning',
-      showCancelButton: true
-    })
-  }
-
-  const bulkDeleteModal = (data) => {
-    const selected = $refs.table.selectedRows
-    const ids = []
-    for (const i in selected) {
-      ids.push(selected[i].id)
-    }
-    confirmDelete(
-      `Kamu akan menghapus tuk dengan id "${(ids)}"`
-    ).then((result) => {
-      if (result.value) {
-        deleteData(ids)
-      }
-    })
-  }
-
-  const deleteData = async (data) => {
-    $root.$overlayLoading.show()
-    await $root.$sleep(500)
-    crud.destroy(data).then((res) => {
-      $root.$swal(
-        'Terhapus!',
-        'Item yang terpilih berhasil dihapus.',
-        'success'
-      ).then(() => {
-        closeModalRefreshTable()
-      })
-    }).finally(() => $root.$overlayLoading.hide())
-  }
-
-  const saveModal = async (data) => {
-    const mode = modalOptions.mode
-    const input = modalOptions.input
-
-    // create
-    $root.$overlayLoading.show()
-    await $root.$sleep(500)
-    if (mode === 'create') {
-      crud.create(input).then((res) => {
-        if (res.status === 201) {
-          $root.$swal(
-            'Ditambahkan!',
-            'Item yang dibuat berhasil ditambahkan.',
-            'success'
-          ).then(() => {
-            closeModalRefreshTable()
-          })
-        }
-      }).finally(() => $root.$overlayLoading.hide())
-
-    // update
-    } else if (mode === 'edit') {
-      crud.update(input).then((res) => {
-        $root.$swal(
-          'Diperbarui!',
-          'Item yang diedit berhasil diperbarui.',
-          'success'
-        ).then(() => {
-          closeModalRefreshTable()
-        })
-      }).finally(() => $root.$overlayLoading.hide())
-    }
-  }
-
-  const openModal = (mode = 'create', data = {}) => {
-    // handle mode
-    modalOptions.mode = mode
-    if (mode === 'edit') {
-      modalOptions.input = {
-        id: data.row.id,
-        name: data.row.name,
-        address: data.row.address,
-        phone: data.row.phone
-      }
-    } else if (mode === 'create') {
-      modalOptions.input = { name: '', address: '', phone: '' }
-    }
-
-    // show modal
-    $root.$modal.show('modal')
-  }
-
-  return {
-    modalOptions,
-    openModal,
-    saveModal,
-    deleteModal,
-    bulkDeleteModal
   }
 }
 

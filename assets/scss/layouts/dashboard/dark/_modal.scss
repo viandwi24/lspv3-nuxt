@@ -1,5 +1,5 @@
 .vm--modal * {
-  &:not(.button):not(.button-content):not(.button-icon) {
+  &:not(.button):not(.button-content):not(.button-icon):not(.button-text) {
     background: $backgroundPrimary;
   }
 }
