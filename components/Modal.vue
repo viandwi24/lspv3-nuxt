@@ -5,7 +5,7 @@
     :scrollable="modalOptions.scrollable"
     :height="modalOptions.height"
     :max-height="modalOptions.maxHeight"
-    :click-to-close="false"
+    :click-to-close="modalOptions.clickToClose"
   >
     <!-- <slot /> -->
     <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full">
@@ -57,7 +57,7 @@ export default {
       maxHeight: 500,
       // width: 'auto',
       maxWidth: '100vw',
-      clickToClose: true
+      clickToClose: false
     })
 
     onBeforeMount(() => {

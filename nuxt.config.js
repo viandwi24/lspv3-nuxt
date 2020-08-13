@@ -47,7 +47,7 @@ export default {
   */
   plugins: [
     '@/plugins/config',
-    { src: '@/plugins/good-table', ssr: false },
+    { src: '@/plugins/component-nossr', ssr: false },
     '@/plugins/component',
     '@/plugins/icon',
     '@/plugins/axios',

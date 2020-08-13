@@ -78,7 +78,7 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
     $root.$overlayLoading.show()
     await $root.$sleep(500)
     if (mode.value === 'create') {
-      crud.create(input.value).then((res) => {
+      return crud.create(input.value).then((res) => {
         if (res.status === 201) {
           $root.$swal(
             'Ditambahkan!',
@@ -92,7 +92,7 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
 
     // update
     } else if (mode.value === 'edit') {
-      crud.update(input.value).then((res) => {
+      return crud.update(input.value).then((res) => {
         $root.$swal(
           'Diperbarui!',
           'Item yang diedit berhasil diperbarui.',
@@ -104,17 +104,17 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
     }
   }
 
-  const modalOpen = (openMode = 'create', data = {}) => {
+  const modalOpen = async (openMode = 'create', data = {}, beforeCallback = async () => {}) => {
     // handle mode
     mode.value = openMode
     initInput.forEach((val) => {
       if (typeof val === 'object') {
-        input.value[val[0]] = Object.assign({}, val[1])[val[0]]
+        input.value[val[0]] = val[1]
       } else {
         input.value[val] = ''
       }
     })
-    // console.log(input)
+    // console.log({ input: input.value, mode: mode.value })
     if (mode.value === 'edit') {
       // fix bug
       modalOpen('create', {})
@@ -143,12 +143,13 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
       })
       // nah ketika melakukan pengubahan data input, "data.row" ikutan berubah :
       // input.value.push('tes')
-      console.log(row)
+      // console.log(input)
     } else if (mode.value === 'create') {
     }
 
     // show modal
-    $root.$modal.show('modal')
+    await beforeCallback()
+    await $root.$modal.show('modal')
   }
 
   return {
