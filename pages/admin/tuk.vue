@@ -76,7 +76,7 @@ export default {
   },
   layout: 'dashboard',
   middleware: ['auth', 'is_admin'],
-  transition: 'default',
+  transition: 'dashboard',
   head: {
     title: 'Dashboard - Admin - Tuk'
   }

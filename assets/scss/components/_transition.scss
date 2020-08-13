@@ -1,10 +1,9 @@
+// default
 $t-duration: 800ms;
 $t-delay: 300ms;
-
 .default-enter-active,
 .default-leave-active {
   transition-duration: $t-duration * 2;
-
   &::before,
   &::after {
     content: "";
@@ -18,24 +17,20 @@ $t-delay: 300ms;
     transition-property: opacity, transform;
     transition-timing-function: ease-in-out;
   }
-
   &::before {
     background-color: #2e2e2e;
   }
-
   &::after {
     top: 50%;
     background-color: #2e2e2e;
   }
 }
-
 .default-leave {
   &::before,
   &::after {
     transform: scaleX(0);
   }
 }
-
 .default-leave-active {
   &::before {
     transition-duration: $t-duration;
@@ -46,7 +41,6 @@ $t-delay: 300ms;
     transition-delay: $t-delay;
   }
 }
-
 .default-leave-to {
   &::before,
   &::after {
@@ -54,14 +48,12 @@ $t-delay: 300ms;
     transform-origin: left;
   }
 }
-
 .default-enter {
   &::before,
   &::after {
     transform: scaleX(1);
   }
 }
-
 .default-enter-active {
   &::before {
     transition-duration: $t-duration;
@@ -72,11 +64,27 @@ $t-delay: 300ms;
     transition-delay: $t-delay;
   }
 }
-
 .default-enter-to {
   &::before,
   &::after {
     transform: scaleX(0);
     transform-origin: right;
   }
+}
+
+
+// slide
+.dashboard-leave-active, .dashboard-enter-active,
+.slide-leave-active, .slide-enter-active {
+  transition: .5s;
+}
+.dashboard-enter,
+.slide-enter {
+  opacity: 0;
+  transform: translate(-100%, 0);
+}
+.dashboard-leave-to,
+.slide-leave-to {
+  opacity: 0;
+  transform: translate(100%, 0);
 }

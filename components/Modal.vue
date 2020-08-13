@@ -5,7 +5,7 @@
     :scrollable="modalOptions.scrollable"
     :height="modalOptions.height"
     :max-height="modalOptions.maxHeight"
-    :click-to-close.sync="modalOptions.clickToClose"
+    :click-to-close="false"
   >
     <!-- <slot /> -->
     <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full">
