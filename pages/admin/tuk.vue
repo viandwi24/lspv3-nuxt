@@ -14,16 +14,16 @@
             type="success"
             size="sm"
             icon="plus"
-            @click.native="openModal('create')"
+            @click.native="modalOpen('create')"
           />
         </div>
         <div slot="selected-row-actions">
-          <tw-button text="Hapus Item" type="danger" size="xs" icon="trash-alt" @click.native="bulkDeleteModal" />
+          <tw-button text="Hapus Item" type="danger" size="xs" icon="trash-alt" @click.native="modalBulkDelete" />
         </div>
         <div slot="table-row" slot-scope="props">
           <div v-if="props.column.field == 'action'">
-            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" @click.native="openModal('edit', props)" />
-            <tw-button class-btn="mx-0" type="danger" size="xs" icon="trash-alt" @click.native="deleteModal(props)" />
+            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" @click.native="modalOpen('edit', props)" />
+            <tw-button class-btn="mx-0" type="danger" size="xs" icon="trash-alt" @click.native="modalDelete(props)" />
           </div>
           <span v-else>
             {{ props.formattedRow[props.column.field] }}
@@ -32,14 +32,14 @@
       </tw-table>
     </div>
 
-    <tw-modal name="modal" :title="(modalOptions.mode == 'create') ? 'Tambah' : 'Edit'">
+    <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{}">
       <form>
-        <tw-input title="Nama" :value.sync="modalOptions.input.name" />
-        <tw-input title="Alamat" :value.sync="modalOptions.input.address" />
-        <tw-input title="Nomor Telepon" :value.sync="modalOptions.input.phone" />
+        <tw-input title="Nama" :value.sync="input.name" />
+        <tw-input title="Alamat" :value.sync="input.address" />
+        <tw-input title="Nomor Telepon" :value.sync="input.phone" />
       </form>
       <div slot="footer" slot-scope="props">
-        <tw-button text="Simpan" type="primary" icon="save" @click.native="saveModal" />
+        <tw-button text="Simpan" type="primary" icon="save" @click.native="modalSave" />
         <tw-button text="Batal" type="danger" @click.native="props.modal.hide()" />
       </div>
     </tw-modal>
@@ -52,24 +52,26 @@ import { useOurTableActionModal } from '@/api/modal.js'
 import { useOurCrudPlace } from '@/api/admin/place.js'
 export default {
   setup (props, { root, refs }) {
-    const input = ['id', 'name', 'address', 'phone']
+    const initInput = ['id', 'name', 'address', 'phone']
     const { tableOptions } = useOurTable()
     const { create, update, destroy } = useOurCrudPlace(root)
     const {
-      modalOptions,
-      openModal,
-      saveModal,
-      deleteModal,
-      bulkDeleteModal
-    } = useOurTableActionModal(root, refs, 'tuk', { create, update, destroy }, input)
+      mode,
+      input,
+      modalOpen,
+      modalSave,
+      modalDelete,
+      modalBulkDelete
+    } = useOurTableActionModal(root, refs, 'tuk', { create, update, destroy }, initInput)
 
     return {
       tableOptions,
-      modalOptions,
-      openModal,
-      saveModal,
-      deleteModal,
-      bulkDeleteModal
+      mode,
+      input,
+      modalOpen,
+      modalSave,
+      modalDelete,
+      modalBulkDelete
     }
   },
   layout: 'dashboard',

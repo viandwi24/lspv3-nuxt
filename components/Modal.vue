@@ -1,5 +1,12 @@
 <template>
-  <modal :name="name" :adaptive="true" :scrollable="true" height="auto" :max-height="500">
+  <modal
+    :name="name"
+    :adaptive="modalOptions.adaptive"
+    :scrollable="modalOptions.scrollable"
+    :height="modalOptions.height"
+    :max-height="modalOptions.maxHeight"
+    :click-to-close.sync="modalOptions.clickToClose"
+  >
     <!-- <slot /> -->
     <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full">
       <div class="flex justify-between items-center pb-3">
@@ -23,6 +30,8 @@
 </template>
 
 <script>
+import { reactive, onBeforeMount } from '@vue/composition-api'
+// import {} from '@vue/composition-api'
 export default {
   props: {
     name: {
@@ -32,6 +41,35 @@ export default {
     title: {
       type: String,
       default: undefined
+    },
+    options: {
+      type: Object,
+      // eslint-disable-next-line vue/require-valid-default-prop
+      default: {},
+      required: true
+    }
+  },
+  setup (props) {
+    let modalOptions = reactive({
+      adaptive: true,
+      scrollable: true,
+      height: 'auto',
+      maxHeight: 500,
+      // width: 'auto',
+      maxWidth: '100vw',
+      clickToClose: true
+    })
+
+    onBeforeMount(() => {
+      modalOptions = Object.assign({}, modalOptions, props.options)
+      console.log({
+        modalOptions,
+        opt: props.options
+      })
+    })
+
+    return {
+      modalOptions
     }
   }
 }

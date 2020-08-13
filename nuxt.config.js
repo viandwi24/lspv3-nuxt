@@ -123,7 +123,7 @@ export default {
    */
   purgeCSS: {
     mode: 'postcss',
-    enabled: true // (process.env.NODE_ENV === 'production')
+    enabled: false // (process.env.NODE_ENV === 'production')
   },
   /**
    ** Font configuration

@@ -2,7 +2,7 @@
   <div>
     <div class="content-header">
       <h1 class="text-4xl text-gray-800">
-        Kategori
+        Jadwal
       </h1>
     </div>
     <div class="shadow-xl">
@@ -32,10 +32,18 @@
       </tw-table>
     </div>
 
-    <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{}">
+    <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{ clickToClose: false }">
       <form>
         <tw-input title="Nama" :value.sync="input.name" />
-        <tw-input title="Deskripsi" :value.sync="input.description" />
+        <tw-input title="Waktu Pelaksanaan" :value.sync="input.date" />
+        <tw-input title="Pengumuman" :value.sync="input.announcement" />
+        <!-- <tw-input title="Agenda" :value.sync="modalOptions.input.agenda" /> -->
+        <div>
+          <span v-for="(item) in input.agenda" :key="item.$index" class="text-red-500">
+            {{ item }}
+          </span>
+          <a href="#" @click.prevent="tes">tes</a>
+        </div>
       </form>
       <div slot="footer" slot-scope="props">
         <tw-button text="Simpan" type="primary" icon="save" @click.native="modalSave" />
@@ -46,27 +54,36 @@
 </template>
 
 <script>
-import { reactive } from '@vue/composition-api'
+import { reactive, watchEffect, ref, computed } from '@vue/composition-api'
 import { useOurTableActionModal } from '@/api/modal.js'
-import { useOurCrudCategory } from '@/api/admin/category.js'
+import { useOurCrudSchedule, url } from '@/api/admin/schedule.js'
 export default {
   setup (props, { root, refs }) {
-    const initInput = ['id', 'name', 'description']
-    const { tableOptions } = useOurTable()
-    const { create, update, destroy } = useOurCrudCategory(root)
+    const initInput = [
+      ['id', ''],
+      ['name', ''],
+      ['date', ''],
+      ['announcement', ''],
+      ['agenda', []]
+    ]
+    const { tableOptions } = useOurTable(url)
+    const { create, update, destroy } = useOurCrudSchedule(root)
     const {
-      input,
       mode,
+      input,
       modalOpen,
       modalSave,
       modalDelete,
       modalBulkDelete
-    } = useOurTableActionModal(root, refs, 'kategori', { create, update, destroy }, initInput)
+    } = useOurTableActionModal(root, refs, 'jadwal', { create, update, destroy }, initInput)
+    const { agenda, tes } = useOurModalAgenda(input)
 
     return {
       tableOptions,
-      input,
+      agenda,
+      tes,
       mode,
+      input,
       modalOpen,
       modalSave,
       modalDelete,
@@ -77,13 +94,35 @@ export default {
   middleware: ['auth', 'is_admin'],
   transition: 'default',
   head: {
-    title: 'Dashboard - Admin - Kategori'
+    title: 'Dashboard - Admin - Jadwal'
   }
 }
 
-function useOurTable () {
+function useOurModalAgenda (input) {
+  const agendaData = ref([])
+
+  watchEffect(() => {
+    console.log(input.value)
+    agendaData.value = input.value.agenda
+  })
+
+  const agenda = computed(() => {
+    return agendaData.value
+  })
+
+  const tes = () => {
+    input.value.agenda.push('tes')
+  }
+
+  return {
+    agenda,
+    tes
+  }
+}
+
+function useOurTable (url) {
   const tableOptions = reactive({
-    url: '/admin/categories',
+    url,
     perPage: 10,
     sort: [
       { field: 'id', type: 'asc' }
@@ -102,8 +141,8 @@ function useOurTable () {
         sortable: true
       },
       {
-        label: 'Deskripsi',
-        field: 'description',
+        label: 'Waktu Pelaksanaan',
+        field: 'date',
         searchable: true,
         sortable: true
       },
@@ -113,10 +152,6 @@ function useOurTable () {
         searchable: false,
         sortable: false
       }
-    ],
-    rows: [
-      { id: 10, name: 'Example 1', description: 'Description 1' },
-      { id: 20, name: 'Example 2', description: 'Description 2' }
     ]
   })
 

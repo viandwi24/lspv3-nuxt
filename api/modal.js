@@ -1,29 +1,31 @@
-import { reactive } from '@vue/composition-api'
+import { reactive, ref } from '@vue/composition-api'
 
-export function useOurTableActionModal ($root, $refs, title, crud, input = [], rowPrimary = 'id') {
+export function useOurTableActionModal ($root, $refs, title, crud, initInput = [], rowPrimary = 'id') {
   // build dynamic input
   const dynamicInput = reactive({
     inputState: {}
   })
   const buildDynamicInput = () => {
-    input.forEach((val) => {
-      dynamicInput.inputState[val] = ''
+    initInput.forEach((val) => {
+      if (typeof val === 'object') {
+        dynamicInput.inputState[val[0]] = val[1]
+      } else {
+        dynamicInput.inputState[val] = ''
+      }
     })
   }
   buildDynamicInput()
 
   // state
-  const modalOptions = reactive({
-    mode: 'create',
-    input: dynamicInput.inputState
-  })
+  const mode = ref('create')
+  const input = ref({ ...dynamicInput.inputState })
 
   const closeModalRefreshTable = () => {
     $refs.table.load()
     $root.$modal.hide('modal')
   }
 
-  const deleteModal = (data) => {
+  const modalDelete = (data) => {
     confirmDelete(
       `Kamu akan menghapus ${title} dengan ${rowPrimary} "${data.row[rowPrimary]}"`
     ).then((result) => {
@@ -42,7 +44,7 @@ export function useOurTableActionModal ($root, $refs, title, crud, input = [], r
     })
   }
 
-  const bulkDeleteModal = (data) => {
+  const modalBulkDelete = (data) => {
     const selected = $refs.table.selectedRows
     const ids = []
     for (const i in selected) {
@@ -71,15 +73,12 @@ export function useOurTableActionModal ($root, $refs, title, crud, input = [], r
     }).finally(() => $root.$overlayLoading.hide())
   }
 
-  const saveModal = async (data) => {
-    const mode = modalOptions.mode
-    const input = modalOptions.input
-
+  const modalSave = async (data) => {
     // create
     $root.$overlayLoading.show()
     await $root.$sleep(500)
-    if (mode === 'create') {
-      crud.create(input).then((res) => {
+    if (mode.value === 'create') {
+      crud.create(input.value).then((res) => {
         if (res.status === 201) {
           $root.$swal(
             'Ditambahkan!',
@@ -92,8 +91,8 @@ export function useOurTableActionModal ($root, $refs, title, crud, input = [], r
       }).finally(() => $root.$overlayLoading.hide())
 
     // update
-    } else if (mode === 'edit') {
-      crud.update(input).then((res) => {
+    } else if (mode.value === 'edit') {
+      crud.update(input.value).then((res) => {
         $root.$swal(
           'Diperbarui!',
           'Item yang diedit berhasil diperbarui.',
@@ -105,25 +104,47 @@ export function useOurTableActionModal ($root, $refs, title, crud, input = [], r
     }
   }
 
-  const openModal = (mode = 'create', data = {}) => {
+  const modalOpen = (openMode = 'create', data = {}) => {
     // handle mode
-    modalOptions.mode = mode
-    input.forEach((val) => {
-      modalOptions.input[val] = ''
+    mode.value = openMode
+    initInput.forEach((val) => {
+      if (typeof val === 'object') {
+        input.value[val[0]] = Object.assign({}, val[1])[val[0]]
+      } else {
+        input.value[val] = ''
+      }
     })
-    if (mode === 'edit') {
+    // console.log(input)
+    if (mode.value === 'edit') {
       // fix bug
-      openModal('create', {})
+      modalOpen('create', {})
       $root.$sleep(50)
       $root.$modal.hide('modal')
       $root.$sleep(50)
-      modalOptions.mode = 'edit'
+      mode.value = 'edit'
+
+      // source data asli dari Vue Good Table :
+      const row = data.row
 
       // dynamic input
-      input.forEach((val) => {
-        modalOptions.input[val] = { ...data.row }[val]
+      initInput.forEach((val) => {
+        if (typeof val === 'object') {
+          // clone object agar tidak me-reference ke source aslinya
+          let newVal = Object.assign({}, row)[val[0]]
+          if (Array.isArray(newVal)) {
+            newVal = [...newVal]
+          } else if (typeof newVal === 'object') {
+            newVal = Object.assign({}, newVal)
+          }
+          input.value[val[0]] = newVal
+        } else {
+          input.value[val] = Object.assign({}, row)[val]
+        }
       })
-    } else if (mode === 'create') {
+      // nah ketika melakukan pengubahan data input, "data.row" ikutan berubah :
+      // input.value.push('tes')
+      console.log(row)
+    } else if (mode.value === 'create') {
     }
 
     // show modal
@@ -131,10 +152,11 @@ export function useOurTableActionModal ($root, $refs, title, crud, input = [], r
   }
 
   return {
-    modalOptions,
-    openModal,
-    saveModal,
-    deleteModal,
-    bulkDeleteModal
+    mode,
+    input,
+    modalOpen,
+    modalSave,
+    modalDelete,
+    modalBulkDelete
   }
 }
