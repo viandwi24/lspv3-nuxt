@@ -180,3 +180,10 @@ $highlight-color: #445168;
     }
   }
 }
+.vgt-global-search {
+  padding: 1rem .5rem !important;
+}
+.vgt-selection-info-row {
+  @apply text-base;
+  min-height: 40px;
+}

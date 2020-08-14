@@ -19,7 +19,7 @@
           </svg>
         </div>
       </div>
-      <div class="flex-1 px-1 overflow-x-auto">
+      <div class="flex-1 px-1 overflow-x-hidden overflow-y-auto">
         <slot />
       </div>
       <div class="flex justify-end pt-2">

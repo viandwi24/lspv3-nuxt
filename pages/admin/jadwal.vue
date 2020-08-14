@@ -47,13 +47,16 @@
             input-class="bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-md"
           />
         </div>
-        <!-- <tw-input title="Pengumuman" :value.sync="input.announcement" /> -->
-        <div class="mb-4">
+        <tw-input title="Pengumuman" :value.sync="input.announcement" type="textarea" />
+        <!-- <vueditor ref="editor" /> -->
+        <!-- <div class="mb-4">
           <label for="announcement" class="block text-gray-700 text-sm font-bold mb-2">
             Pengumuman
           </label>
-          <vueditor ref="editor" />
-        </div>
+          <client-only>
+            <ckeditor v-model="input.announcement" :editor="editor" :config="{}" />
+          </client-only>
+        </div> -->
         <!-- <tw-input title="Agenda" :value.sync="modalOptions.input.agenda" /> -->
         <div>
           <div class="font-semibold text-gray-700 text-sm mb-2">
@@ -113,11 +116,13 @@
 </template>
 
 <script>
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { reactive } from '@vue/composition-api'
 import { useOurTableActionModal } from '@/api/modal.js'
 import { useOurCrudSchedule, url } from '@/api/admin/schedule.js'
 export default {
   setup (props, { root, refs }) {
+    // const editor = ref(ClassicEditor)
     const initInput = [
       ['id', ''],
       ['name', ''],
@@ -138,18 +143,24 @@ export default {
     const { agendaAdd, agendaDelete } = useOurCrudAgenda(input)
 
     const advancedModalSave = async () => {
+      input.value.date = root.$moment(input.value.date).format('DD-MM-YYYY')
       await modalSave()
-      input.value.announcement = await refs.editor.getContent()
-      refs.editor.setContent('')
     }
 
     const advancedModalOpen = async (m, p) => {
       await modalOpen(m, p)
-      refs.editor.setContent('')
-      refs.editor.setContent(input.value.announcement)
+      if (m === 'edit') {
+        const oldDate = input.value.date.split('-')
+        input.value.date = new Date(
+          parseInt(oldDate[2]),
+          parseInt(oldDate[1]) - 1,
+          parseInt(oldDate[0])
+        )
+      }
     }
 
     return {
+      // editor,
       tableOptions,
       mode,
       input,

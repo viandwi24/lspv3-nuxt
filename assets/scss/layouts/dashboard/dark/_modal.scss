@@ -1,5 +1,9 @@
-.vm--modal * {
-  &:not(.button):not(.button-content):not(.button-icon):not(.button-text) {
-    background: $backgroundPrimary;
+.vm--modal {
+  border: 1px solid theme('colors.gray.600');
+
+  * {
+    &:not(.button):not(.button-content):not(.button-icon):not(.button-text) {
+      background: $backgroundPrimary;
+    }
   }
 }
