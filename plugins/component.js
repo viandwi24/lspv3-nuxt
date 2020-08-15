@@ -7,6 +7,7 @@ import TwButton from '@/components/Button/Button'
 import TwTable from '@/components/Table'
 import TwModal from '@/components/Modal'
 import TwInput from '@/components/Form/Input'
+import TwBreadcrumb from '@/components/Breadcrumb'
 
 // register variable
 const components = {
@@ -15,7 +16,8 @@ const components = {
   TwButton,
   TwTable,
   TwModal,
-  TwInput
+  TwInput,
+  TwBreadcrumb
 }
 
 // vue register global component

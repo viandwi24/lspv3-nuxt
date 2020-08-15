@@ -4,6 +4,7 @@
       <h1 class="text-4xl text-gray-800">
         Kategori
       </h1>
+      <tw-breadcrumb :items="[{ text: 'Home', route: 'admin' },{ text: 'Kategori' }]" />
     </div>
     <div class="shadow-xl">
       <tw-table ref="table" :options="tableOptions">

@@ -1,7 +1,15 @@
 <template>
-  <div class="border border-gray-400 text-gray-700 px-4 py-3 relative bg-gray-100 shadow" role="alert">
-    <strong class="font-bold">Selamat Datang!</strong>
-    <span class="block sm:inline">Hai {{ firstName }}, Kamu masuk sebagai Admin.</span>
+  <div>
+    <div class="content-header">
+      <h1 class="text-4xl text-gray-800">
+        Dashboard
+      </h1>
+      <tw-breadcrumb :items="[{ text: 'Home' }]" />
+    </div>
+    <div class="border border-gray-400 text-gray-700 px-4 py-3 relative bg-gray-100 shadow" role="alert">
+      <strong class="font-bold">Selamat Datang!</strong>
+      <span class="block sm:inline">Hai {{ firstName }}, Kamu masuk sebagai Admin.</span>
+    </div>
   </div>
   <!-- <div class="flex space-x-4">
     <div class="w-full sm:w-9/12">
