@@ -22,7 +22,7 @@
         </div>
         <div slot="table-row" slot-scope="props">
           <div v-if="props.column.field == 'action'">
-            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" @click.native="modalOpen('edit', props)" />
+            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" :router="{ name: 'admin-skema-id', params: { id: props.row.id } }" />
             <tw-button class-btn="mx-0" type="danger" size="xs" icon="trash-alt" @click.native="modalDelete(props)" />
           </div>
           <span v-else>

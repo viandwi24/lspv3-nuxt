@@ -12,6 +12,10 @@ export function useOurCrudSchema ($root) {
     })
   }
 
+  const read = async (id) => {
+    return (await $root.$axios.$get(`${url}/${id}`))
+  }
+
   const update = (data) => {
     const { id } = data
     return new Promise((resolve, reject) => {
@@ -38,6 +42,7 @@ export function useOurCrudSchema ($root) {
 
   return {
     create,
+    read,
     update,
     destroy
   }

@@ -6,7 +6,7 @@
     </span>
     <slot v-else />
   </a>
-  <nuxt-link v-else :to="{ name: route }" tag="a" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
+  <nuxt-link v-else :to="routerOptions" tag="a" :class="`${classInit} ${classType} ${classSize} ${classBtn}`">
     <span v-if="typeof text !== 'undefined'" class="button-content">
       <icon v-if="typeof icon !== 'undefined'" :icon="icon" :class="`button-icon ${classIcon}`" />
       <span class="button-text" :class="classText">{{ text }}</span>
@@ -48,6 +48,10 @@ export default {
     },
     route: {
       type: String,
+      default: undefined
+    },
+    router: {
+      type: Object,
       default: undefined
     },
     href: {
@@ -103,9 +107,15 @@ export default {
       return newClass
     },
     linkType () {
-      return (typeof this.route !== 'undefined')
+      return (typeof this.route !== 'undefined' || typeof this.router !== 'undefined')
         ? 'nuxt-link'
         : 'href'
+    },
+    routerOptions () {
+      const options = (typeof this.route !== 'undefined')
+        ? { name: this.route }
+        : this.router
+      return options
     }
   },
   created () {
