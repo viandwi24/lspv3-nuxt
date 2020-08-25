@@ -12,6 +12,56 @@ $gutterTopBottom: 1rem;
   @import "./dashboard/content";
   @import "./dashboard/sidebar";
   @import "./dashboard/footer";
+  
+  .hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    &:before {
+      content: '';
+      background: linear-gradient(to right, transparent, #818078, transparent);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      color: black;
+      padding: 0 .5em;
+      line-height: 1.5em;
+      color: theme('colors.gray.800');
+      font-weight: bold;
+      background-color: theme('colors.gray.200');
+    }
+  }
+  
+  .widget-icon {
+    display: flex;
+    @apply bg-gray-400;
+    @apply px-4;
+    @apply py-2;
+    @apply rounded;
+    @apply cursor-pointer;
+    @apply text-gray-800;
+    @apply transition-all;
+    @apply duration-200;
+    @apply ease-out;
+    @apply shadow-md;
+    
+    &:hover {
+      transform: scale(1.05, 1.05);
+      background-color: theme('colors.gray.500');
+    }
+  }
 }
 
 // dark theme
@@ -26,6 +76,22 @@ body.dark-theme {
   @import "./dashboard/dark/swal";
   .dashboard {
     @import "./dashboard/dark";
+  
+    .hr-text {
+      &:after {
+        color: $colorPrimary;
+        background-color: $backgroundPrimary;
+      }
+    }
+
+    .widget-icon {
+      background-color: $backgroundTertiary;
+      color: $colorPrimary;
+
+      &:hover {
+        background-color: $backgroundSecondary;
+      }
+    }
   }
 
   // 

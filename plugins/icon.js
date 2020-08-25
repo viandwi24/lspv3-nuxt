@@ -19,7 +19,19 @@ import {
   faPlus,
   faSave,
   faSyncAlt,
-  faChevronRight
+  faChevronRight,
+  faClock,
+  faBuilding,
+  faUserCheck,
+  faCog,
+  faListOl,
+  faListUl,
+  faCheckDouble,
+  faCheckCircle,
+  faPenAlt,
+  faUsers,
+  faQuestionCircle,
+  faUserEdit
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -46,6 +58,18 @@ library.add(
   faPlus,
   faSave,
   faSyncAlt,
-  faChevronRight
+  faChevronRight,
+  faClock,
+  faBuilding,
+  faUserCheck,
+  faCog,
+  faListOl,
+  faListUl,
+  faCheckDouble,
+  faCheckCircle,
+  faPenAlt,
+  faUsers,
+  faQuestionCircle,
+  faUserEdit
 )
 Vue.component('icon', FontAwesomeIcon)

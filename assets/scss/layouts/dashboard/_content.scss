@@ -2,11 +2,20 @@
   @apply mx-auto;
   @apply px-10;
   @apply pt-4;
+  @apply break-words;
   padding-top: calc(#{$gutterTopBottom} + #{$gapSidebarNavbar});
   padding-bottom: calc(#{$gutterTopBottom} + #{$gapFooterBottom});
 
   .content-header {
-    @apply mb-4;
+    @apply mb-3;
+    h1 {
+      @apply mb-2;
+      line-height: normal;
+    }
+  }
+
+  .vm--overlay {
+    background: rgba(0, 0, 0, 0.6); 
   }
 }
 

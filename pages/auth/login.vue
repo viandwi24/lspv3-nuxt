@@ -75,7 +75,8 @@ export default {
 }
 
 function useOurLogin ($this) {
-  const auth = reactive({ email: 'viandwicyber@gmail.com', password: 'password' })
+  // const auth = reactive({ email: 'viandwicyber@gmail.com', password: 'password' })
+  const auth = reactive({ email: 'admin@mail.com', password: 'password' })
   let error = reactive({ email: false, password: false })
   const app = computed(() => $this.$store.state.app)
 

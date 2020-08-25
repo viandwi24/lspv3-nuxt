@@ -40,6 +40,10 @@ div.footer, div.footer span {
     color: $colorPrimary;
     background: $backgroundSecondary;
   }
+
+  .vm--overlay {
+    background: rgba(0, 0, 0, 0.8); 
+  }
 }
 
 // component

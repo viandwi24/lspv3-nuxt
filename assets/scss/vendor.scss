@@ -9,3 +9,9 @@
 
 /* purgecss end ignore */
 @import "tailwindcss/utilities";
+
+.text-clip {
+    display: inline-block;
+    width: 100%;
+    text-overflow: clip;
+}
