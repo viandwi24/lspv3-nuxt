@@ -36,11 +36,6 @@ div.footer, div.footer span {
     color: $colorPrimary;
   }
 
-  div[role=alert] {
-    color: $colorPrimary;
-    background: $backgroundSecondary;
-  }
-
   .vm--overlay {
     background: rgba(0, 0, 0, 0.8); 
   }
@@ -50,3 +45,4 @@ div.footer, div.footer span {
 @import "./dark/table";
 @import "./dark/modal";
 @import "./dark/modal";
+@import "./dark/alert";

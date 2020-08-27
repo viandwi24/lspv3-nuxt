@@ -1,0 +1,24 @@
+.alert.normal {
+    & div {
+        background: theme('colors.gray.100');
+        @apply border;
+        @apply border-blue-400;
+        @apply px-4;
+        @apply py-3;
+        @apply relative;
+        @apply shadow;
+    }
+    .primary * {
+        color: theme('colors.gray.700');
+    }
+}
+
+.alert.left-accent-border {
+    & div {
+        background: theme('colors.orange.100');
+        @apply border-orange-500;
+    }
+    .warning * {
+        color: theme('colors.orange.700');
+    }
+}
