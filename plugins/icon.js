@@ -31,7 +31,12 @@ import {
   faPenAlt,
   faUsers,
   faQuestionCircle,
-  faUserEdit
+  faUserEdit,
+  faUserFriends,
+  faCalendarAlt,
+  faClipboardList,
+  faScroll,
+  faCalendarDay
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -70,6 +75,11 @@ library.add(
   faPenAlt,
   faUsers,
   faQuestionCircle,
-  faUserEdit
+  faUserEdit,
+  faUserFriends,
+  faCalendarAlt,
+  faClipboardList,
+  faScroll,
+  faCalendarDay
 )
 Vue.component('icon', FontAwesomeIcon)

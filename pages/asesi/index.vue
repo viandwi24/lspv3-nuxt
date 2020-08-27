@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="border border-gray-400 text-gray-700 px-4 py-3 relative bg-gray-100 shadow" role="alert">
+    <tw-alert type="primary">
       <strong class="font-bold">Selamat Datang!</strong>
       <span class="block sm:inline">Hai {{ firstName }}, Kamu masuk sebagai Asesi.</span>
-    </div>
+    </tw-alert>
   </div>
 </template>
 

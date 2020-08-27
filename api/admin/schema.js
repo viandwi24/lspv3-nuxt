@@ -47,3 +47,23 @@ export function useOurCrudSchema ($root) {
     destroy
   }
 }
+
+export async function useOurAsyncDataSlugId (params, app, redirect) {
+  const { read } = useOurCrudSchema(app)
+  const id = params.id
+  let skema
+
+  app.$overlayLoading.show()
+  try {
+    skema = (await read(id)).data
+  } catch (error) {
+    await redirect({ name: 'admin-skema' })
+  }
+  await app.$sleep(500)
+  app.$overlayLoading.hide()
+
+  return {
+    id,
+    skema
+  }
+}
