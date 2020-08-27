@@ -216,7 +216,16 @@ function useOurTheme ($root) {
   })
 
   onMounted(() => {
-    if ($root.$store.state.theme === 'dark') { themeState.theme = true }
+    $root.$store.commit('SET_THEME', localStorage.getItem('theme') || 'light')
+    if ($root.$store.state.theme === 'dark') {
+      themeState.theme = true
+    } else {
+      themeState.theme = false
+    }
+    // console.log({
+    //   current: $root.$store.state.theme,
+    //   option: localStorage.getItem('theme') || 'light'
+    // })
   })
 
   return {

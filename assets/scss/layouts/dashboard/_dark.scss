@@ -15,7 +15,9 @@ div.sidebar {
     color: $colorPrimary !important;
   }
   li.item.active {
-    @apply border-t-2 border-b-2 border-blue-500;
+    @apply border-t-2;
+    @apply border-b-2;
+    @apply border-blue-500;
   }
 }
 

@@ -28,5 +28,8 @@ export const actions = {
 export const getters = {
   GET_APP (state) {
     return state.app
+  },
+  GET_THEME (state) {
+    return state.theme
   }
 }
