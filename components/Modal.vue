@@ -62,10 +62,6 @@ export default {
 
     onBeforeMount(() => {
       modalOptions = Object.assign({}, modalOptions, props.options)
-      console.log({
-        modalOptions,
-        opt: props.options
-      })
     })
 
     return {
