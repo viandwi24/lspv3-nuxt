@@ -13,7 +13,7 @@
         <hr class="hr-text" :data-content="menu.title">
         <div class="block md:flex md:flex-row md:flex-shrink md:flex-wrap md:-mx-2">
           <div v-for="(item, j) in menu.items" :key="j" class="w-full md:w-1/4 px-2 py-2">
-            <nuxt-link :to="{ name: `admin-skema-id-${item.route}` }">
+            <nuxt-link :to="{ name: `admin-skema-skemaId-${item.route}` }">
               <div class="widget-icon text-center sm:text-left">
                 <div class="text-6xl">
                   <icon :icon="item.icon" />
@@ -89,10 +89,10 @@
 import { useOurAsyncDataSlugId } from '@/api/admin/schema.js'
 export default {
   validate ({ params }) {
-    return /^\d+$/.test(params.id)
+    return /^\d+$/.test(params.skemaId)
   },
   async asyncData ({ params, app, redirect }) {
-    const { id, skema } = await useOurAsyncDataSlugId(params, app, redirect)
+    const { skema } = await useOurAsyncDataSlugId(params, app, redirect)
 
     const breadcrumbs = [
       { text: 'Home', route: 'admin' },
@@ -101,7 +101,6 @@ export default {
     ]
 
     return {
-      id,
       skema,
       breadcrumbs
     }

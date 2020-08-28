@@ -1,6 +1,10 @@
-export const url = 'admin/schemas'
+export const url = (schemaId) => {
+  return `admin/schemas/${schemaId}/competency-units`
+}
 
-export function useOurCrudSchema ($root) {
+export function useOurCrudUnitKompetensi (schemaId, $root) {
+  const url = `admin/schemas/${schemaId}/competency-units`
+
   const create = (data) => {
     return new Promise((resolve, reject) => {
       try {
@@ -49,20 +53,20 @@ export function useOurCrudSchema ($root) {
 }
 
 export async function useOurAsyncDataSlugId (params, app, redirect) {
-  const { read } = useOurCrudSchema(app)
-  const id = params.skemaId
-  let skema
+  const { skemaId, unitKompetensiId } = params
+  const { read } = useOurCrudUnitKompetensi(skemaId, app)
+  let unitKompetensi
 
   app.$overlayLoading.show()
   try {
-    skema = (await read(id)).data
+    unitKompetensi = (await read(unitKompetensiId)).data
   } catch (error) {
-    await redirect({ name: 'admin-skema' })
+    await redirect({ name: 'admin-skema-skemaId-manajemen-unit-kompetensi' })
   }
   await app.$sleep(100)
   app.$overlayLoading.hide()
 
   return {
-    skema
+    unitKompetensi
   }
 }

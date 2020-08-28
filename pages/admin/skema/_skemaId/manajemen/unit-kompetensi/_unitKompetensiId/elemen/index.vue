@@ -2,11 +2,13 @@
   <div>
     <div class="content-header">
       <h1 class="text-4xl text-gray-800">
-        Kategori
+        Element
+        <icon icon="chevron-right" class="text-3xl" />
+        {{ unitKompetensi.title }}
       </h1>
-      <tw-breadcrumb :items="[{ text: 'Home', route: 'admin' },{ text: 'Kategori' }]" />
+      <tw-breadcrumb :items="breadcrumbs" />
     </div>
-    <div class="shadow-xl">
+    <div class="content">
       <tw-table ref="table" :options="tableOptions">
         <div slot="table-actions">
           <tw-button
@@ -23,6 +25,7 @@
         </div>
         <div slot="table-row" slot-scope="props">
           <div v-if="props.column.field == 'action'">
+            <tw-button text="Kuk" class-btn="mx-0" type="success" size="xs" :router="{ name: 'admin-skema-skemaId-manajemen-unit-kompetensi-unitKompetensiId-elemen-elemenId-job-criteria', params: { skemaId: skema.id, unitKompetensiId: unitKompetensi.id, elemenId: props.formattedRow.id } }" />
             <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" @click.native="modalOpen('edit', props)" />
             <tw-button class-btn="mx-0" type="danger" size="xs" icon="trash-alt" @click.native="modalDelete(props)" />
           </div>
@@ -35,8 +38,9 @@
 
     <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{}">
       <form>
-        <tw-input title="Nama" :value.sync="input.name" />
-        <tw-input title="Deskripsi" :value.sync="input.description" />
+        <tw-input title="Judul" :value.sync="input.title" />
+        <!-- <tw-input title="Kode" :value.sync="input.code" />
+        <tw-input title="Tipe Standar" :value.sync="input.standard_type" /> -->
       </form>
       <div slot="footer" slot-scope="props">
         <tw-button text="Simpan" type="primary" icon="save" @click.native="modalSave" />
@@ -45,16 +49,42 @@
     </tw-modal>
   </div>
 </template>
-
 <script>
 import { reactive } from '@vue/composition-api'
 import { useOurTableActionModal } from '@/api/modal.js'
-import { useOurCrudCategory } from '@/api/admin/category.js'
+import { useOurAsyncDataSlugId as useOurAsyncDataSlugIdSchema } from '@/api/admin/schema.js'
+import { useOurAsyncDataSlugId } from '@/api/admin/competency-unit.js'
+import { url, useOurCrudElemen } from '@/api/admin/work-elements.js'
 export default {
+  async asyncData ({ params, app, redirect }) {
+    const { skema } = await useOurAsyncDataSlugIdSchema(params, app, redirect)
+    const { unitKompetensi } = await useOurAsyncDataSlugId(params, app, redirect)
+    const { tableOptions } = useOurTable(url(skema.id, unitKompetensi.id))
+
+    const breadcrumbs = [
+      { text: 'Home', route: 'admin' },
+      { text: 'Skema', route: 'admin-skema' },
+      { text: app.$limitStr(skema.title, 50), route: { name: 'admin-skema-skemaId', params: { skema } } },
+      { text: 'Manajemen' },
+      { text: 'Unit Kompetensi', route: { name: 'admin-skema-skemaId-manajemen-unit-kompetensi', params: { skema } } },
+      { text: app.$limitStr(unitKompetensi.title, 20) },
+      { text: 'Elemen' }
+    ]
+
+    return {
+      unitKompetensi,
+      skema,
+      breadcrumbs,
+      tableOptions
+    }
+  },
   setup (props, { root, refs }) {
-    const initInput = ['id', 'name', 'description']
-    const { tableOptions } = useOurTable()
-    const { create, update, destroy } = useOurCrudCategory(root)
+    const initInput = ['id', 'code', 'title', 'standard_type']
+    const { create, update, destroy } = useOurCrudElemen(
+      root.$route.params.skemaId,
+      root.$route.params.unitKompetensiId,
+      root
+    )
     const {
       input,
       mode,
@@ -62,10 +92,9 @@ export default {
       modalSave,
       modalDelete,
       modalBulkDelete
-    } = useOurTableActionModal(root, refs, 'kategori', { create, update, destroy }, initInput)
+    } = useOurTableActionModal(root, refs, 'elemen', { create, update, destroy }, initInput)
 
     return {
-      tableOptions,
       input,
       mode,
       modalOpen,
@@ -77,14 +106,16 @@ export default {
   layout: 'dashboard',
   middleware: ['auth', 'is_admin'],
   transition: 'dashboard',
-  head: {
-    title: 'Dashboard - Admin - Kategori'
+  head () {
+    return {
+      title: `Dashboard - Admin - Skema - ${this.skema.title} - Manajemen - Unit Kompetensi - Elemen`
+    }
   }
 }
 
-function useOurTable () {
+function useOurTable (url) {
   const tableOptions = reactive({
-    url: '/admin/categories',
+    url,
     perPage: 10,
     sort: [
       { field: 'id', type: 'asc' }
@@ -97,14 +128,8 @@ function useOurTable () {
         sortable: true
       },
       {
-        label: 'Nama',
-        field: 'name',
-        searchable: true,
-        sortable: true
-      },
-      {
-        label: 'Deskripsi',
-        field: 'description',
+        label: 'Judul Elemen',
+        field: 'title',
         searchable: true,
         sortable: true
       },
@@ -121,5 +146,4 @@ function useOurTable () {
     tableOptions
   }
 }
-
 </script>
