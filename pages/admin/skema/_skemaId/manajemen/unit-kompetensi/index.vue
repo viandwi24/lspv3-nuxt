@@ -27,6 +27,12 @@
             icon="plus"
             @click.native="modalOpen('create')"
           />
+          <tw-button
+            text="Lihat Lengkap"
+            type="warning"
+            size="sm"
+            @click.native="openUnitKompetensiResult()"
+          />
         </div>
         <div slot="selected-row-actions">
           <tw-button text="Hapus Item" type="danger" size="xs" icon="trash-alt" @click.native="modalBulkDelete" />
@@ -55,10 +61,26 @@
         <tw-button text="Batal" type="danger" @click.native="props.modal.hide()" />
       </div>
     </tw-modal>
+
+    <tw-modal name="result" :title="'Unit Kompetensi'" :options="{}">
+      <div v-for="(unit, i) in unitKompetensiResult" :key="i" class="mb-8">
+        <div class="text-lg">
+          {{ i+1 }}. {{ unit.title }}
+        </div>
+        <table v-for="(elemen, j) in unit.work_elements" :key="j" class="table table-sm table-bordered table-hover">
+          <tr>
+            <th>{{ (i+1) }}.{{ j+1 }}.  {{ elemen.title }}</th>
+          </tr>
+          <tr v-for="(kuk, k) in elemen.job_criterias" :key="k">
+            <td>{{ (i+1) }}.{{ j+1 }}.{{ k+1 }}. {{ kuk.title }}</td>
+          </tr>
+        </table>
+      </div>
+    </tw-modal>
   </div>
 </template>
 <script>
-import { reactive } from '@vue/composition-api'
+import { reactive, ref } from '@vue/composition-api'
 import { useOurTableActionModal } from '@/api/modal.js'
 import { useOurAsyncDataSlugId } from '@/api/admin/schema.js'
 import { url, useOurCrudUnitKompetensi } from '@/api/admin/competency-unit.js'
@@ -92,6 +114,13 @@ export default {
       modalDelete,
       modalBulkDelete
     } = useOurTableActionModal(root, refs, 'unit kompetensi', { create, update, destroy }, initInput)
+    const {
+      openUnitKompetensiResult,
+      unitKompetensiResult
+    } = useModalResultUnitKompetensi(
+      url(root.$route.params.skemaId),
+      root
+    )
 
     return {
       input,
@@ -99,7 +128,9 @@ export default {
       modalOpen,
       modalSave,
       modalDelete,
-      modalBulkDelete
+      modalBulkDelete,
+      openUnitKompetensiResult,
+      unitKompetensiResult
     }
   },
   layout: 'dashboard',
@@ -155,6 +186,29 @@ function useOurTable (url) {
 
   return {
     tableOptions
+  }
+}
+
+function useModalResultUnitKompetensi (url, $root) {
+  const unitKompetensiResult = ref({})
+
+  const openUnitKompetensiResult = async () => {
+    $root.$overlayLoading.show()
+    await $root.$sleep(100)
+    try {
+      unitKompetensiResult.value = (await $root.$axios.get(`${url}/full`)).data.data
+      console.log(
+        unitKompetensiResult.value
+      )
+      $root.$modal.show('result')
+    } catch (err) {
+    }
+    $root.$overlayLoading.hide()
+  }
+
+  return {
+    openUnitKompetensiResult,
+    unitKompetensiResult
   }
 }
 </script>
