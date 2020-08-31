@@ -1,5 +1,6 @@
 .vm--modal {
-  border: 1px solid theme('colors.gray.600');
+  // border: 1px solid theme('colors.gray.600');
+  outline: 1px solid theme('colors.gray.600');
 
   * {
     &:not(.button):not(.button-content):not(.button-icon):not(.button-text) {
