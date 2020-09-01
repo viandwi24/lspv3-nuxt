@@ -34,6 +34,7 @@ export default function ({ $axios, redirect, app }) {
         app.context.$toast.error('Error on process request, try again later. (unknown error)', { duration: 5000 })
         if (process.env.NODE_ENV !== 'production') { console.log(res) }
       }
+      // return error
     }
     // return
     return Promise.reject(error)

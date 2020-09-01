@@ -78,7 +78,7 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
     $root.$overlayLoading.show()
     await $root.$sleep(500)
     if (mode.value === 'create') {
-      return crud.create(input.value).then((res) => {
+      crud.create(input.value).then((res) => {
         if (res.status === 201) {
           $root.$swal(
             'Ditambahkan!',
@@ -92,7 +92,7 @@ export function useOurTableActionModal ($root, $refs, title, crud, initInput = [
 
     // update
     } else if (mode.value === 'edit') {
-      return crud.update(input.value).then((res) => {
+      crud.update(input.value).then((res) => {
         $root.$swal(
           'Diperbarui!',
           'Item yang diedit berhasil diperbarui.',

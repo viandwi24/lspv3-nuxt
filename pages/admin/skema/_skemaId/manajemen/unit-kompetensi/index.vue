@@ -51,7 +51,7 @@
     </div>
 
     <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{}">
-      <form>
+      <form @submit.prevent="modalSave">
         <tw-input title="Kode" :value.sync="input.code" />
         <tw-input title="Judul" :value.sync="input.title" />
         <tw-input title="Tipe Standar" :value.sync="input.standard_type" />
@@ -63,16 +63,29 @@
     </tw-modal>
 
     <tw-modal name="result" :title="'Unit Kompetensi'" :options="{}">
-      <div v-for="(unit, i) in unitKompetensiResult" :key="i" class="mb-8">
+      <div v-for="(unit, i) in unitKompetensiResult" :key="i" class="mb-10">
         <div class="text-lg">
           {{ i+1 }}. {{ unit.title }}
         </div>
-        <table v-for="(elemen, j) in unit.work_elements" :key="j" class="table table-sm table-bordered table-hover">
+        <table v-for="(elemen, j) in unit.work_elements" :key="j" class="table table-sm table-bordered table-hover" style="margin-bottom: 0px !important;">
           <tr>
-            <th>{{ (i+1) }}.{{ j+1 }}.  {{ elemen.title }}</th>
+            <td colspan="2">
+              <b>Element : </b>{{ (i+1) }}.{{ j+1 }}.  {{ elemen.title }}
+            </td>
+          </tr>
+          <tr>
+            <th width="10%">
+              #
+            </th>
+            <th>
+              Kriteria Untuk Kerja
+            </th>
           </tr>
           <tr v-for="(kuk, k) in elemen.job_criterias" :key="k">
-            <td>{{ (i+1) }}.{{ j+1 }}.{{ k+1 }}. {{ kuk.title }}</td>
+            <td class="text-center">
+              {{ (i+1) }}.{{ j+1 }}.{{ k+1 }}
+            </td>
+            <td>{{ kuk.title }}</td>
           </tr>
         </table>
       </div>

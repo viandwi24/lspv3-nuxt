@@ -37,7 +37,7 @@
     </div>
 
     <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : 'Edit'" :options="{}">
-      <form>
+      <form @submit.prevent="modalSave">
         <tw-input title="Judul" :value.sync="input.title" />
         <!-- <tw-input title="Kode" :value.sync="input.code" />
         <tw-input title="Tipe Standar" :value.sync="input.standard_type" /> -->

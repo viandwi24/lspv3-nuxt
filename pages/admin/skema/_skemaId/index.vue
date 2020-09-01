@@ -11,14 +11,14 @@
     <div class="content">
       <div v-for="(menu, i) in menuItems" :key="i" class="content-section mb-6">
         <hr class="hr-text" :data-content="menu.title">
-        <div class="block md:flex md:flex-row md:flex-shrink md:flex-wrap md:-mx-2">
-          <div v-for="(item, j) in menu.items" :key="j" class="w-full md:w-1/4 px-2 py-2">
-            <nuxt-link :to="{ name: `admin-skema-skemaId-${item.route}` }">
+        <div class="block md:flex md:flex-row md:flex-shrink md:flex-wrap md:-mx-2 sm:-mx-1">
+          <div v-for="(item, j) in menu.items" :key="j" class="w-full md:w-1/4 sm:w-1/2 px-2 py-2">
+            <nuxt-link :to="{ name: `admin-skema-skemaId-${item.route}` }" :title="item.text">
               <div class="widget-icon text-center sm:text-left">
-                <div class="text-6xl">
+                <div class="text-6xl block sm:text-xl md:text-2xl lg:text-6xl">
                   <icon :icon="item.icon" />
                 </div>
-                <div class="flex-1 self-center pl-4">
+                <div class="flex-1 self-center pl-4" style="overflow: hidden; text-overflow: ellipsis;">
                   {{ item.text }}
                 </div>
               </div>
@@ -108,13 +108,13 @@ export default {
   setup (props, context) {
     const menuItems = [
       {
-        title: 'Umum',
+        title: 'Manajemen & Umum',
         items: [
-          { text: 'Manajemen Unit Kompetensi', icon: 'list-alt', route: 'manajemen-unit-kompetensi' },
-          { text: 'Manajemen Asesor', icon: 'user-friends', route: 'manajemen-unit-kompetensi' },
-          { text: 'Manajemen Tempat Uji', icon: 'building', route: 'manajemen-unit-kompetensi' },
-          { text: 'Manajemen Jadwal', icon: 'calendar-alt', route: 'manajemen-unit-kompetensi' },
-          { text: 'Pengaturan Skema', icon: 'cogs', route: 'manajemen-unit-kompetensi' }
+          { text: 'Unit Kompetensi', icon: 'list-alt', route: 'manajemen-unit-kompetensi' },
+          { text: 'Asesor', icon: 'user-friends', route: 'manajemen-unit-kompetensi' },
+          { text: 'Tempat Uji', icon: 'building', route: 'manajemen-unit-kompetensi' },
+          { text: 'Jadwal', icon: 'calendar-alt', route: 'manajemen-unit-kompetensi' },
+          { text: 'Pengaturan', icon: 'cogs', route: 'manajemen-unit-kompetensi' }
         ]
       },
       {
