@@ -114,7 +114,7 @@ export default {
           { text: 'Asesor', icon: 'user-friends', route: 'manajemen-unit-kompetensi' },
           { text: 'Tempat Uji', icon: 'building', route: 'manajemen-unit-kompetensi' },
           { text: 'Jadwal', icon: 'calendar-alt', route: 'manajemen-unit-kompetensi' },
-          { text: 'Pengaturan', icon: 'cogs', route: 'manajemen-unit-kompetensi' }
+          { text: 'Pengaturan', icon: 'cogs', route: 'pengaturan' }
         ]
       },
       {

@@ -45,7 +45,7 @@ export const state = () => ({
         route: 'admin-user-asesor'
       }
     ],
-    asesi: [
+    accession: [
       {
         type: 'item-header',
         text: 'Menu'
@@ -53,22 +53,22 @@ export const state = () => ({
       {
         type: 'item',
         text: 'Dashboard',
-        route: 'asesi'
+        route: 'accession'
       },
       {
         type: 'item',
         text: 'Asesmen Saya',
-        route: 'asesi-asesmen'
+        route: 'accession-asesmen'
       },
       {
         type: 'item',
         text: 'Berkas',
-        route: 'asesi-berkas'
+        route: 'accession-berkas'
       },
       {
         type: 'item',
         text: 'Pengaturan',
-        route: 'asesi-pengaturan'
+        route: 'accession-pengaturan'
       }
     ],
     asesor: [
