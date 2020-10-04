@@ -77,6 +77,7 @@ export default {
     '@nuxtjs/toast',
     'nuxt-webfontloader',
     'nuxt-lazy-load',
+    'nuxt-vue-select',
     [
       'vue-sweetalert2/nuxt',
       {

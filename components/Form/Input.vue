@@ -4,7 +4,7 @@
       {{ title }}
     </label>
     <input
-      v-if="type !== 'textarea'"
+      v-if="type === 'text'"
       :id="options.id"
       v-model="valueModel"
       class="bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
@@ -21,6 +21,7 @@
       :type="type"
       :placeholder="options.placeholder"
     />
+    <slot v-if="type === 'custom'" />
   </div>
 </template>
 

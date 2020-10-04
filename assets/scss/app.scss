@@ -6,6 +6,7 @@
 @import "./components/table";
 @import "./components/alert";
 
+// vgt
 .vgt-global-search {
   padding: 1rem .5rem !important;
 }
@@ -14,10 +15,12 @@
   min-height: 40px;
 }
 
+// vm
 .vm--container {
   z-index: 40 !important;
 }
 
+// swal
 .swal2-popup.swal2-modal {
   border-radius: 0;
   box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
@@ -36,5 +39,15 @@
       @apply text-gray-300 bg-red-600;
     }
   }
+}
+
+// 
+.v-select {
+  background: theme('colors.gray.200');
+  .vs__dropdown-toggle {
+    @apply py-1;
+    @apply px-2;
+  }
+  @apply mb-4;
 }
 /* purgecss end ignore */

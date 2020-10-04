@@ -8,7 +8,7 @@
     :click-to-close="modalOptions.clickToClose"
   >
     <!-- <slot /> -->
-    <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full">
+    <div class="flex flex-col flex-grow py-4 px-5 h-full min-h-full overflow-x-auto overflow-y-auto">
       <div class="flex justify-between items-center pb-3">
         <p class="text-2xl font-bold">
           {{ title }}
@@ -19,7 +19,7 @@
           </svg>
         </div>
       </div>
-      <div class="flex-1 px-1 overflow-x-hidden overflow-y-auto">
+      <div class="flex-1 px-1">
         <slot />
       </div>
       <div class="flex justify-end pt-2">

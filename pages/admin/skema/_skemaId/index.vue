@@ -111,7 +111,7 @@ export default {
         title: 'Manajemen & Umum',
         items: [
           { text: 'Unit Kompetensi', icon: 'list-alt', route: 'manajemen-unit-kompetensi' },
-          { text: 'Asesor', icon: 'user-friends', route: 'manajemen-unit-kompetensi' },
+          { text: 'Asesor', icon: 'user-friends', route: 'manajemen-asesor' },
           { text: 'Tempat Uji', icon: 'building', route: 'manajemen-unit-kompetensi' },
           { text: 'Jadwal', icon: 'calendar-alt', route: 'manajemen-unit-kompetensi' },
           { text: 'Pengaturan', icon: 'cogs', route: 'pengaturan' }

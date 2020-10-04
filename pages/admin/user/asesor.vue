@@ -51,7 +51,7 @@
 <script>
 import { reactive } from '@vue/composition-api'
 import { useOurTableActionModal } from '@/api/modal.js'
-import { useOurCrudSchedule, url } from '@/api/admin/assessor.js'
+import { useOurCrudAssessor, url } from '@/api/admin/assessor.js'
 export default {
   setup (props, { root, refs }) {
     const initInput = [
@@ -63,7 +63,7 @@ export default {
       ['password', '']
     ]
     const { tableOptions } = useOurTable(url)
-    const { create, update, destroy } = useOurCrudSchedule(root)
+    const { create, update, destroy } = useOurCrudAssessor(root)
     const {
       mode,
       input,

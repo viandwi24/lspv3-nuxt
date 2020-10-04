@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueGoodTablePlugin from 'vue-good-table'
 import Datepicker from 'vuejs-datepicker'
 import VueMoment from 'vue-moment'
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 // import CKEditor from '@ckeditor/ckeditor5-vue'
 
 // import Vueditor from 'vueditor'
@@ -27,5 +29,6 @@ import VueMoment from 'vue-moment'
 Vue.use(VueGoodTablePlugin)
 Vue.use(VueMoment)
 Vue.component('date-picker', Datepicker)
+Vue.use(VueLodash, { lodash })
 // Vue.use(Vueditor, config)
 // Vue.use(CKEditor)
