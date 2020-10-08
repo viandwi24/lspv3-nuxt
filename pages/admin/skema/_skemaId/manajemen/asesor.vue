@@ -15,7 +15,7 @@
             type="success"
             size="sm"
             icon="plus"
-            @click.native="modalOpen('create')"
+            @click.native="modalBeforeOpen('create')"
           />
         </div>
         <div slot="selected-row-actions">
@@ -34,7 +34,7 @@
     <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : ''" :options="{}">
       <form @submit.prevent="modalSave">
         <tw-input title="Asesor" type="custom">
-          <v-select :options="assessors" :reduce="assessor => assessor.id" @search="onAssessorSearch">
+          <v-select v-model="input.assessor_id" :options="assessors" :reduce="assessor => assessor.id" @search="onAssessorSearch">
             <template slot="no-options">
               Ketik nama untuk mencari asesor...
             </template>
@@ -77,7 +77,7 @@ export default {
     }
   },
   setup (props, { root, refs }) {
-    const initInput = ['id', 'user_id']
+    const initInput = ['id', 'assessor_id']
     const { create, destroy } = useOurCrudSchemaAssessor(root.$route.params.skemaId, root)
     const { tableOptions } = useOurTable(url(root.$route.params.skemaId))
     const {
@@ -89,13 +89,21 @@ export default {
       modalBulkDelete
     } = useOurTableActionModal(root, refs, 'asesor', { create, destroy }, initInput)
     const { assessors, onAssessorSearch } = useOurAssessorSearch(root.$route.params.skemaId, root)
+    const assessorId = ref(0)
+
+    const modalBeforeOpen = async (mode) => {
+      assessors.value = []
+      await modalOpen(mode)
+    }
 
     return {
+      assessorId,
       assessors,
       onAssessorSearch,
       tableOptions,
       input,
       mode,
+      modalBeforeOpen,
       modalOpen,
       modalSave,
       modalDelete,
@@ -119,7 +127,7 @@ function useOurAssessorSearch (skemaId, root) {
     loading(true)
     assessors.value = []
     try {
-      const { data } = await root.$axios.get(`${urlAssessor}`)
+      const { data } = await root.$axios.get(`${url(skemaId)}?add`)
       if (typeof data.data !== 'undefined') {
         data.data.forEach((el) => {
           assessors.value.push({ label: `${el.id} - ${el.name}`, id: el.id })
