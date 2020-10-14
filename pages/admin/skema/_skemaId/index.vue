@@ -2,8 +2,6 @@
   <div>
     <div class="content-header">
       <h1 class="text-4xl text-gray-800">
-        Skema
-        <icon icon="chevron-right" class="text-3xl" />
         {{ (skema.title) }}
       </h1>
       <tw-breadcrumb :items="breadcrumbs" />
@@ -112,7 +110,7 @@ export default {
         items: [
           { text: 'Unit Kompetensi', icon: 'list-alt', route: 'manajemen-unit-kompetensi' },
           { text: 'Asesor', icon: 'user-friends', route: 'manajemen-asesor' },
-          { text: 'Tempat Uji', icon: 'building', route: 'manajemen-unit-kompetensi' },
+          { text: 'Tempat Uji', icon: 'building', route: 'manajemen-tempat-uji' },
           { text: 'Jadwal', icon: 'calendar-alt', route: 'manajemen-unit-kompetensi' },
           { text: 'Pengaturan', icon: 'cogs', route: 'pengaturan' }
         ]
