@@ -1,22 +1,14 @@
-export const url = 'admin/assessors'
+export const url = (schemaId) => {
+  return `admin/schemas/${schemaId}/schedules`
+}
 
-export function useOurCrudAssessor ($root) {
+export function useOurCrudSchedule (schemaId, $root) {
+  const url = `admin/schemas/${schemaId}/schedules`
+
   const create = (data) => {
     return new Promise((resolve, reject) => {
       try {
         const response = $root.$axios.post(`${url}`, data)
-        resolve(response)
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }
-
-  const update = (data) => {
-    const { id } = data
-    return new Promise((resolve, reject) => {
-      try {
-        const response = $root.$axios.put(`${url}/${id}`, data)
         resolve(response)
       } catch (err) {
         reject(err)
@@ -38,7 +30,6 @@ export function useOurCrudAssessor ($root) {
 
   return {
     create,
-    update,
     destroy
   }
 }

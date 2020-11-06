@@ -374,7 +374,11 @@ section.main {
   display: block;
 }
 nav.navbar a.link {
-  @apply border-b-2 border-gray-100 transition-all duration-200 ease-in-out;
+  @apply border-b-2;
+  @apply border-gray-100;
+  @apply transition-all;
+  @apply duration-200;
+  @apply ease-in-out;
   &:hover {
     @apply border-blue-500;
   }

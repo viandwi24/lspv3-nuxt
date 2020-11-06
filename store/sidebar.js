@@ -53,22 +53,27 @@ export const state = () => ({
       {
         type: 'item',
         text: 'Dashboard',
-        route: 'accession'
+        route: 'asesi'
+      },
+      {
+        type: 'item',
+        text: 'Daftar Skema',
+        route: 'asesi-daftar-skema'
       },
       {
         type: 'item',
         text: 'Asesmen Saya',
-        route: 'accession-asesmen'
+        route: 'asesi-asesmen'
       },
       {
         type: 'item',
         text: 'Berkas',
-        route: 'accession-berkas'
+        route: 'asesi-berkas'
       },
       {
         type: 'item',
         text: 'Pengaturan',
-        route: 'accession-pengaturan'
+        route: 'asesi-pengaturan'
       }
     ],
     asesor: [

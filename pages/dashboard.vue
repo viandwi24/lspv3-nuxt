@@ -7,7 +7,8 @@ export default {
   created () {
     if (this.$auth.loggedIn) {
       const role = this.$auth.user.role
-      this.$router.push({ name: (`${role}`).toLowerCase() })
+      const route = (role === 'Accession' ? 'Asesi' : (role === 'assessor' ? 'Asesor' : 'Admin'))
+      this.$router.push({ name: (route).toLowerCase() })
     }
   },
   middleware: 'auth',

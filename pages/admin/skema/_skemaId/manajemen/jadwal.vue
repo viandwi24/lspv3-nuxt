@@ -2,7 +2,7 @@
   <div>
     <div class="content-header">
       <h1 class="text-4xl text-gray-800">
-        Manajemen Tempat Uji
+        Manajemen Jadwal
       </h1>
       <tw-breadcrumb :items="breadcrumbs" />
     </div>
@@ -33,10 +33,10 @@
     </div>
     <tw-modal name="modal" :title="(mode == 'create') ? 'Tambah' : ''" :options="{}">
       <form @submit.prevent="modalSave">
-        <tw-input title="Tempat Uji" type="custom">
-          <v-select v-model="input.place_id" :options="places" :reduce="place => place.id" @search="onPlaceSearch">
+        <tw-input title="Jadwal" type="custom">
+          <v-select v-model="input.schedule_id" :options="schedules" :reduce="schedule => schedule.id" @search="onScheduleSearch">
             <template slot="no-options">
-              Ketik nama untuk mencari tempat uji...
+              Ketik nama untuk mencari jadwal...
             </template>
           </v-select>
         </tw-input>
@@ -54,8 +54,7 @@
 import { reactive, ref } from '@vue/composition-api'
 import { useOurAsyncDataSlugId } from '@/api/admin/schema.js'
 import { useOurTableActionModal } from '@/api/modal.js'
-// import { url as urlPlace } from '@/api/admin/place.js'
-import { url, useOurCrudPlace as useOurCrudSchemaPlace } from '@/api/admin/schema/place.js'
+import { url, useOurCrudSchedule as useOurCrudSchemaSchedule } from '@/api/admin/schema/schedule.js'
 export default {
   async asyncData ({ params, app, redirect }) {
     const { skema } = await useOurAsyncDataSlugId(params, app, redirect)
@@ -65,7 +64,7 @@ export default {
       { text: 'Skema', route: 'admin-skema' },
       { text: app.$limitStr(skema.title, 50), route: { name: 'admin-skema-skemaId', params: { skemaId: skema.id } } },
       { text: 'Manajemen' },
-      { text: 'Tempat Uji' }
+      { text: 'Jadwal' }
     ]
 
     return {
@@ -75,7 +74,7 @@ export default {
   },
   setup (props, { root, refs }) {
     const initInput = ['id', 'assessor_id']
-    const { create, destroy } = useOurCrudSchemaPlace(root.$route.params.skemaId, root)
+    const { create, destroy } = useOurCrudSchemaSchedule(root.$route.params.skemaId, root)
     const { tableOptions } = useOurTable(url(root.$route.params.skemaId))
     const {
       input,
@@ -85,18 +84,18 @@ export default {
       modalDelete,
       modalBulkDelete
     } = useOurTableActionModal(root, refs, 'asesor', { create, destroy }, initInput)
-    const { places, onPlaceSearch } = useOurPlaceSearch(root.$route.params.skemaId, root)
-    const placeId = ref(0)
+    const { schedules, onScheduleSearch } = useOurScheduleSearch(root.$route.params.skemaId, root)
+    const scheduleId = ref(0)
 
     const modalBeforeOpen = async (mode) => {
-      places.value = []
+      schedules.value = []
       await modalOpen(mode)
     }
 
     return {
-      placeId,
-      places,
-      onPlaceSearch,
+      scheduleId,
+      schedules,
+      onScheduleSearch,
       tableOptions,
       input,
       mode,
@@ -117,17 +116,17 @@ export default {
   }
 }
 
-function useOurPlaceSearch (skemaId, root) {
-  const places = ref([])
+function useOurScheduleSearch (skemaId, root) {
+  const schedules = ref([])
 
-  const onPlaceSearch = async function (search, loading) {
+  const onScheduleSearch = async function (search, loading) {
     loading(true)
-    places.value = []
+    schedules.value = []
     try {
       const { data } = await root.$axios.get(`${url(skemaId)}?add`)
       if (typeof data.data !== 'undefined') {
         data.data.forEach((el) => {
-          places.value.push({ label: `${el.id} - ${el.name}`, id: el.id })
+          schedules.value.push({ label: `${el.id} - ${el.name}`, id: el.id })
         })
       }
     } catch (e) {
@@ -136,8 +135,8 @@ function useOurPlaceSearch (skemaId, root) {
   }
 
   return {
-    onPlaceSearch,
-    places
+    onScheduleSearch,
+    schedules
   }
 }
 
