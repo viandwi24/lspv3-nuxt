@@ -9,11 +9,11 @@
     <div class="content">
       <div v-for="(menu, i) in menuItems" :key="i" class="content-section mb-6">
         <hr class="hr-text" :data-content="menu.title">
-        <div class="block md:flex md:flex-row md:flex-shrink md:flex-wrap md:-mx-2 sm:-mx-1">
+        <div class="block sm:block md:flex md:flex-row md:flex-shrink md:flex-wrap md:-mx-2 sm:-mx-1">
           <div v-for="(item, j) in menu.items" :key="j" class="w-full md:w-1/4 sm:w-1/2 px-2 py-2">
             <nuxt-link :to="{ name: `admin-skema-skemaId-${item.route}` }" :title="item.text">
               <div class="widget-icon text-center sm:text-left">
-                <div class="text-6xl block sm:text-xl md:text-2xl lg:text-6xl">
+                <div class="text-6xl block sm:text-lg md:text-2xl lg:text-6xl">
                   <icon :icon="item.icon" />
                 </div>
                 <div class="flex-1 self-center pl-4" style="overflow: hidden; text-overflow: ellipsis;">

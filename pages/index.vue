@@ -4,7 +4,7 @@
     <section class="main relative">
       <div class="flex flex-col flex-grow h-full">
         <nav class="navbar">
-          <div class="container md:mx-auto">
+          <div class="container md:mx-auto sm:px-8">
             <ul class="flex flex-row flex-grow md:justify-between justify-center py-4">
               <li>
                 <nuxt-link to="/" tag="a" class="font-bold text-gray-800">
@@ -46,7 +46,7 @@
             </ul>
           </div>
         </nav>
-        <div class="container md:mx-auto md:flex-1 mb-8 md:mb-0 mt-4 md:mt-0">
+        <div class="container sm:px-8 md:mx-auto md:flex-1 mb-8 md:mb-0 mt-4 md:mt-0">
           <div class="flex flex-col-reverse md:flex-row flex-grow h-full text-center md:text-left">
             <div class="md:w-1/2 self-center md:pb-12">
               <h1 class="text-2xl md:text-4xl font-bold text-gray-700">
@@ -146,12 +146,12 @@
 
     <!-- section:company -->
     <section class="bg-blue-500">
-      <div class="container mx-auto pt-20">
+      <div class="container sm:px-8 mx-auto pt-20">
         <div class="flex flex-wrap">
-          <div class="w-full md:w-6/12 self-center">
+          <div class="w-full sm:w-6/12 md:w-6/12 self-center">
             <img v-lazy-load src="@/assets/images/landingpage/remote-team.svg" alt="Illustration">
           </div>
-          <div class="w-full md:w-6/12 self-center text-center md:text-left bg-gray-100 py-4 px-6 rounded shadow-xl mx-2 md:mx-0">
+          <div class="w-full sm:w-6/12 md:w-6/12 self-center text-center md:text-left bg-gray-100 py-4 px-6 rounded shadow-xl mx-2 md:mx-0">
             <h2 class="font-semibold text-4xl mb-8 text-gray-800">
               Tentang Kami
             </h2>

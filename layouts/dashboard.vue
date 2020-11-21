@@ -4,7 +4,7 @@
       <overlay-loading v-if="loading" />
       <!-- navbar -->
       <nav class="navbar">
-        <div class="container mx-auto px-4 md:px-0 items-center">
+        <div class="container mx-auto px-4 md:px-8 items-center">
           <!-- <img class="inline-block" style="height: 32px ;" src="https://i.pinimg.com/236x/1d/35/10/1d35108c091b75c86c3707a4c16852f0--classic-simple.jpg" alt="Logo"> -->
           <div class="flex flex-row flex-grow justify-between">
             <!-- left -->
