@@ -76,6 +76,10 @@ body.dark-theme {
   @import "./dashboard/dark/swal";
   .dashboard {
     @import "./dashboard/dark";
+
+    .dark\:bg-dark {
+      background: $backgroundPrimary;
+    }
   
     .hr-text {
       &:after {

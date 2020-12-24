@@ -1,11 +1,12 @@
 <template>
   <vue-good-table
     ref="vuegoodtable"
-    mode="remote"
+    :mode="mode"
     :total-rows="totalRecords"
     :is-loading.sync="isLoading"
     :pagination-options="paginationOptions"
     :search-options="searchOptions"
+    :group-options="groupOptions"
     :line-numbers="lineNumbers"
     :rows="rows"
     :columns="columns"
@@ -81,6 +82,7 @@ export default {
       },
 
       lineNumbers: true,
+      groupOptions: {},
       selectOptions: { enabled: true, selectOnCheckboxOnly: true },
       searchOptions: { enabled: true, trigger: 'enter' },
       sortOptions: { enabled: true, initialSortBy: [] },
@@ -105,12 +107,18 @@ export default {
     if (this.ifExist(options.columns)) { this.columns = options.columns }
     if (this.ifExist(options.perPage)) { this.params.perPage = options.perPage }
     if (this.ifExist(options.page)) { this.params.page = options.page }
-    if (this.ifExist(options.url)) { this.url = options.url }
+    if (this.ifExist(options.url)) {
+      this.url = options.url
+      this.mode = 'remote'
+    } else {
+      this.mode = 'client'
+    }
     if (this.ifExist(options.rows)) { this.rows = options.rows }
     if (this.ifExist(options.selectOptions)) { this.selectOptions = options.selectOptions }
     if (this.ifExist(options.lineNumbers)) { this.lineNumbers = options.lineNumbers }
     if (this.ifExist(options.searchOptions)) { this.searchOptions = options.searchOptions }
     if (this.ifExist(options.sortOptions)) { this.sortOptions = options.sortOptions }
+    if (this.ifExist(options.groupOptions)) { this.groupOptions = options.groupOptions }
     if (this.ifExist(options.sort)) {
       this.params.sort = options.sort
       this.sortOptions.initialSortBy = options.sort

@@ -10,7 +10,13 @@
       <tw-table ref="table" :options="tableOptions">
         <div slot="table-row" slot-scope="props">
           <div v-if="props.column.field == 'action'">
-            <tw-button class-btn="mx-0" type="warning" size="xs" icon="edit" text="Buat Permohonan" />
+            <tw-button
+              :router="{ name: 'asesi-daftar-skema-skemaId-buat-permohonan', params: { skemaId: props.row.id } }"
+              class-btn="mx-0"
+              type="warning"
+              size="xs"
+              icon="edit"
+              text="Buat Permohonan" />
           </div>
           <span v-else>
             {{ props.formattedRow[props.column.field] }}
