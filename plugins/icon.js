@@ -36,7 +36,8 @@ import {
   faCalendarAlt,
   faClipboardList,
   faScroll,
-  faCalendarDay
+  faCalendarDay,
+  faEye
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -80,6 +81,7 @@ library.add(
   faCalendarAlt,
   faClipboardList,
   faScroll,
-  faCalendarDay
+  faCalendarDay,
+  faEye
 )
 Vue.component('icon', FontAwesomeIcon)

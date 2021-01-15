@@ -16,7 +16,8 @@
               type="warning"
               size="xs"
               icon="edit"
-              text="Buat Permohonan" />
+              text="Buat Permohonan"
+            />
           </div>
           <span v-else>
             {{ props.formattedRow[props.column.field] }}

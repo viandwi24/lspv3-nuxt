@@ -20,18 +20,30 @@
         <table class="table table-sm table-hover mb-0">
           <thead>
             <tr>
-              <th width="5%">#</th>
-              <th width="10%">Kode</th>
+              <th width="5%">
+                #
+              </th>
+              <th width="10%">
+                Kode
+              </th>
               <th>Skema</th>
-              <th width="20%">Standar</th>
+              <th width="20%">
+                Standar
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(unit, i) in skema.competency_units" :key="i">
-              <td class="text-center">{{ i+1 }}</td>
-              <td class="text-center">{{ unit.code }}</td>
+              <td class="text-center">
+                {{ i+1 }}
+              </td>
+              <td class="text-center">
+                {{ unit.code }}
+              </td>
               <td>{{ unit.title }}</td>
-              <td class="text-center">{{ unit.standard_type }}</td>
+              <td class="text-center">
+                {{ unit.standard_type }}
+              </td>
             </tr>
           </tbody>
         </table>

@@ -1,0 +1,14 @@
+.card {
+    @apply bg-white rounded-sm shadow flex flex-col;
+    @apply border-gray-400;
+    border-width: 1px;
+
+    .header {
+        @apply px-4 py-2;
+        border-bottom: 1px solid theme('colors.gray.400');
+    }
+
+    .content {
+        @apply px-4 py-4;
+    }
+}

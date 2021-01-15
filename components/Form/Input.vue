@@ -1,13 +1,13 @@
 <template>
-  <div :class="`${classGroup}`">
+  <div class="input-group" :class="`${classGroup}`">
     <label v-if="withTitle" class="block text-gray-700 text-sm font-bold mb-2" :for="options.id">
       {{ title }}
     </label>
     <input
-      v-if="type === 'text'"
+      v-if="type === 'text' || type === 'password' || type === 'email'"
       :id="options.id"
       v-model="valueModel"
-      class="bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+      class="input bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
       :class="`${classSize} inputClass`"
       :type="type"
       :placeholder="options.placeholder"
@@ -16,7 +16,7 @@
       v-if="type === 'textarea'"
       :id="options.id"
       v-model="valueModel"
-      class="bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+      class="input bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
       :class="`${classSize} inputClass`"
       :type="type"
       :placeholder="options.placeholder"
