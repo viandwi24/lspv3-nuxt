@@ -14,12 +14,7 @@
 }
 
 .alert.left-accent-border {
-    & div {
-        background: theme('colors.orange.100');
-        @apply border-orange-500;
-    }
-
-    .warning * {
-        color: theme('colors.orange.700');
+    * {
+        color: theme('colors.gray.800');
     }
 }

@@ -78,71 +78,130 @@
       </div>
     </section>
 
-    <!-- section:service -->
-    <section class="bg-blue-500">
-      <svg class="md:mt-20 md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#f7fafc" fill-opacity="1" d="M0,64L12,85.3C24,107,48,149,72,154.7C96,160,120,128,144,106.7C168,85,192,75,216,85.3C240,96,264,128,288,138.7C312,149,336,139,360,154.7C384,171,408,213,432,234.7C456,256,480,256,504,240C528,224,552,192,576,160C600,128,624,96,648,90.7C672,85,696,107,720,122.7C744,139,768,149,792,138.7C816,128,840,96,864,69.3C888,43,912,21,936,32C960,43,984,85,1008,117.3C1032,149,1056,171,1080,197.3C1104,224,1128,256,1152,224C1176,192,1200,96,1224,69.3C1248,43,1272,85,1296,112C1320,139,1344,149,1368,154.7C1392,160,1416,160,1428,160L1440,160L1440,0L1428,0C1416,0,1392,0,1368,0C1344,0,1320,0,1296,0C1272,0,1248,0,1224,0C1200,0,1176,0,1152,0C1128,0,1104,0,1080,0C1056,0,1032,0,1008,0C984,0,960,0,936,0C912,0,888,0,864,0C840,0,816,0,792,0C768,0,744,0,720,0C696,0,672,0,648,0C624,0,600,0,576,0C552,0,528,0,504,0C480,0,456,0,432,0C408,0,384,0,360,0C336,0,312,0,288,0C264,0,240,0,216,0C192,0,168,0,144,0C120,0,96,0,72,0C48,0,24,0,12,0L0,0Z" />
-      </svg>
-      <h2 class="text-4xl text-center text-gray-200">
-        Layanan
-      </h2>
-      <div class="flex flex-wrap justify-center mt-4">
-        <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
-          <div class="font-semibold text-xl mb-4 text-gray-900">
-            Customer Support
-          </div>
-          <div class="text-center mb-4">
-            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/contact.svg" alt="Icon" width="120">
-          </div>
-          <p>
-            Kami berusaha melayani dengan sebaik - baiknya.
-          </p>
-        </div>
-        <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
-          <div class="font-semibold text-xl mb-4 text-gray-900">
-            Fast
-          </div>
-          <div class="text-center mb-4">
-            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/clock.svg" alt="Icon" width="120">
-          </div>
-          <p>
-            Kami melakukannya dengan cepat dan tepat waktu.
-          </p>
-        </div>
-        <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
-          <div class="font-semibold text-xl mb-4 text-gray-900">
-            Accuracy Assessment
-          </div>
-          <div class="text-center mb-4">
-            <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/exam.svg" alt="Icon" width="120">
-          </div>
-          <p>
-            Ketepatan dan kejujuran kami dalam melakukan asesmen.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- section:docs -->
-    <section class="bg-blue-500">
-      <div class="container mx-auto pt-12 md:px-24 px-4">
-        <div class="flex md:flex-row flex-col">
-          <div class="w-full md:w-1/2 p-4">
-            <div class="bg-gray-200 p-4 rounded-md shadow-md">
-              <img src="@/assets/images/slides/1.jpeg" alt="Documentations">
+    <div class="bg-blue-500">
+      <!-- section:service -->
+      <section>
+        <svg class="md:mt-20 md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#f7fafc" fill-opacity="1" d="M0,64L12,85.3C24,107,48,149,72,154.7C96,160,120,128,144,106.7C168,85,192,75,216,85.3C240,96,264,128,288,138.7C312,149,336,139,360,154.7C384,171,408,213,432,234.7C456,256,480,256,504,240C528,224,552,192,576,160C600,128,624,96,648,90.7C672,85,696,107,720,122.7C744,139,768,149,792,138.7C816,128,840,96,864,69.3C888,43,912,21,936,32C960,43,984,85,1008,117.3C1032,149,1056,171,1080,197.3C1104,224,1128,256,1152,224C1176,192,1200,96,1224,69.3C1248,43,1272,85,1296,112C1320,139,1344,149,1368,154.7C1392,160,1416,160,1428,160L1440,160L1440,0L1428,0C1416,0,1392,0,1368,0C1344,0,1320,0,1296,0C1272,0,1248,0,1224,0C1200,0,1176,0,1152,0C1128,0,1104,0,1080,0C1056,0,1032,0,1008,0C984,0,960,0,936,0C912,0,888,0,864,0C840,0,816,0,792,0C768,0,744,0,720,0C696,0,672,0,648,0C624,0,600,0,576,0C552,0,528,0,504,0C480,0,456,0,432,0C408,0,384,0,360,0C336,0,312,0,288,0C264,0,240,0,216,0C192,0,168,0,144,0C120,0,96,0,72,0C48,0,24,0,12,0L0,0Z" />
+        </svg>
+        <h2 class="text-4xl text-center text-gray-200">
+          Layanan
+        </h2>
+        <div class="flex flex-wrap justify-center mt-4">
+          <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
+            <div class="font-semibold text-xl mb-4 text-gray-900">
+              Customer Support
             </div>
+            <div class="text-center mb-4">
+              <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/contact.svg" alt="Icon" width="120">
+            </div>
+            <p>
+              Kami berusaha melayani dengan sebaik - baiknya.
+            </p>
           </div>
-          <div class="w-full md:w-1/2 pl-4 self-center">
-            <h1 class="text-4xl font-semibold text-gray-200">
-              Ensure Your Competency
-            </h1>
-            <p class="text-gray-200">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+          <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
+            <div class="font-semibold text-xl mb-4 text-gray-900">
+              Fast
+            </div>
+            <div class="text-center mb-4">
+              <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/clock.svg" alt="Icon" width="120">
+            </div>
+            <p>
+              Kami melakukannya dengan cepat dan tepat waktu.
+            </p>
+          </div>
+          <div class="w-full md:w-3/12 bg-gray-100 rounded transition-all duration-100 mx-2 my-2 p-4 text-center hover:shadow-2xl hover:bg-gray-200">
+            <div class="font-semibold text-xl mb-4 text-gray-900">
+              Accuracy Assessment
+            </div>
+            <div class="text-center mb-4">
+              <img v-lazy-load class="inline-block" src="@/assets/images/landingpage/exam.svg" alt="Icon" width="120">
+            </div>
+            <p>
+              Ketepatan dan kejujuran kami dalam melakukan asesmen.
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- section:docs -->
+      <section>
+        <div class="container mx-auto pt-12 md:px-24 px-4">
+          <div class="flex md:flex-row flex-col">
+            <div class="w-full md:w-1/2 p-4">
+              <div class="bg-gray-200 p-4 rounded-md shadow-md">
+                <img src="@/assets/images/slides/1.jpeg" alt="Documentations">
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 pl-4 self-center">
+              <h1 class="text-4xl font-semibold text-gray-200">
+                Ensure Your Competency!
+              </h1>
+              <p class="text-gray-200">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container mx-auto md:pt-12 md:px-24 px-4 mt-10 lg:mt-0">
+          <div class="flex md:flex-row flex-col-reverse">
+            <div class="w-full md:w-1/2 pl-4 self-center">
+              <h1 class="text-4xl font-semibold text-gray-200">
+                Professional Assessor
+              </h1>
+              <p class="text-gray-200">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+              </p>
+            </div>
+            <div class="w-full md:w-1/2 p-4">
+              <div class="bg-gray-200 p-4 rounded-md shadow-md">
+                <img src="@/assets/images/slides/5.jpg" alt="Documentations">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container mx-auto pt-12 md:px-24 px-4">
+          <div class="flex md:flex-row flex-col">
+            <div class="w-full md:w-1/2 p-4">
+              <div class="bg-gray-200 p-4 rounded-md shadow-md">
+                <img src="@/assets/images/slides/3.jpeg" alt="Documentations">
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 pl-4 self-center">
+              <h1 class="text-4xl font-semibold text-gray-200">
+                Kompeten, Berdedikasi, Berintegritas, Berkualitas dan Berdaya Saing
+              </h1>
+              <p class="text-gray-200">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container mx-auto md:pt-12 md:px-24 px-4 mt-10 lg:mt-0">
+          <div class="flex md:flex-row flex-col-reverse">
+            <div class="w-full md:w-1/2 pl-4 self-center">
+              <h1 class="text-4xl font-semibold text-gray-200">
+                Join With Us!
+              </h1>
+              <p class="text-gray-200">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, dolore eligendi? Blanditiis, unde? Id quisquam minima inventore officia deleniti eum fugit ad cumque ex quod deserunt, veritatis commodi! A, expedita.
+              </p>
+            </div>
+            <div class="w-full md:w-1/2 p-4">
+              <div class="bg-gray-200 p-4 rounded-md shadow-md">
+                <img src="@/assets/images/slides/4.jpeg" alt="Documentations">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- section:company -->
     <section class="bg-blue-500">

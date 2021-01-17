@@ -4,6 +4,8 @@ import Datepicker from 'vuejs-datepicker'
 import VueMoment from 'vue-moment'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
+import VueSignaturePad from 'vue-signature-pad'
+import vSelect from 'vue-select'
 // import CKEditor from '@ckeditor/ckeditor5-vue'
 
 // import Vueditor from 'vueditor'
@@ -30,5 +32,7 @@ Vue.use(VueGoodTablePlugin)
 Vue.use(VueMoment)
 Vue.component('date-picker', Datepicker)
 Vue.use(VueLodash, { lodash })
+Vue.use(VueSignaturePad)
+Vue.component('v-select', vSelect)
 // Vue.use(Vueditor, config)
 // Vue.use(CKEditor)

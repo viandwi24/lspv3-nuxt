@@ -15,8 +15,6 @@ div.sidebar {
     color: $colorPrimary !important;
   }
   li.item.active {
-    @apply border-t-2;
-    @apply border-b-2;
     @apply border-blue-500;
   }
 }
@@ -40,16 +38,6 @@ div.footer, div.footer span {
 
   .vm--overlay {
     background: rgba(0, 0, 0, 0.8); 
-  }
-
-  .v-select, .vs__dropdown-toggle, .vs__selected-options, .vs__search, .vs__actions, .vs__actions * {
-    color: $colorPrimary;
-    .vs__clear {
-      color: theme('colors.white');
-    }
-    &, .vs__selected {
-      background: $backgroundTertiary !important;
-    }
   }
 }
 

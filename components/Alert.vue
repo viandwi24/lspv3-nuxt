@@ -9,7 +9,6 @@
   </div>
 </template>
 <script>
-import { ref } from '@vue/composition-api'
 export default {
   props: {
     alert: {
@@ -19,14 +18,10 @@ export default {
     type: {
       type: String,
       default: 'primary'
-    }
-  },
-  setup (props, { app }) {
-    const classType = ref('')
-
-    // const
-    return {
-      classType
+    },
+    classType: {
+      type: String,
+      default: ''
     }
   }
 }

@@ -40,7 +40,7 @@ export default {
     }
   },
   layout: 'dashboard',
-  middleware: ['auth', 'is_asesi'],
+  middleware: ['auth', 'is_accession'],
   transition: 'dashboard',
   head: {
     title: 'Dashboard - Asesi - Daftar Skema'

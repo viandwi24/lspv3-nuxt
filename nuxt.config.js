@@ -45,13 +45,13 @@ export default {
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
+  // '@/plugins/composition-api',
   plugins: [
     '@/plugins/config',
     { src: '@/plugins/component-nossr', ssr: false },
     '@/plugins/component',
     '@/plugins/icon',
     '@/plugins/axios',
-    '@/plugins/composition-api',
     '@/plugins/helper'
   ],
   /*
@@ -65,6 +65,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/composition-api',
     'nuxt-purgecss'
   ],
   /*

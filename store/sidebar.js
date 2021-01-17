@@ -11,6 +11,10 @@ export const state = () => ({
         route: 'admin'
       },
       {
+        type: 'item-header',
+        text: 'Manajemen'
+      },
+      {
         type: 'item',
         text: 'Kategori',
         route: 'admin-kategori'

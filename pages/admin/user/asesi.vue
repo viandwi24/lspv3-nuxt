@@ -38,6 +38,7 @@
         <tw-input title="Nama" :value.sync="input.name" />
         <tw-input title="Username Id" :value.sync="input.username" />
         <tw-input title="Email" :value.sync="input.email" />
+        <tw-select title="Status" :value.sync="input.status" :data="{ 'Active': 'Active','Inactive': 'Inactive', 'Suspended': 'Suspended' }" />
         <tw-input title="Password" :value.sync="input.password" />
       </form>
       <div slot="footer" slot-scope="props">

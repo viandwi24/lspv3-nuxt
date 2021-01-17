@@ -10,11 +10,13 @@
       @apply font-semibold text-gray-800 pl-10 my-1 py-2;
     }
     li.item.active {
-      @apply font-semibold text-blue-600 my-1 py-2 border-t-2 border-b-2 border-blue-200;
+      @apply font-semibold text-blue-600 my-1 py-2 border-blue-200;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
       margin-top: 2px;
       margin-bottom: 2px;
       background-color: rgba(66, 153, 225, .08);
-      padding-left: 2.2rem;
+      padding-left: 2.25rem;
       border-left: 4px solid theme('colors.blue.500');
     }
   }

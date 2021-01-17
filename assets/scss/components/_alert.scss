@@ -14,11 +14,12 @@
 }
 
 .alert.left-accent-border {
-    & div {
-        background: theme('colors.orange.100');
+    & div.warning {
+        background: theme('colors.orange.200');
         @apply border-orange-500;
     }
-    .warning * {
-        color: theme('colors.orange.700');
+    & div.primary{
+        background: theme('colors.blue.200');
+        @apply border-blue-500;
     }
 }

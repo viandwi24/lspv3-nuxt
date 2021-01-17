@@ -6,20 +6,24 @@
     <input
       v-if="type === 'text' || type === 'password' || type === 'email'"
       :id="options.id"
+      :ref="ref"
       v-model="valueModel"
       class="input bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-      :class="`${classSize} inputClass`"
+      :class="`${classSize} ${inputClass}`"
       :type="type"
       :placeholder="options.placeholder"
+      :disabled="disabled"
     >
     <textarea
       v-if="type === 'textarea'"
       :id="options.id"
+      :ref="ref"
       v-model="valueModel"
       class="input bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-      :class="`${classSize} inputClass`"
+      :class="`${classSize} ${inputClass}`"
       :type="type"
       :placeholder="options.placeholder"
+      :disabled="disabled"
     />
     <slot v-if="type === 'custom'" />
   </div>
@@ -36,6 +40,10 @@ export default {
       type: String,
       default: 'text'
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     placeholder: {
       type: String,
       default: undefined
@@ -47,6 +55,10 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    iserror: {
+      type: Boolean,
+      default: false
     },
     size: {
       type: String,
@@ -64,6 +76,7 @@ export default {
   data () {
     return {
       valueModel: '',
+      ref: '',
       options: {
         id: '',
         placeholder: ''
@@ -100,10 +113,12 @@ export default {
   },
   created () {
     this.options.id = this.title.split(' ').join('-').toLowerCase()
+    this.ref = 'input-' + this.options.id
     this.options.placeholder = (typeof this.placeholder !== 'undefined')
       ? this.placeholder
       : `${this.title} ...`
     this.valueModel = this.value
+    this.iserrorModel = this.iserror
   }
 }
 </script>

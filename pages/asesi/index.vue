@@ -21,7 +21,7 @@ export default {
     }
   },
   layout: 'dashboard',
-  middleware: ['auth', 'is_asesi'],
+  middleware: ['auth', 'is_accession'],
   transition: 'default',
   head: {
     title: 'Dashboard - Asesi'

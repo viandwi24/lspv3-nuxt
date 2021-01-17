@@ -104,8 +104,14 @@ function useOurTable (url) {
         sortable: true
       },
       {
-        label: 'Nomor / Kode',
+        label: 'Kode',
         field: 'code',
+        searchable: true,
+        sortable: true
+      },
+      {
+        label: 'Kategori',
+        field: 'category',
         searchable: true,
         sortable: true
       },

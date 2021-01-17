@@ -66,7 +66,7 @@
             </div>
             <!-- sidebar:menu -->
             <ul class="flex-1 mt-4 max-h-full">
-              <li v-for="(item, i) in sidebarMenu" :key="i" :class="{ 'item-header font-semibold text-gray-600 pl-10 mb-1 mt-3': item.type === 'item-header', 'item': item.type === 'item', 'active': (item.route && $route.name === item.route) }">
+              <li v-for="(item, i) in sidebarMenu" :key="i" :class="{ 'item-header font-semibold text-gray-600 pl-10 mb-1 mt-4': item.type === 'item-header', 'item': item.type === 'item', 'active': (item.route && $route.name === item.route) }">
                 <span v-if="item.type == 'item-header'">{{ item.text }}</span>
                 <nuxt-link v-else-if="item.type == 'item'" tag="a" :to="{ name: item.route }">
                   {{ item.text }}
@@ -74,7 +74,7 @@
               </li>
             </ul>
             <!-- sidebar:footer -->
-            <div class="mx-4 mb-4 px-12 text-center">
+            <div class="mx-4 my-4 px-12 text-center">
               <img src="@/assets/images/illustration/hello.svg" alt="Illustration" style="max-height: 100px;height: 100%;" class="inline-block">
             </div>
           </overlay-scrollbars>
@@ -133,9 +133,22 @@ export default {
     const loading = computed(() => root.$store.state.loading)
     const profilRoute = computed(() => {
       const role = root.$auth.user.role
-      return (`${role}-profil`).toLowerCase()
+      let route = ''
+      switch (role) {
+        case 'Accession':
+          route = 'asesi'
+          break
+        case 'Accessor':
+          route = 'asesor'
+          break
+        case 'Admin':
+          route = 'admin'
+          break
+        default:
+          break
+      }
+      return (`${route}-profil`).toLowerCase()
     })
-
     return {
       app,
       GET_APP,
