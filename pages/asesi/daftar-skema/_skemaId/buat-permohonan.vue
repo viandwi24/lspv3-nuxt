@@ -191,10 +191,60 @@
 
     <div class="card mb-4 w-full">
       <div class="header">
-        Berkas Persyaratan & Pendukung
+        Berkas Persyaratan
       </div>
-      <div class="content">
-        aweawe
+      <div>
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th width="6%">
+                #
+              </th>
+              <th class="text-left" width="30%">
+                Nama
+              </th>
+              <th class="text-left" width="20%">
+                Format
+              </th>
+              <th class="text-left">
+                Pilih Berkas
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, i) in skema.files" :key="i">
+              <td class="text-center">
+                {{ (i+1) }}
+              </td>
+              <td>
+                {{ item.name }}
+              </td>
+              <td>
+                {{ item.format.join(', ') }}
+              </td>
+              <td>
+                <v-select class="vue-select" :options="files" :reduce="file => file.id" label="name" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card mb-4 w-full">
+      <div class="header">
+        Berkas Pendukung
+      </div>
+      <div>
+        <table class="table table-sm table-hover mb-0">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Format</th>
+              <th>Pilih Berkas</th>
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
 
@@ -250,10 +300,14 @@
                   {{ job_criteria.title }}
                 </td>
                 <td class="text-center">
-                  ...
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio h-4 w-4" :name="`radio-${i}${j}${k}`">
+                  </label>
                 </td>
                 <td class="text-center">
-                  ...
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio h-4 w-4" :name="`radio-${i}${j}${k}`" checked>
+                  </label>
                 </td>
               </tr>
             </tbody>
@@ -291,18 +345,21 @@
 
 <script>
 import { computed, reactive, useContext } from '@nuxtjs/composition-api'
-import { useOurAsyncDataSlugId } from '@/api/admin/schema.js'
+import { useOurAsyncDataSlugId } from '@/api/accession/schema.js'
+import { useOurCrudFile } from '@/api/accession/file.js'
 export default {
   validate ({ params }) {
     return /^\d+$/.test(params.skemaId)
   },
   async asyncData ({ params, app, redirect }) {
     const { skema } = await useOurAsyncDataSlugId(params, app, redirect)
+    const { readAll } = useOurCrudFile(app)
+    const { files } = await readAll()
     const skemaCategories = []
     skema.categories.forEach(e => skemaCategories.push(e.name))
-    console.log(skema)
     return {
       skema,
+      files,
       skemaCategories
     }
   },
@@ -397,3 +454,6 @@ function useOurTable (url) {
   }
 }
 </script>
+
+<style lang="scss">
+</style>

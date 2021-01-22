@@ -40,7 +40,9 @@ import {
   faEye,
   faFileDownload,
   faUndoAlt,
-  faUpload
+  faUpload,
+  faFileAlt,
+  faFileUpload
 } from '@fortawesome/free-solid-svg-icons'
 // import {
 //   faFontAwesome
@@ -88,6 +90,8 @@ library.add(
   faEye,
   faFileDownload,
   faUndoAlt,
-  faUpload
+  faUpload,
+  faFileAlt,
+  faFileUpload
 )
 Vue.component('icon', FontAwesomeIcon)

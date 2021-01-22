@@ -112,6 +112,7 @@ export default {
           { text: 'Asesor', icon: 'user-friends', route: 'manajemen-asesor' },
           { text: 'Tempat Uji', icon: 'building', route: 'manajemen-tempat-uji' },
           { text: 'Jadwal', icon: 'calendar-alt', route: 'manajemen-jadwal' },
+          { text: 'Berkas Pendaftaran', icon: 'file-alt', route: 'manajemen-berkas' },
           { text: 'Pengaturan', icon: 'cogs', route: 'pengaturan' }
         ]
       },

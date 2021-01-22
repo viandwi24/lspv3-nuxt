@@ -1,32 +1,21 @@
-export const url = 'accession/files'
+function generateUrl (schemaId) {
+  return `admin/schemas/${schemaId}/files`
+}
 
-export function useOurCrudFile ($root) {
-  const options = {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  }
+export const url = generateUrl
+
+export function useOurCrudSchemaFile (schemaId, $root) {
+  const url = generateUrl(schemaId)
+
   const create = (data) => {
     return new Promise((resolve, reject) => {
       try {
-        const response = $root.$axios.post(url, data, options)
+        const response = $root.$axios.post(`${url}`, data)
         resolve(response)
       } catch (err) {
         reject(err)
       }
     })
-  }
-
-  const readAll = async () => {
-    const http = (await $root.$axios.$get(`${url}`))
-    return {
-      response: http,
-      files: http.data
-    }
-  }
-
-  const read = async (id) => {
-    return (await $root.$axios.$get(`${url}/${id}`))
   }
 
   const update = (data) => {
@@ -54,10 +43,7 @@ export function useOurCrudFile ($root) {
   }
 
   return {
-    url,
     create,
-    readAll,
-    read,
     update,
     destroy
   }

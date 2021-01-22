@@ -3,7 +3,7 @@
   outline: 1px solid theme('colors.gray.600');
 
   * {
-    &:not(.button):not(.button-content):not(.button-icon):not(.button-text):not(.v-select):not(.input):not(.input-group) {
+    &:not(.button):not(.button-content):not(.button-icon):not(.button-text):not(.v-select):not(.input):not(.input-group):not(svg):not(path) {
       background: $backgroundSecondary;
     }
   }
