@@ -111,21 +111,21 @@
           A. Data Diri
         </p>
         <div>
-          <tw-input title="Nama Lengkap" :value="input.user.name" :disabled="true" />
+          <tw-input title="Nama Lengkap" :value.sync="input.user.name" :disabled="true" />
           <div class="flex fle-row gap-4">
-            <tw-input title="Tempat Lahir" :value="input.user.placeOfBirth" class="w-full md:w-1/2" />
-            <tw-input title="Tanggal Lahir" :value="input.user.dateOfBirth" class="w-full md:w-1/2" />
+            <tw-input title="Tempat Lahir" :value.sync="input.user.placeOfBirth" class="w-full md:w-1/2" />
+            <tw-input title="Tanggal Lahir" :value.sync="input.user.dateOfBirth" class="w-full md:w-1/2" />
           </div>
           <div class="flex fle-row gap-4">
             <tw-select title="Jenis Kelamin" :value.sync="input.user.gender" :data="{ 'Male': 'Pria', 'Female': 'Perempuan' }" class="w-full md:w-1/2" />
-            <tw-input title="Kebangsaan" :value="input.user.nationality" class="w-full md:w-1/2" />
+            <tw-input title="Kebangsaan" :value.sync="input.user.nationality" class="w-full md:w-1/2" />
           </div>
-          <tw-input title="Alamat Rumah" type="textarea" :value="input.user.address" />
+          <tw-input title="Alamat Rumah" type="textarea" :value.sync="input.user.address" />
           <div class="flex fle-row gap-4">
-            <tw-input title="Nomor Telepon" :value="input.user.phone" class="w-full md:w-1/2" />
-            <tw-input title="Email" :value="input.user.email" class="w-full md:w-1/2" :disabled="true" />
+            <tw-input title="Nomor Telepon" :value.sync="input.user.phone" class="w-full md:w-1/2" />
+            <tw-input title="Email" :value.sync="input.user.email" class="w-full md:w-1/2" :disabled="true" />
           </div>
-          <tw-input title="Pendidikan Terakhir" :value="input.user.last_education" />
+          <tw-input title="Pendidikan Terakhir" :value.sync="input.user.last_education" />
         </div>
       </div>
       <div class="content flex flex-col">
@@ -223,7 +223,7 @@
                 {{ item.format.join(', ') }}
               </td>
               <td>
-                <v-select class="vue-select" :options="files" :reduce="file => file.id" label="name" />
+                <v-select v-model="input.files[i]" class="vue-select" :options="files" :reduce="file => { return {schema_file: item.id, file: file.id} }" label="name" />
               </td>
             </tr>
           </tbody>
@@ -387,14 +387,19 @@ export default {
       },
       certification: {
         purpose: 'Certification'
-      }
+      },
+      files: []
     })
     const disableJobInput = computed(function () {
       const jobstatus = input.job.status
       return jobstatus !== 'Working'
     })
+    const save = () => {
+      console.log(input)
+    }
 
     return {
+      save,
       input,
       disableJobInput,
       tableOptions
