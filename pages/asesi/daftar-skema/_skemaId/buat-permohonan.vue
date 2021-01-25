@@ -234,16 +234,47 @@
     <div class="card mb-4 w-full">
       <div class="header">
         Berkas Pendukung
+        <div class="float-right">
+          <tw-button class-btn="mx-0" size="sm" text="Tambah File" @click.native="addNewFile" />
+        </div>
       </div>
       <div>
         <table class="table table-sm table-hover mb-0">
           <thead>
             <tr>
-              <th>Nama</th>
-              <th>Format</th>
+              <th width="5%">
+                #
+              </th>
+              <th class="text-left" width="45%">
+                Nama
+              </th>
               <th>Pilih Berkas</th>
+              <th width="5%">
+                ...
+              </th>
             </tr>
           </thead>
+          <tbody>
+            <tr v-if="input.otherFile.length == 0">
+              <td class="text-center" colspan="4">
+                -
+              </td>
+            </tr>
+            <tr v-for="(item, i) in input.otherFile" v-else :key="i">
+              <td class="text-center">
+                {{ (i+1) }}
+              </td>
+              <td class="">
+                <tw-input size="sm" :with-title="false" :value.sync="input.otherFile[i].name" />
+              </td>
+              <td class="">
+                <v-select v-model="input.otherFile[i].file" class="vue-select" :options="files" :reduce="file => file.id" label="name" />
+              </td>
+              <td class="">
+                <tw-button class-btn="mx-0 mt-1" type="danger" size="sm" icon="times" @click.native="deleteFile(i)" />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -388,7 +419,8 @@ export default {
       certification: {
         purpose: 'Certification'
       },
-      files: []
+      files: [],
+      otherFile: []
     })
     const disableJobInput = computed(function () {
       const jobstatus = input.job.status
@@ -397,8 +429,15 @@ export default {
     const save = () => {
       console.log(input)
     }
+    const addNewFile = () => {
+      input.otherFile.push({
+        name: '',
+        file: undefined
+      })
+    }
 
     return {
+      addNewFile,
       save,
       input,
       disableJobInput,
