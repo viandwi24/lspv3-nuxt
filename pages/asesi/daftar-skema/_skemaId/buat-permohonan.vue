@@ -114,7 +114,14 @@
           <tw-input title="Nama Lengkap" :value.sync="input.user.name" :disabled="true" />
           <div class="flex fle-row gap-4">
             <tw-input title="Tempat Lahir" :value.sync="input.user.placeOfBirth" class="w-full md:w-1/2" />
-            <tw-input title="Tanggal Lahir" :value.sync="input.user.dateOfBirth" class="w-full md:w-1/2" />
+            <tw-input title="Waktu Pelaksanaan" type="custom" class="w-full md:w-1/2">
+              <date-picker
+                v-model="input.user.dateOfBirth"
+                placeholder="dd-MM-yyyy"
+                format="dd-MM-yyyy"
+                input-class="bg-gray-200 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-md"
+              />
+            </tw-input>
           </div>
           <div class="flex fle-row gap-4">
             <tw-select title="Jenis Kelamin" :value.sync="input.user.gender" :data="{ 'Male': 'Pria', 'Female': 'Perempuan' }" class="w-full md:w-1/2" />
@@ -307,10 +314,10 @@
                 </p>
               </th>
               <th class="text-center" width="7%">
-                BK
+                Tidak Bisa
               </th>
               <th class="text-center" width="7%">
-                K
+                Bisa
               </th>
             </tr>
             <tbody v-for="(work_element, j) in competency_unit.work_elements" :key="j">
@@ -332,12 +339,12 @@
                 </td>
                 <td class="text-center">
                   <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio h-4 w-4" :name="`radio-${i}${j}${k}`">
+                    <input type="radio" class="form-radio assessmen-radio h-4 w-4" :name="`radio-${i}${j}${k}`">
                   </label>
                 </td>
                 <td class="text-center">
                   <label class="inline-flex items-center">
-                    <input type="radio" class="form-radio h-4 w-4" :name="`radio-${i}${j}${k}`" checked>
+                    <input type="radio" class="form-radio assessmen-radio setuju h-4 w-4" :name="`radio-${i}${j}${k}`" checked>
                   </label>
                 </td>
               </tr>
@@ -377,6 +384,7 @@
 <script>
 import { computed, reactive, useContext } from '@nuxtjs/composition-api'
 import { useOurAsyncDataSlugId } from '@/api/accession/schema.js'
+import { useOurCrudSRegistrationSchema } from '@/api/accession/registration-schema.js'
 import { useOurCrudFile } from '@/api/accession/file.js'
 export default {
   validate ({ params }) {
@@ -394,40 +402,86 @@ export default {
       skemaCategories
     }
   },
-  setup (props, { root, refs }) {
+  setup (props, { root }) {
     const { $auth } = useContext()
     const { tableOptions } = useOurTable()
+    const { create } = useOurCrudSRegistrationSchema(root)
     const input = reactive({
       user: {
         name: $auth.user.name,
-        placeOfBirth: '',
+        placeOfBirth: 'Surabaya',
         dateOfBirth: null,
         gender: 'Male',
+        address: 'mojokerto sini',
         nationality: 'Indonesia',
-        phone: '',
+        phone: '0895337617550',
         email: $auth.user.email,
-        last_education: ''
+        last_education: 'SMK'
       },
       job: {
-        status: 'Not Working',
-        company: '',
-        position: '',
-        address: '',
-        phone: '',
-        email: ''
+        status: 'Working',
+        company: 'Gojek',
+        position: 'Bussiness Manager',
+        address: 'jakarta sana',
+        phone: '0895337617550',
+        email: 'admin@gojek.id'
       },
       certification: {
         purpose: 'Certification'
       },
-      files: [],
-      otherFile: []
+      files: [
+        { schema_file: 1, file: 1 },
+        { schema_file: 2, file: 1 },
+        { schema_file: 3, file: 1 }
+      ],
+      otherFile: [{ name: 'test aja', file: 1 }]
     })
     const disableJobInput = computed(function () {
       const jobstatus = input.job.status
       return jobstatus !== 'Working'
     })
     const save = () => {
-      console.log(input)
+      root.$swal({
+        title: 'Apakah kamu yakin?',
+        text: 'Yakin ingin membuat permohonan terhadap skema ini?',
+        icon: 'warning',
+        showCancelButton: true
+      }).then(function () {
+        // validation - asesmen mandiri
+        const asesmenSetujuRadio = document.querySelectorAll('.form-radio.assessmen-radio.setuju')
+        for (let i = 0; i < asesmenSetujuRadio.length; i++) {
+          const e = asesmenSetujuRadio[i]
+          if (!e.checked) {
+            root.$swal({
+              title: 'Tidak dapat mengirim!',
+              text: 'Ada Asesmen Mandiri yang mana ada unit yang kamu tidak bisa, kamu harus mengisi bisa sebelum mengirim permohonan ini!',
+              icon: 'error'
+            })
+          }
+        }
+
+        // validation input
+        const data = Object.assign(JSON.parse(JSON.stringify(input)), {})
+        data.user.dateOfBirth = root.$moment(data.user.dateOfBirth).format('DD-MM-YYYY')
+        data.job.status = (data.job.status === 'Working')
+        console.log(data)
+
+        // send
+        root.$overlayLoading.show()
+        create(data).then((res) => {
+          if (res.status === 201) {
+            root.$swal(
+              'Terkirim!',
+              'Permohonan anda berhasil dikirim, silahkan pantau status permohonan anda apakah sudah diterima atau masih proses (pending).',
+              'success'
+            ).then(() => {
+              root.$router.push({ name: 'asesi-daftar-skema' })
+            })
+          }
+        }).finally(() => {
+          root.$overlayLoading.hide()
+        })
+      })
     }
     const addNewFile = () => {
       input.otherFile.push({
@@ -454,16 +508,6 @@ export default {
 
 function useOurTable (url) {
   const tableOptions = reactive({
-    rows: [
-      {
-        mode: 'span',
-        label: 'Awaeaeawe',
-        html: true,
-        children: [
-          { id: 1, title: 'aweawe', description: 'waeaweawe' }
-        ]
-      }
-    ],
     groupOptions: {
       enabled: true
     },
