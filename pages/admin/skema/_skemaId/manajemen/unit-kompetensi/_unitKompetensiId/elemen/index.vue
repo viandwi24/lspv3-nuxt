@@ -61,6 +61,8 @@ export default {
     const { unitKompetensi } = await useOurAsyncDataSlugId(params, app, redirect)
     const { tableOptions } = useOurTable(url(skema.id, unitKompetensi.id))
 
+    console.log(unitKompetensi)
+
     const breadcrumbs = [
       { text: 'Home', route: 'admin' },
       { text: 'Skema', route: 'admin-skema' },

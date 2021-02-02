@@ -1,1 +1,1 @@
-export const url = 'accession/schema-lists'
+export const url = 'accession/schemas'

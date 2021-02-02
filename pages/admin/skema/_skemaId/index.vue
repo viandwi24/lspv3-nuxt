@@ -119,7 +119,7 @@ export default {
       {
         title: 'Asesmen & Asesi',
         items: [
-          { text: 'Permohonan Asesi', icon: 'user-check', route: 'manajemen-unit-kompetensi' },
+          { text: 'Permohonan Asesi', icon: 'user-check', route: 'permohonan' },
           { text: 'Asesmen Asesi', icon: 'user-edit', route: 'manajemen-unit-kompetensi' }
         ]
       },

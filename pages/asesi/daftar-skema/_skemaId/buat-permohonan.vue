@@ -9,7 +9,7 @@
           {{ skema.title }}
         </p>
       </div>
-      <tw-breadcrumb :items="[{ text: 'Home', route: 'asesi' },{ text: 'Buat Permohonan' }]" />
+      <tw-breadcrumb :items="[{ text: 'Home', route: 'asesi' },{ text: 'Daftar Skema', route: 'asesi-daftar-skema' },{ text: 'Buat Permohonan' }]" />
     </div>
 
     <tw-alert alert="left-accent-border" class="mb-4">
@@ -230,7 +230,7 @@
                 {{ item.format.join(', ') }}
               </td>
               <td>
-                <v-select v-model="input.files[i]" class="vue-select" :options="files" :reduce="file => { return {schema_file: item.id, file: file.id} }" label="name" />
+                <v-select v-model="input.files[i].file" class="vue-select" :options="files" :reduce="file => file.id" label="name" />
               </td>
             </tr>
           </tbody>
@@ -382,7 +382,7 @@
 </template>
 
 <script>
-import { computed, reactive, useContext } from '@nuxtjs/composition-api'
+import { computed, onMounted, reactive, useContext } from '@nuxtjs/composition-api'
 import { useOurAsyncDataSlugId } from '@/api/accession/schema.js'
 import { useOurCrudSRegistrationSchema } from '@/api/accession/registration-schema.js'
 import { useOurCrudFile } from '@/api/accession/file.js'
@@ -402,11 +402,14 @@ export default {
       skemaCategories
     }
   },
-  setup (props, { root }) {
+  setup (props, ctx) {
+    console.log({ props, ctx, test: ctx.root.$data.skema })
+    const { root } = ctx
     const { $auth } = useContext()
     const { tableOptions } = useOurTable()
     const { create } = useOurCrudSRegistrationSchema(root)
     const input = reactive({
+      schema_id: null,
       user: {
         name: $auth.user.name,
         placeOfBirth: 'Surabaya',
@@ -464,11 +467,11 @@ export default {
         const data = Object.assign(JSON.parse(JSON.stringify(input)), {})
         data.user.dateOfBirth = root.$moment(data.user.dateOfBirth).format('DD-MM-YYYY')
         data.job.status = (data.job.status === 'Working')
-        console.log(data)
 
         // send
         root.$overlayLoading.show()
         create(data).then((res) => {
+          console.log(res)
           if (res.status === 201) {
             root.$swal(
               'Terkirim!',
@@ -489,6 +492,9 @@ export default {
         file: undefined
       })
     }
+    onMounted(() => {
+      input.schema_id = root.$route.params.skemaId
+    })
 
     return {
       addNewFile,
@@ -541,6 +547,31 @@ function useOurTable (url) {
     tableOptions
   }
 }
+// const input = reactive({
+//   user: {
+//     name: $auth.user.name,
+//     placeOfBirth: '',
+//     dateOfBirth: null,
+//     gender: 'Male',
+//     nationality: 'Indonesia',
+//     phone: '',
+//     email: $auth.user.email,
+//     last_education: ''
+//   },
+//   job: {
+//     status: 'Not Working',
+//     company: '',
+//     position: '',
+//     address: '',
+//     phone: '',
+//     email: ''
+//   },
+//   certification: {
+//     purpose: 'Certification'
+//   },
+//   files: [],
+//   otherFile: []
+// })
 </script>
 
 <style lang="scss">
