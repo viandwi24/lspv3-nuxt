@@ -24,7 +24,7 @@
     "@nuxtjs/composition-api": "^0.18.1",
     "@nuxtjs/toast": "^3.3.1",
     "@tailwindcss/ui": "^0.5.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.14.0",
     "nuxt-lazy-load": "^1.2.4",
     "nuxt-purgecss": "^1.0.0",
